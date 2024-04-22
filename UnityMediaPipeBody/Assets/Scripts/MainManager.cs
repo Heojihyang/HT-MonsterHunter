@@ -25,5 +25,9 @@ public class MainManager : MonoBehaviour
 
     // (운동기록보기) 클릭 시 : 
 
-    // (도감) 클릭 시 : 
+    // (도감) 클릭 시 : TMonsterListScene으로 이동
+    public void ChangeTMonsterListScene()
+    {
+        SceneManager.LoadScene("TMonsterListScene");
+    }
 }

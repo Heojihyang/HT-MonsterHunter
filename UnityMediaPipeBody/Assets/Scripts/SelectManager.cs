@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectManager : MonoBehaviour
 {
@@ -18,9 +19,15 @@ public class SelectManager : MonoBehaviour
         
     }
 
-    // (허벅지) 클릭 시 : 운동설명창 활성화
+    // (허벅지) 클릭 시 : 운동설명 창 활성화
     public void ActExerciseExplain()
     {
         Explain.SetActive(true);
+    }
+
+    // (허벅지) 클릭 시 : 운동설명 창 활성화
+    public void ChangeTDungeonScene()
+    {
+        SceneManager.LoadScene("TDungeonScene");
     }
 }
