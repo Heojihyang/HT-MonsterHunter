@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/MainScene.unity
+    guid: b91019e72f1c68940954794ba75bcb08
+  - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/SelectScene.unity
+    guid: 7105b387e1643de46a0f0ec8117134e2
   m_configObjects: {}
