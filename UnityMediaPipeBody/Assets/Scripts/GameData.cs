@@ -22,10 +22,10 @@ public class MonsterData
 {
     // 몬스터(20개) 수집 여부
     // 수집O : true , 수집X : False
-    public bool[] MonsterUnLocked = new bool[20];
+    public bool[] MonsterUnLocked = new bool[3];
 
     // 몬스터 경험치
-    public int[] MonsterExp = new int[20];
+    public int[] MonsterExp = new int[3];
 }
 
 public class GameData : MonoBehaviour
