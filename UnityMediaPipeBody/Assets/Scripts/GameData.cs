@@ -16,7 +16,6 @@ using System.IO;
 // 2. Json을 데이터 형태로 변환
 // 3. 불러온 데이터 사용
 
-
 // 1. 저장할 데이터 존재
 public class MonsterData
 {
@@ -39,17 +38,32 @@ public class PlayerData
 
 public class GameData : MonoBehaviour
 {
+    public static GameData instance; // 싱글톤
+
     string Path;
     string MonsterFileName = "MonsterDataSave";
     string PlayerFileName = "PlayerDataSave";
 
-    MonsterData monsterdata = new MonsterData();
-    PlayerData playerdata = new PlayerData();
+    public MonsterData monsterdata = new MonsterData();
+    public PlayerData playerdata = new PlayerData();
 
     private void Awake()
     {
+        #region 싱글톤
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+        #endregion
+
         // 경로를 만들어줌
         Path = Application.persistentDataPath + "/";
+        print(Path); // 경로 확인 
     }
 
     void Start()
@@ -59,7 +73,6 @@ public class GameData : MonoBehaviour
         // SaveMonsterData();
         // SavePlayerData();
 
-        // print(Path); // 경로 확인 
     }
 
     public void SaveMonsterData()

@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MonListManager : MonoBehaviour
 {
     public List<MonsterListData> monsterListData;
 
     MonsterData Monsterdata = new MonsterData(); // GameData.cs
 
+    GameData gamedata = new GameData();
+    // public GameObject gamedata;
+
     public GameObject MonsterInfo;
+    public GameObject MonsterImage;
+    public Text MonsterName;
+
 
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
@@ -54,9 +61,28 @@ public class MonListManager : MonoBehaviour
     {
         MonsterInfo.SetActive(true);
 
-        // 정보 넣어주기
+        // --- 데이터 가져와서 넣어주기 ---
+        // 1. 몬스터 이미지 : MonsterListData의 True 이미지 가져오기 
+        // 2. 몬스터 이름 : MonsterData의 이름 가져와서 Text에 넣어주기
+        // 3. 몬스터 발생 부위 -> ID에 따라 구분한 데이터 구현해놓고 거기서 가져오기 
+        // 4. 몬스터 발생 부위 이미지 
+
+        // 1. 몬스터 이미지 
+        Sprite MonsterImg = monsterListData[ID].MonTrueImage; // 가져오기
+        MonsterImage.GetComponent<Image>().sprite = MonsterImg; // 넣어주기 (UI조정 필요: 노션확인)
+
+        // 몬스터 데이터 로드
+        GameData.instance.LoadMonsterData(); 
+
+        // 2. 몬스터 이름 : 몬스터 데이터 사용 
+        string monstername = GameData.instance.monsterdata.MonsterName[ID];
+        MonsterName.text = monstername;
+
+        // 3. 몬스터 발생 부위
+
 
     }
+
     // 뒤로가기 버튼 클릭
     public void InActMonsterInfo()
     {
@@ -77,4 +103,11 @@ public class MonsterListData
 
     [field: SerializeField]
     public Sprite MonTrueImage { get; private set; } // 수집O 표시 
+
+    [field: SerializeField]
+    public string MonsterPart { get; private set; } // 몬스터 발생 부위
+
+    [field: SerializeField]
+    public Sprite MonsterPartImage { get; private set; } // 몬스터 발생 부위 이미지
+
 }
