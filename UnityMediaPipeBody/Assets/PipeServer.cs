@@ -237,6 +237,9 @@ public class PipeServer : MonoBehaviour
     private void Update()
     {
         UpdateBody(body);
+
+        //현재 랜드마크, 머리 넘겨주기
+        //PlayerController.cs의 getLandmarkPosition(body.instances, body.head);
     }
 
     // 몸 생성, 트래킹 -> 얘를 배열[33]에 포지션을 반환하는 함수로 반환해서 
@@ -292,6 +295,7 @@ public class PipeServer : MonoBehaviour
             Vector3 n2 = Vector3.Scale(new Vector3(1f, .1f, 1f), GetNormal(b.Position((Landmark)0), b.Position((Landmark)4), b.Position((Landmark)1))).normalized;
             b.head.transform.rotation = Quaternion.LookRotation(-n2, n1);
         }
+        // 최종 헤드 위치 : ★ b.head.transform.position ★
     }
 
     // NamedPipe를 통한 파이썬 통신, positionsBuffer[33]에 랜드마크 좌표를 받아온다.

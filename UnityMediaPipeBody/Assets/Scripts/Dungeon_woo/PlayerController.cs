@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // 몬스터 관련
     public GameObject monster;
     public float damage = 7.5f;
 
+    // 플레이어 랜드마크 위치 (PipeServer의 정보를 담을 곳)
+    public Vector3[] PlayerLandmarkPosition = new Vector3[33];
+    public Vector3 HeadLandmarkPosition = new Vector3(0, 0, 0);
+
+
     private void Update()
     {
-        // 스페이스바를 눌렀을 때 공격하는 동작을 감지
+        // (임시)스페이스바를 눌렀을 때 공격하는 동작을 감지
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
@@ -22,15 +28,30 @@ public class PlayerController : MonoBehaviour
         monster.GetComponent<MonsterController>().TakeDamage(damage);
     }
 
-    // 현재 랜드마크 위치 가져오기
-    private void getLandmarkPosition()
+    // 현재 랜드마크 위치 가져오기(파이프서버에서 프레임 단위로 호출, 갱신)
+    private void getLandmarkPosition(GameObject[] landmark, GameObject head)
     {
         /*
-        GetComponent<PipeServer>().instances;
-        for (int i = 0; i < instances.Length; i++)
+        // 몸
+        for (int i = 0; i < LANDMARK_COUNT; ++i)
         {
-            Debug.Log("Array Element " + i + ": " + array[i]);
+            PlayerLandmarkPosition[i] = landmark[i].transform.localPosition;
         }
+        // 머리
+        HeadLandmarkPosition = head.transform.position;
         */
     }
+
+    // 정답 좌표 가져오기
+    private void getCorrectLandmarkPosition()
+    {
+
+    }
+
+    // 정답 판정
+    private void motionEquality()
+    {
+
+    }
+
 }
