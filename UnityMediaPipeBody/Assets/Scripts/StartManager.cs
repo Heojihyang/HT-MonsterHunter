@@ -8,7 +8,7 @@ public class StartManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // GameData.instance.LoadMonsterData();
+        GameData.instance.LoadMonsterData();
     }
 
     // Update is called once per frame
