@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
+    PlayerData playerdata = new PlayerData();
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        // playerdata의 경험치 가져와서
+        // 프로필의 경험치 바 & 플레이어 호칭(헬린이) 넣어주기
+
     }
 
     // Update is called once per frame
