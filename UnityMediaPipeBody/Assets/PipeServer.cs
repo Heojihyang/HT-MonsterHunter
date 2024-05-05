@@ -45,12 +45,11 @@ public class PipeServer : MonoBehaviour
     }
 
 
-    // 랜드마크 위치를 저장하기 위한 구조(positionsBuffer)
-    // 데이터를 누적하고 추적하는데 사용
+    // 파이썬으로부터 랜드마크 위치를 할당받기 위한 구조체
     public struct AccumulatedBuffer
     {
-        public Vector3 value;
-        public int accumulatedValuesCount;  //누적 값 수
+        public Vector3 value;                   // 파이썬 좌표 누적값
+        public int accumulatedValuesCount;      // 누적 할당 카운트 값
 
         // AccumulatedBuffer 구조체 생성자
         public AccumulatedBuffer(Vector3 v,int ac)
@@ -63,43 +62,41 @@ public class PipeServer : MonoBehaviour
     // 바디 클래스(몸 형체를 만들어내는 클래스)
     public class Body 
     {
-        public Transform parent;                                            // Body 부모(위치정보)
+        public Transform parent;                                                            // Body 부모(위치정보)
         public AccumulatedBuffer[] positionsBuffer = new AccumulatedBuffer[LANDMARK_COUNT]; // 랜드마크 위치
         public Vector3[] localPositionTargets = new Vector3[LANDMARK_COUNT];                // ★랜드마크 로컬 위치★
-        public GameObject[] instances = new GameObject[LANDMARK_COUNT];     // 랜드마크 게임 오브젝트 저장
-        public LineRenderer[] lines = new LineRenderer[LINES_COUNT];        // 랜드마크 연결 라인 시각화 관련  
-        public GameObject head;                                             // 머리
+        public GameObject[] instances = new GameObject[LANDMARK_COUNT];                     // 랜드마크 게임 오브젝트 저장
+        public LineRenderer[] lines = new LineRenderer[LINES_COUNT];                        // 랜드마크 연결 라인 시각화 관련  
+        public GameObject head;                                                             // 머리
 
         public bool active;                     // Body 활성화 여부 (기본값 false), 파이썬에서 좌표를 받아오면 True로 갱신됨
-
         public bool setCalibration = false;     // 보정 세팅여부(카메라인가?)
         public Vector3 calibrationOffset;       // 보정 오프셋
-
         public Vector3 virtualHeadPosition;     // 가상 머리의 위치 저장
 
-        // Body 클래스 생성자 (parent(위치, landmarkPrefab(랜드마크), linePrefab(라인), s(랜드마크 크기), headPrefab(머리)
+        // Body 클래스 생성자
         // 1개의 머리, 33개의 랜드마크, 11개의 랜드마크라인 생성
         public Body(Transform parent, GameObject landmarkPrefab, GameObject linePrefab,float s, GameObject headPrefab)
         {
-            this.parent = parent;                         //Body 기준위치 설정
+            this.parent = parent; 
 
-            // GameObject[] instances에 33개 랜드마크 생성
-            for (int i = 0; i < instances.Length; ++i)    // 33번
+            // GameObject[] instances에 33개 랜드마크 오브젝트 생성
+            for (int i = 0; i < instances.Length; ++i)   
             {
                 instances[i] = Instantiate(landmarkPrefab);
-                instances[i].transform.localScale = Vector3.one * s;    // 랜드마크 크기 설정 : (1,1,1) * 랜드마크크기
+                instances[i].transform.localScale = Vector3.one * s;    // 랜드마크 크기 설정
                 instances[i].transform.parent = parent;                 // 랜드마크의 부모 위치 할당
                 instances[i].name = ((Landmark)i).ToString();           // 랜드마크 enum 가져와서 이름 지정
 
-                // 표정 랜드마크라면 크키 0으로 지정(화면에 보이지 않게)
+                // 표정 랜드마크는 화면에 보이지 않도록 설정
                 if (headPrefab && i >= 0 && i <= 10)
                 {
                     instances[i].transform.localScale = Vector3.one * 0f;
                 }
             }
 
-            // LineRenderer[] lines에 라인렌더러 생성
-            for (int i = 0; i < lines.Length; ++i)  // 11번
+            // 라인렌더러 생성
+            for (int i = 0; i < lines.Length; ++i)
             {
                 lines[i] = Instantiate(linePrefab).GetComponent<LineRenderer>();
             }
@@ -114,7 +111,7 @@ public class PipeServer : MonoBehaviour
             }
         }
 
-        // LineRenderer[] lines의 라인프리팹들을 실제로 랜드마크에 연결하여 시각화하는 부분
+        // 라인 연결, 갱신
         public void UpdateLines()
         {
             // positionCount : 라인이 연결되는 랜드마크 수
@@ -238,35 +235,47 @@ public class PipeServer : MonoBehaviour
     {
         UpdateBody(body);
 
-        //테스트
-        Debug.Log("Position : " + body.Position(Landmark.RIGHT_WRIST));
-        Debug.Log("localPosition : " + body.instances[16].transform.localPosition);
+        // 테스트
+        // Debug.Log("Position : " + body.Position(Landmark.RIGHT_WRIST));
+        // Debug.Log("localPosition : " + body.instances[16].transform.localPosition);
 
-        //현재 랜드마크, 머리 넘겨주기
-        //PlayerController.cs의 getLandmarkPosition(body.instances, body.head);
+        // ★ PlayerController.cs에서 정답을 비교하기 위해 현재 랜드드마크와 헤드 오브젝트 넘겨주기 ★
+        // PlayerController.cs의 getLandmarkPosition(body.instances, body.head);
+        GetComponent<PlayerController>().getLandmarkPosition(body.instances, body.head);
     }
 
-    // 몸 생성, 트래킹 -> 얘를 배열[33]에 포지션을 반환하는 함수로 반환해서 
+
+    // 랜드마크 위치 갱신
     private void UpdateBody(Body b)
     {
-        if (b.active == false) return;      // body 객체가 생성되지 않았다면 종료(파이썬에서 좌표값을 받은적이 없다면 종료)
+        // body 객체가 생성되지 않았다면 종료(파이썬에서 좌표값을 받은적이 없다면 종료)
+        if (b.active == false) return;      
 
-        // ★ 랜드마크 위치 갱신 ★
-        for (int i = 0; i < LANDMARK_COUNT; ++i)    // 33번
+        // ★ 1. 랜드마크 위치 갱신 ★
+        // 파이썬으로부터 받아온 좌표가 없다면 건너뛰기
+        // 랜드마크의 좌표값을 파이썬으로부터 받아온 누적좌표의 평균으로 할당시키고 버퍼 구조체 초기화
+        // 현재 랜드마크의 위치 : b.localPositionTargets[i]
+        for (int i = 0; i < LANDMARK_COUNT; ++i)
         {
-            if (b.positionsBuffer[i].accumulatedValuesCount < samplesForPose)   // 파이썬으로부터 받아온 좌표가 없다면 건너뛰기
+            if (b.positionsBuffer[i].accumulatedValuesCount < samplesForPose)   
                 continue;
             b.localPositionTargets[i] = b.positionsBuffer[i].value / (float)b.positionsBuffer[i].accumulatedValuesCount * multiplier;
-            b.positionsBuffer[i] = new AccumulatedBuffer(Vector3.zero,0);
-            // 여기서 현재 랜드마크의 위치 : b.localPositionTargets[i]
-
-            //테스트
-            //Debug.Log("localPositionTargets" + i + b.localPositionTargets[i]);      //계속번화
-            //Debug.Log("positionsBuffer" + i + b.positionsBuffer[i].value);      //(0,0,0)
+            b.positionsBuffer[i] = new AccumulatedBuffer(Vector3.zero,0);   
         }
 
         /*
-        // 카메라 교정
+        // PlayerController.cs에서 좌표값을 활용하는 다른 방법
+        // localPositionTargets배열의 현재 로컬 좌표값을 전역 좌표값으로 변경하여 globalLandmarkPositions에 저장
+        Vector3[] globalLandmarkPositions = new Vector3[localPositionTargets.Length];
+        for (int i = 0; i < localPositionTargets.Length; i++)
+        {
+            globalLandmarkPositions[i] = parent.TransformPoint(localPositionTargets[i]);
+        }
+        */
+
+
+        /*
+        // 카메라 교정 - 사용X
         if (!b.setCalibration)
         {
             print("Set Calibration Data");
@@ -276,23 +285,25 @@ public class PipeServer : MonoBehaviour
                 FindObjectOfType<CameraController>().Calibrate(b.instances[(int)Landmark.NOSE].transform);
         }
         */
-        
 
 
-        // ★ 33개의 랜드마크 게임 오브젝트를 갱신된 랜드마크 위치로 이동 (갱신) ★
-        //instances, positionsBuffer, localPositionTargets
+        // ★ 2. 랜드마크 게임 오브젝트 위치 갱신 ★
+        // instances, positionsBuffer, localPositionTargets
+        // Vector3.MoveTowards(현재위치, 목표위치, 거리차(maxDistanceDelta))
+        // 갱신된 랜드마크 오브젝트를 기준으로 연결 라인 갱신
+        // 우리가 가져와야 하는 부분 ★ b.instances[i].transform.localPosition ★
         for (int i = 0; i < LANDMARK_COUNT; ++i)
         {
-            //Vector3.MoveTowards(현재위치, 목표위치, 거리차(maxDistanceDelta))
             b.instances[i].transform.localPosition = Vector3.MoveTowards(b.instances[i].transform.localPosition, b.localPositionTargets[i]/*+b.calibrationOffset*/, Time.deltaTime * maxSpeed);
         }
-        b.UpdateLines();    // 갱신된 랜드마크 오브젝트를 기준으로 연결 라인 갱신
-        // 우리가 가져와야 하는 부분 ★ b.instances[i].transform.localPosition ★
+        b.UpdateLines();    
+        
 
         // 헤드 오브젝트 갱신을 위한 virtualHeadPosition 계산
         b.virtualHeadPosition = (b.Position(Landmark.RIGHT_EAR) + b.Position(Landmark.LEFT_EAR)) / 2f;
 
         // 헤드 오브젝트 갱신
+        // 최종 헤드 위치 : ★ b.head.transform.position ★
         if (b.head)
         {
             // Experimental method and getting the head pose.
@@ -301,10 +312,9 @@ public class PipeServer : MonoBehaviour
             Vector3 n2 = Vector3.Scale(new Vector3(1f, .1f, 1f), GetNormal(b.Position((Landmark)0), b.Position((Landmark)4), b.Position((Landmark)1))).normalized;
             b.head.transform.rotation = Quaternion.LookRotation(-n2, n1);
         }
-        // 최종 헤드 위치 : ★ b.head.transform.position ★
     }
 
-    // NamedPipe를 통한 파이썬 통신, positionsBuffer[33]에 랜드마크 좌표를 받아온다.
+    // NamedPipe를 통한 파이썬 통신 - positionsBuffer
     private void Run()
     {
         // CultureInfo.InvariantCulture 지역권 설정
@@ -319,7 +329,7 @@ public class PipeServer : MonoBehaviour
         print("Connected.");    //서버 연결 완료
         var br = new BinaryReader(server, Encoding.UTF8);
 
-        //무한루프. 파이썬으로부터 계속해서 랜드마크 좌표를 받아옴
+        //파이썬으로부터 계속해서 랜드마크 좌표를 받아옴 (무한 루프)
         while (true)
         {
             try

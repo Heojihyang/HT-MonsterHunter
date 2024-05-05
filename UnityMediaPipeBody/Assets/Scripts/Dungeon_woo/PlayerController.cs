@@ -29,8 +29,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // 현재 랜드마크 위치 가져오기(파이프서버에서 프레임 단위로 호출, 갱신)
-    private void getLandmarkPosition(GameObject[] landmark, GameObject head)
+    public void getLandmarkPosition(GameObject[] landmark, GameObject head)
     {
+        Debug.Log("landmark[11] 좌표 : " + landmark[11].transform.position);
         /*
         // 몸
         for (int i = 0; i < LANDMARK_COUNT; ++i)
