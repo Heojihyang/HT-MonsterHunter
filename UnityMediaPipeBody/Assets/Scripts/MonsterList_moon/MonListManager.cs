@@ -10,6 +10,8 @@ public class MonListManager : MonoBehaviour
 
     MonsterData Monsterdata = new MonsterData(); // GameData.cs
 
+    public GameObject MonsterInfo;
+
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
     {
@@ -17,7 +19,7 @@ public class MonListManager : MonoBehaviour
         Monsterdata.MonsterUnLocked[0] = true;
         Monsterdata.MonsterUnLocked[1] = true;
 
-        // 총 몬스터 수 3
+        // 총 몬스터 수 임시 3
         for (int id = 0; id < 3; id++)
         {
             // 몬스터 수집 여부 확인 
@@ -37,11 +39,28 @@ public class MonListManager : MonoBehaviour
 
                 print(id + "는 보유한 몬스터 입니다.");
             }
-
-            print(id + "는 아직 보유하지 못한 몬스터 입니다.");
-
+            else
+            {
+                print(id + "는 아직 보유하지 못한 몬스터 입니다.");
+            }
+          
         }
-                
+        
+    }
+
+    // 수집된 몬스터 클릭 시 설명창 활성화
+    // 해당 버튼의 몬스터 ID 넘겨주고 정보 연결시켜주기 
+    public void ActMonsterInfo(int ID)
+    {
+        MonsterInfo.SetActive(true);
+
+        // 정보 넣어주기
+
+    }
+    // 뒤로가기 버튼 클릭
+    public void InActMonsterInfo()
+    {
+        MonsterInfo.SetActive(false);
     }
 
 }
