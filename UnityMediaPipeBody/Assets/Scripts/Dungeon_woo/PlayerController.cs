@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float damage = 7.5f;
 
     // 플레이어 랜드마크 위치 (PipeServer의 정보를 담을 곳)
-    public Vector3[] PlayerLandmarkPosition = new Vector3[33];
-    public Vector3 HeadLandmarkPosition = new Vector3(0, 0, 0);
+    private Vector3[] PlayerLandmarkPosition = new Vector3[33];
+    private Vector3 HeadLandmarkPosition = new Vector3(0, 0, 0);
 
 
     private void Update()
