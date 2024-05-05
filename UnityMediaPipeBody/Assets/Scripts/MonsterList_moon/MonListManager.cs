@@ -23,9 +23,9 @@ public class MonListManager : MonoBehaviour
     void Start()
     {
         // --- 데이터 저장 예시 (노션 확인) ---
-        // GameData.instance.LoadMonsterData();
-        // GameData.instance.monsterdata.MonsterName[2] = "";
-        // GameData.instance.monsterdata.MonsterUnLocked[2] = false;
+        GameData.instance.LoadMonsterData();
+        // GameData.instance.monsterdata.MonsterName[0] = "0번 몬스터";
+        // GameData.instance.monsterdata.MonsterUnLocked[0] = true;
         // GameData.instance.SaveMonsterData();
         // ---
         
