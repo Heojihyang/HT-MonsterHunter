@@ -21,4 +21,16 @@ public class PlayerController : MonoBehaviour
     {
         monster.GetComponent<MonsterController>().TakeDamage(damage);
     }
+
+    // 현재 랜드마크 위치 가져오기
+    private void getLandmarkPosition()
+    {
+        /*
+        GetComponent<PipeServer>().instances;
+        for (int i = 0; i < instances.Length; i++)
+        {
+            Debug.Log("Array Element " + i + ": " + array[i]);
+        }
+        */
+    }
 }

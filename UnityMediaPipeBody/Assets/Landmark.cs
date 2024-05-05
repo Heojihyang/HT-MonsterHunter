@@ -41,6 +41,7 @@ public enum Landmark
 #else
 public enum Landmark
 {
+    //¾ó±¼ (11°³)
     NOSE = 0,
     LEFT_EYE_INNER = 1,
     LEFT_EYE = 2,
@@ -52,6 +53,8 @@ public enum Landmark
     RIGHT_EAR = 8,
     MOUTH_LEFT = 9,
     MOUTH_RIGHT = 10,
+
+    //¸ö(22°³)
     LEFT_SHOULDER = 11,
     RIGHT_SHOULDER = 12,
     LEFT_ELBOW = 13,
