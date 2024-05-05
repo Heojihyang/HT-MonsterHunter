@@ -214,7 +214,7 @@ public class PipeServer : MonoBehaviour
         }
 
         // 해당 랜드마크의 좌표 반환
-        public Vector3 Position(Landmark Mark)
+        public Vector3 Position(Landmark Mark) 
         {
             return instances[(int)Mark].transform.position;
         }
@@ -238,6 +238,10 @@ public class PipeServer : MonoBehaviour
     {
         UpdateBody(body);
 
+        //테스트
+        Debug.Log("Position : " + body.Position(Landmark.RIGHT_WRIST));
+        Debug.Log("localPosition : " + body.instances[16].transform.localPosition);
+
         //현재 랜드마크, 머리 넘겨주기
         //PlayerController.cs의 getLandmarkPosition(body.instances, body.head);
     }
@@ -257,8 +261,8 @@ public class PipeServer : MonoBehaviour
             // 여기서 현재 랜드마크의 위치 : b.localPositionTargets[i]
 
             //테스트
-            Debug.Log("localPositionTargets" + i + b.localPositionTargets[i]);      //계속번화
-            Debug.Log("positionsBuffer" + i + b.positionsBuffer[i].value);      //(0,0,0)
+            //Debug.Log("localPositionTargets" + i + b.localPositionTargets[i]);      //계속번화
+            //Debug.Log("positionsBuffer" + i + b.positionsBuffer[i].value);      //(0,0,0)
         }
 
         /*
@@ -272,13 +276,15 @@ public class PipeServer : MonoBehaviour
                 FindObjectOfType<CameraController>().Calibrate(b.instances[(int)Landmark.NOSE].transform);
         }
         */
+        
 
 
         // ★ 33개의 랜드마크 게임 오브젝트를 갱신된 랜드마크 위치로 이동 (갱신) ★
         //instances, positionsBuffer, localPositionTargets
         for (int i = 0; i < LANDMARK_COUNT; ++i)
         {
-            b.instances[i].transform.localPosition = Vector3.MoveTowards(b.instances[i].transform.localPosition, b.localPositionTargets[i]+b.calibrationOffset, Time.deltaTime * maxSpeed);
+            //Vector3.MoveTowards(현재위치, 목표위치, 거리차(maxDistanceDelta))
+            b.instances[i].transform.localPosition = Vector3.MoveTowards(b.instances[i].transform.localPosition, b.localPositionTargets[i]/*+b.calibrationOffset*/, Time.deltaTime * maxSpeed);
         }
         b.UpdateLines();    // 갱신된 랜드마크 오브젝트를 기준으로 연결 라인 갱신
         // 우리가 가져와야 하는 부분 ★ b.instances[i].transform.localPosition ★
