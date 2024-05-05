@@ -69,6 +69,7 @@ public class GameData : MonoBehaviour
     void Start()
     {
         // monsterdata.MonsterName[0] = "³ª´Â 0¹øÂ° ¸ó½ºÅÍ´Ù Ä¼Ä¼Ä¼";
+        // monsterdata.MonsterUnLocked[0] = true;
 
         // SaveMonsterData();
         // SavePlayerData();

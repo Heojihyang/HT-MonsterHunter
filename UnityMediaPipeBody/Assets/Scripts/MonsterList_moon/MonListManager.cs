@@ -3,34 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class MonListManager : MonoBehaviour
 {
+    public GameObject MonsterInfo;
+    public GameObject MonsterImage;
+    public GameObject MonsterPartImg;
+    public Text MonsterName;
+    public Text MonsterPart;
+
     public List<MonsterListData> monsterListData;
 
     MonsterData Monsterdata = new MonsterData(); // GameData.cs
-
-    GameData gamedata = new GameData();
-    // public GameObject gamedata;
-
-    public GameObject MonsterInfo;
-    public GameObject MonsterImage;
-    public Text MonsterName;
-
+    
 
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
     {
-        // 테스트 해보기 
-        Monsterdata.MonsterUnLocked[0] = true;
-        Monsterdata.MonsterUnLocked[1] = true;
-
-        // 총 몬스터 수 임시 3
+        // --- 데이터 저장 예시 (노션 확인) ---
+        // GameData.instance.LoadMonsterData();
+        // GameData.instance.monsterdata.MonsterName[2] = "";
+        // GameData.instance.monsterdata.MonsterUnLocked[2] = false;
+        // GameData.instance.SaveMonsterData();
+        // ---
+        
+        // 총 몬스터 수 임시 
         for (int id = 0; id < 3; id++)
         {
             // 몬스터 수집 여부 확인 
-            bool haveMonster = Monsterdata.MonsterUnLocked[id];
+            bool haveMonster = GameData.instance.monsterdata.MonsterUnLocked[id];
 
             if (haveMonster) 
             {
@@ -57,33 +60,46 @@ public class MonListManager : MonoBehaviour
 
     // 수집된 몬스터 클릭 시 설명창 활성화
     // 해당 버튼의 몬스터 ID 넘겨주고 정보 연결시켜주기 
-    public void ActMonsterInfo(int ID)
+    public void ActMonsterInfo(int id)
     {
-        MonsterInfo.SetActive(true);
+        bool monsterUnLooked = GameData.instance.monsterdata.MonsterUnLocked[id];
 
-        // --- 데이터 가져와서 넣어주기 ---
-        // 1. 몬스터 이미지 : MonsterListData의 True 이미지 가져오기 
-        // 2. 몬스터 이름 : MonsterData의 이름 가져와서 Text에 넣어주기
-        // 3. 몬스터 발생 부위 -> ID에 따라 구분한 데이터 구현해놓고 거기서 가져오기 
-        // 4. 몬스터 발생 부위 이미지 
+        // 수집완료 몬스터인가?
+        if (monsterUnLooked)
+        {
+            MonsterInfo.SetActive(true);
 
-        // 1. 몬스터 이미지 
-        Sprite MonsterImg = monsterListData[ID].MonTrueImage; // 가져오기
-        MonsterImage.GetComponent<Image>().sprite = MonsterImg; // 넣어주기 (UI조정 필요: 노션확인)
+            // --- 데이터 가져와서 넣어주기 1~4 ---
 
-        // 몬스터 데이터 로드
-        GameData.instance.LoadMonsterData(); 
+            // 1. 몬스터 이미지 
+            Sprite MonsterImg = monsterListData[id].MonTrueImage; // 가져오기
+            MonsterImage.GetComponent<Image>().sprite = MonsterImg; // 넣어주기 (UI조정 필요: 노션확인)
 
-        // 2. 몬스터 이름 : 몬스터 데이터 사용 
-        string monstername = GameData.instance.monsterdata.MonsterName[ID];
-        MonsterName.text = monstername;
+            // 몬스터 데이터 로드
+            GameData.instance.LoadMonsterData();
 
-        // 3. 몬스터 발생 부위
+            // 2. 몬스터 이름 : 몬스터 데이터 사용 
+            string monstername = GameData.instance.monsterdata.MonsterName[id];
+            MonsterName.text = monstername;
 
+            // 3. 몬스터 발생 부위
+            string monsterpart = monsterListData[id].MonsterPart;
+            MonsterPart.text = monsterpart;
 
+            // 4. 몬스터 발생 부위 이미지 
+            Sprite monsterpartImg = monsterListData[id].MonsterPartImage;
+            MonsterPartImg.GetComponent<Image>().sprite = monsterpartImg;
+        }
+        
     }
 
-    // 뒤로가기 버튼 클릭
+    // 도감에서 뒤로가기 버튼 클릭
+    public void ChangeMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
+    // 팝업에서 뒤로가기 버튼 클릭
     public void InActMonsterInfo()
     {
         MonsterInfo.SetActive(false);
