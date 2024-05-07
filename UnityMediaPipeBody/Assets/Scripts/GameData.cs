@@ -16,37 +16,67 @@ using System.IO;
 // 2. Json을 데이터 형태로 변환
 // 3. 불러온 데이터 사용
 
-
 // 1. 저장할 데이터 존재
 public class MonsterData
 {
     // 몬스터(20개) 수집 여부
     // 수집O : true , 수집X : False
-    public bool[] MonsterUnLocked = new bool[20];
+    public bool[] MonsterUnLocked = new bool[10];
 
-    // 몬스터 경험치
-    public int[] MonsterExp = new int[20];
+    // 몬스터 경험치 없어도 됨..!
+    // public int[] MonsterExp = new int[10];
+
+    // 몬스터 이름
+    public string[] MonsterName = new string[10];
+}
+
+public class PlayerData
+{
+    //  플레이어 경험치 : 확인해보기 
+    public int PlayerExp;
 }
 
 public class GameData : MonoBehaviour
 {
-    string Path;
-    string FileName = "MonsterDataSave";
+    public static GameData instance; // 싱글톤
 
-    MonsterData monsterdata = new MonsterData();
+    string Path;
+    string MonsterFileName = "MonsterDataSave";
+    string PlayerFileName = "PlayerDataSave";
+
+    public MonsterData monsterdata = new MonsterData();
+    public PlayerData playerdata = new PlayerData();
 
     private void Awake()
     {
+        #region 싱글톤
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+        #endregion
+
         // 경로를 만들어줌
         Path = Application.persistentDataPath + "/";
+        print(Path); // 경로 확인 
     }
 
     void Start()
     {
-        
+        // monsterdata.MonsterName[0] = "나는 0번째 몬스터다 캬캬캬";
+        // monsterdata.MonsterUnLocked[0] = true;
+
+        // SaveMonsterData();
+        // SavePlayerData();
+
     }
 
-    public void SaveData()
+    public void SaveMonsterData()
     {
         // 2. 데이터를 Json으로 변환
         string data = JsonUtility.ToJson(monsterdata); // Json은 string 형태로 저장됨
@@ -54,20 +84,45 @@ public class GameData : MonoBehaviour
         // print(Path); // 로컬 저장경로 확인하기
 
         // 3. Json을 외부에 저장
-        File.WriteAllText(Path + FileName, data);
+        File.WriteAllText(Path + MonsterFileName, data);
 
-        print("데이터 저장 완료");
+        print("몬스터 데이터 저장 완료");
     }
 
-    public void LoadData()
+    public void LoadMonsterData()
     {
         // 1. 외부에 저장된 제이슨을 가져옴
         // 2. Json을 데이터 형태로 변환
-        string data = File.ReadAllText(Path + FileName); // Json이기 때문에 string 형태로 받아짐
+        string data = File.ReadAllText(Path + MonsterFileName); // Json이기 때문에 string 형태로 받아짐
 
         // 3. 불러온 데이터 사용
         monsterdata = JsonUtility.FromJson<MonsterData>(data); // 불러온 데이터가 monsterdata에 덮어씌워짐
 
-        print("데이터 불러오기 완료");
+        print("몬스터 데이터 불러오기 완료");
+    }
+
+    public void SavePlayerData()
+    {
+        // 2. 데이터를 Json으로 변환
+        string data = JsonUtility.ToJson(playerdata); // Json은 string 형태로 저장됨
+
+        // print(Path); // 로컬 저장경로 확인하기
+
+        // 3. Json을 외부에 저장
+        File.WriteAllText(Path + PlayerFileName, data);
+
+        print("플레이어 데이터 저장 완료");
+    }
+
+    public void LoadPlayerData()
+    {
+        // 1. 외부에 저장된 제이슨을 가져옴
+        // 2. Json을 데이터 형태로 변환
+        string data = File.ReadAllText(Path + PlayerFileName); // Json이기 때문에 string 형태로 받아짐
+
+        // 3. 불러온 데이터 사용
+        playerdata = JsonUtility.FromJson<PlayerData>(data); // 불러온 데이터가 monsterdata에 덮어씌워짐
+
+        print("플레이어 데이터 불러오기 완료");
     }
 }

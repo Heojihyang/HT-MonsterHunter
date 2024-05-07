@@ -6,15 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/StartScene.unity
+    guid: 5c374620b0b842a408b623e69cd1744b
+  - enabled: 1
     path: Assets/Scenes/HTMonsterHunter/MainScene.unity
     guid: b91019e72f1c68940954794ba75bcb08
   - enabled: 1
     path: Assets/Scenes/HTMonsterHunter/SelectScene.unity
-    guid: 7105b387e1643de46a0f0ec8117134e2
-  - enabled: 1
-    path: Assets/Scenes/HTMonsterHunter/TDungeonScene.unity
-    guid: bee251032ef1d88418d7def02bc02abb
+    guid: ffa72cac910a52549a63f0cd4c323270
   - enabled: 1
     path: Assets/Scenes/HTMonsterHunter/TMonsterListScene.unity
     guid: aee290efbe7d3094ea3ba178e0ed665a
+  - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/TDungeonScene.unity
+    guid: 50c488aa71144584cb2a9663f35abbac
   m_configObjects: {}
