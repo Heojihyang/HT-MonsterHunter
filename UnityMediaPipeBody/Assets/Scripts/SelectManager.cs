@@ -28,6 +28,7 @@ public class SelectManager : MonoBehaviour
     // (허벅지) 클릭 시 : 운동설명 창 활성화
     public void ChangeTDungeonScene()
     {
-        SceneManager.LoadScene("TDungeonScene");
+        SceneManager.LoadScene("TDungeonScene");    
+        PlayerPrefs.SetInt("MonsterNumberToSend", 0);   //씬 로드하면서 몬스터 번호 같이 넘겨주기
     }
 }
