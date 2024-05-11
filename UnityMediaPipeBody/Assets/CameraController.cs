@@ -11,12 +11,15 @@ public class CameraController : MonoBehaviour
     Transform focus;
     Vector3 originalDelta;
 
+    
+    // 카메라 고정?
     public void Calibrate(Transform focus)
     {
         this.focus = focus;
         originalDelta = transform.position - focus.position;
         originalDelta.x *= .01f;
     }
+    
 
     private void LateUpdate()
     {
