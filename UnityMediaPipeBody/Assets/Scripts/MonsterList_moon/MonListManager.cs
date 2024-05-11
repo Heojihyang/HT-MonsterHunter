@@ -23,12 +23,12 @@ public class MonListManager : MonoBehaviour
     void Start()
     {
         // --- 데이터 저장 예시 (노션 확인) ---
-        GameData.instance.LoadMonsterData();
+        // GameData.instance.LoadMonsterData();
         // GameData.instance.monsterdata.MonsterName[0] = "0번 몬스터";
         // GameData.instance.monsterdata.MonsterUnLocked[0] = true;
         // GameData.instance.SaveMonsterData();
         // ---
-        
+
         // 총 몬스터 수 임시 
         for (int id = 0; id < 3; id++)
         {
@@ -76,7 +76,7 @@ public class MonListManager : MonoBehaviour
             MonsterImage.GetComponent<Image>().sprite = MonsterImg; // 넣어주기 (UI조정 필요: 노션확인)
 
             // 몬스터 데이터 로드
-            GameData.instance.LoadMonsterData();
+            // GameData.instance.LoadMonsterData();
 
             // 2. 몬스터 이름 : 몬스터 데이터 사용 
             string monstername = GameData.instance.monsterdata.MonsterName[id];

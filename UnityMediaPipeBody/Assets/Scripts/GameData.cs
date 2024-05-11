@@ -32,7 +32,7 @@ public class MonsterData
 
 public class PlayerData
 {
-    //  플레이어 경험치 : 확인해보기 
+    //  플레이어 경험치 
     public int PlayerExp;
 }
 
@@ -63,16 +63,11 @@ public class GameData : MonoBehaviour
 
         // 경로를 만들어줌
         Path = Application.persistentDataPath + "/";
-        print(Path); // 경로 확인 
+        print("경로생성"+Path); // 경로 확인 
     }
 
     void Start()
     {
-        // monsterdata.MonsterName[0] = "나는 0번째 몬스터다 캬캬캬";
-        // monsterdata.MonsterUnLocked[0] = true;
-
-        // SaveMonsterData();
-        // SavePlayerData();
 
     }
 

@@ -25,7 +25,7 @@ public class SelectManager : MonoBehaviour
         Explain.SetActive(true);
     }
 
-    // (허벅지) 클릭 시 : 운동설명 창 활성화
+    // (시작) 클릭 시 : 던전으로 이동
     public void ChangeTDungeonScene()
     {
         SceneManager.LoadScene("TDungeonScene");

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HTMonsterHunter/TDungeonScene.unity
     guid: 50c488aa71144584cb2a9663f35abbac
+  - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/TRecordScene.unity
+    guid: f09a6b31a1874ac46a778c92639c4e32
   m_configObjects: {}

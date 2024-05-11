@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: -71}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 73, y: -71}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75408321
 MonoBehaviour:
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 86440011}
   - component: {fileID: 86440010}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RecordButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 86440011}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 306061262}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: ChangeTRecordScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &86440011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fde8477488faf8448747b15ed76048d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerTitle: {fileID: 1850011042}
   ExpBar: {fileID: 1664260518}
+  PlayerGoal: {fileID: 75408321}
 --- !u!1 &381712760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1539,7 @@ GameObject:
   - component: {fileID: 1850011043}
   - component: {fileID: 1850011042}
   m_Layer: 5
-  m_Name: PlayerName
+  m_Name: PlayerTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1584,7 +1598,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD5EC\uC2A4\uC758 \uC655"
+  m_Text: "\uD50C\uB808\uC774\uC5B4"
 --- !u!222 &1850011043
 CanvasRenderer:
   m_ObjectHideFlags: 0
