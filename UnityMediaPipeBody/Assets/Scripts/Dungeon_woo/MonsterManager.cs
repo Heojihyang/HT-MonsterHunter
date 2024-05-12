@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 몬스터 매니저에 적용
 public class MonsterManager : MonoBehaviour
 {
-    //몬스터 10종
-    public GameObject[] Monsters = new GameObject[10];
-
     void Start()
     {
         InitializeMonsters();

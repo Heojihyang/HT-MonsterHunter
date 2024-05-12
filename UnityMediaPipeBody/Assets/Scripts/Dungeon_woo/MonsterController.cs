@@ -2,35 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// 몬스터 프리팹에 적용
 public class MonsterController : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    private float currentHealth;
+    public GameObject[] Monsters = new GameObject[10];  // 몬스터 10종 프리팹
+    public GameObject monster;                          // 생성된 몬스터
+    public Animator animator;                           // 생성된 몬스터의 애니메이터
+    public float maxHealth = 100f;                      // 몬스터 전체 체력
+    private float currentHealth;                        // 몬스터 현재 체력
 
     private void Start()
-    {
-        currentHealth = maxHealth;
+    {   
+        CreateMonster(0);                               // 몬스터 생성(임시)
+        currentHealth = maxHealth;                      // 체력 초기화
     }
 
-    // 데미지를 입히는 함수
-    public void TakeDamage(float damage)
+    // 몬스터 생성 함수
+    public void CreateMonster(int monsterNumber) 
     {
+        // 프리팹을 가져와서 공식 몬스터 오브젝트에 넣기
+        GameObject monsterPrefab = Monsters[monsterNumber];
+        monster = Instantiate(monsterPrefab);
+
+        // 생성된 몬스터의 애니메이션 상태값 초기화
+        animator = monster.GetComponent<Animator>();
+        animator.SetBool("ani_Damage", false);
+        animator.SetBool("ani_DIe", false);
+
+    }
+    
+    // 데미지 함수
+    public IEnumerator TakeDamage(float damage)
+    {
+        animator.SetBool("ani_Damage", true);
         currentHealth -= damage;
         Debug.Log("아파라!");
 
-        // 현재 체력이 0 이하인지 확인하여 사망 처리
+        // 현재 체력이 0 이하라면 사망 처리
         if (currentHealth <= 0)
         {
             Die();
         }
+        yield return new WaitForSeconds(2.0f);
+        animator.SetBool("ani_Damage", false);
     }
-
-    // 사망 처리 함수
+    
+    // 사망처리 함수
     private void Die()
     {
-        // 여기에 사망 처리 로직 추가
+        animator.SetBool("ani_DIe", true);
         Debug.Log("꿱");
-        Destroy(gameObject); // 현재 게임 오브젝트 파괴
+        // Destroy(monster);
     }
 }
