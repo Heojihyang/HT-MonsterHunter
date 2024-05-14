@@ -11,9 +11,12 @@ public class MonsterController : MonoBehaviour
     public float maxHealth = 100f;                      // 몬스터 전체 체력
     private float currentHealth;                        // 몬스터 현재 체력
 
+    public GameObject dungeonScene; //씬 관리 오브젝트
+
     private void Start()
-    {   
-        CreateMonster(0);                               // 몬스터 생성(임시)
+    {
+        int monNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
+        CreateMonster(monNum);                          // 몬스터 생성
         currentHealth = maxHealth;                      // 체력 초기화
     }
 
@@ -28,7 +31,6 @@ public class MonsterController : MonoBehaviour
         animator = monster.GetComponent<Animator>();
         animator.SetBool("ani_Damage", false);
         animator.SetBool("ani_DIe", false);
-
     }
     
     // 데미지 함수
