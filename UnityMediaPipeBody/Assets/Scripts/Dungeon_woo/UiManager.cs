@@ -9,10 +9,10 @@ public class UiManager : MonoBehaviour
     private static UiManager instance;
 
     // UI 오브젝트
-    public Text actionNameLabel;    // 동작 이름을 표시할 텍스트 UI
-    public Text actionCountLabel;   // 동작 횟수와 세트를 표시할 텍스트 UI
+    public Text actionNameLabel;    // 동작 이름 UI
+    public Text actionCountLabel;   // 동작 카운트 UI
     public Text adviceLabel;        // 코멘트 UI
-    public Image progressBarImage;  // 진척도
+    public Image progressBarImage;  // 진척도 UI
 
     // 세팅값
     public float duration = 120f;   // 전체 플레이 타임
