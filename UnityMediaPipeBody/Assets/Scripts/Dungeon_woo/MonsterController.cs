@@ -27,6 +27,9 @@ public class MonsterController : MonoBehaviour
         GameObject monsterPrefab = Monsters[monsterNumber];
         monster = Instantiate(monsterPrefab);
 
+        // 부모-자식 설정
+        monster.transform.SetParent(this.transform);
+
         // 생성된 몬스터의 애니메이션 상태값 초기화
         animator = monster.GetComponent<Animator>();
         animator.SetBool("ani_Damage", false);
