@@ -34,7 +34,7 @@ public class MonsterController : MonoBehaviour
     }
     
     // 데미지 함수
-    public IEnumerator TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         animator.SetBool("ani_Damage", true);
         currentHealth -= damage;
@@ -45,8 +45,8 @@ public class MonsterController : MonoBehaviour
         {
             Die();
         }
-        yield return new WaitForSeconds(2.0f);
-        animator.SetBool("ani_Damage", false);
+        //yield return new WaitForSeconds(2.0f);
+        //animator.SetBool("ani_Damage", false);
     }
     
     // 사망처리 함수
