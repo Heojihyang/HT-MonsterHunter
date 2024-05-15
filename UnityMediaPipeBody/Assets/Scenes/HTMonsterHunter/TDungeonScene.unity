@@ -401,7 +401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332175360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.44, y: 5.33, z: 27.1}
+  m_LocalPosition: {x: -4.32, y: -6, z: 21.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fe5be4dca980c489b15e5c56de2609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
   Monsters:
   - {fileID: 3390829125421315047, guid: 15f0d9897c5868b4c9375928301211ce, type: 3}
   - {fileID: 6428566639703049841, guid: e078d796038cf754c885f2466f6c214d, type: 3}
@@ -2637,6 +2638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b4620f2fdfc3c488f3243c045ee0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
 --- !u!4 &1777299143
 Transform:
   m_ObjectHideFlags: 0
@@ -2645,8 +2647,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777299141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.96, y: 22.5, z: 51.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 10.8, y: 18, z: 51.9}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 567255685}
