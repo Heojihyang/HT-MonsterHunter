@@ -15,14 +15,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // (임시)스페이스바를 눌렀을 때 공격하는 동작을 감지
+        // (임시)스페이스바를 눌렀을 때 공격
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
         }
     }
 
-    // 몬스터 공격 함수
+    // 몬스터 공격()
     private void Attack()
     {
         monster.GetComponent<MonsterController>().TakeDamage(damage);

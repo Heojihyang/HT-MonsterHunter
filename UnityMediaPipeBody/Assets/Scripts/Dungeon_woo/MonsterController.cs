@@ -23,9 +23,13 @@ public class MonsterController : MonoBehaviour
     // 몬스터 생성 함수
     public void CreateMonster(int monsterNumber) 
     {
+        // 부모 오브젝트
+        Vector3 parentPosition = this.transform.position;
+        Quaternion parentRotation = this.transform.rotation;
+
         // 프리팹을 가져와서 공식 몬스터 오브젝트에 넣기
         GameObject monsterPrefab = Monsters[monsterNumber];
-        monster = Instantiate(monsterPrefab);
+        monster = Instantiate(monsterPrefab, parentPosition, parentRotation);
 
         // 부모-자식 설정
         monster.transform.SetParent(this.transform);
@@ -33,7 +37,7 @@ public class MonsterController : MonoBehaviour
         // 생성된 몬스터의 애니메이션 상태값 초기화
         animator = monster.GetComponent<Animator>();
         animator.SetBool("ani_Damage", false);
-        animator.SetBool("ani_DIe", false);
+        animator.SetBool("ani_Die", false);
     }
     
     // 데미지 함수
