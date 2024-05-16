@@ -12,7 +12,7 @@ public class CorrectModelController : MonoBehaviour
 
     // 랜드마크와 라인 수
     const int LANDMARK_COUNT = 15;          // 정답모델 랜드마크 수
-    const int LINES_COUNT = 11;             // 정답모델 랜드마크 라인 수
+    const int LINES_COUNT = 5;             // 정답모델 랜드마크 라인 수
 
     // ★정답모델 객체★
     public CorrectModel correctModel;
@@ -26,8 +26,8 @@ public class CorrectModelController : MonoBehaviour
     13 : Co_LEFT_INDEX,   14 : Co_RIGHT_INDEX
     */
 
-    // 던전 로직
-    
+    // 허벅지 던전 로직(6행 15열) - 스탠딩 사이드 레그레이즈, 스쿼트, 런지 ## 개발 이어서 해야하는 부분 ##
+    public Vector3[,] dungeon_Thigh = new Vector3[6, LANDMARK_COUNT];
 
 
     // 정답 모델 클래스
@@ -41,6 +41,15 @@ public class CorrectModelController : MonoBehaviour
         public GameObject[] co_Instances = new GameObject[LANDMARK_COUNT];             // 랜드마크 프리팹 오브젝트 배열
         public LineRenderer[] co_lines = new LineRenderer[LINES_COUNT];                // 랜드마크 라인 배열
 
+        // 랜드마크 생성 포지션(대자로 벌리고 있는 모습) ## 다음에 개발하면 여기부터 개발 ##
+        public Vector3[] co_LandmarkStartPositions = new Vector3[LANDMARK_COUNT];
+
+        // 랜드마크 이름
+        public string[] co_LandmarkNames = new string[] {"Co_HEAD", "Co_LEFT_SHOULDER", "Co_RIGHT_SHOULDER", "Co_LEFT_ELBOW",
+                                                         "Co_RIGHT_ELBOW", "Co_LEFT_WRIST", "Co_RIGHT_WRIST", "Co_LEFT_HIP",
+                                                         "Co_RIGHT_HOP", "Co_LEFT_KNEE", "Co_RIGHT_KNEE", "Co_LEFT_ANKLE",
+                                                         "Co_RIGHT_ANKLE", "Co_LEFT_INDEX","Co_RIGHT_INDEX"};
+
         // 생성자
         public CorrectModel(Transform coParent, GameObject landmarkPrefab, GameObject linePrefab, int LANDMARK_COUNT, int LINES_COUNT)
         {
@@ -49,15 +58,16 @@ public class CorrectModelController : MonoBehaviour
             // 랜드마크 포지션 초기화
             for (int i = 0; i < LANDMARK_COUNT; i++)
             {
-                co_LandmarkPositions[i] = new Vector3(0, 0, 0);
+                co_LandmarkPositions[i] = coParent.position;
             }
 
             // 랜드마크 생성
             for (int i = 0; i < LANDMARK_COUNT; i++)
             {
                 co_Instances[i] = Instantiate(landmarkPrefab);
+                co_Instances[i].transform.localScale = Vector3.one * 0.5f;
                 co_Instances[i].transform.parent = coParent;
-                co_Instances[i].name = "correctRandmarkNameTest";
+                co_Instances[i].name = co_LandmarkNames[i];
                 co_Instances[i].GetComponent<Transform>().position = co_LandmarkPositions[i];
             }
 
@@ -79,12 +89,41 @@ public class CorrectModelController : MonoBehaviour
         // 정답 랜드마크 라인 업데이트
         public void UpdateCoLines()
         {
+            // 몸통
+            co_lines[0].positionCount = 5;
+            co_lines[0].SetPosition(0, co_Instances[1].transform.position);
+            co_lines[0].SetPosition(1, co_Instances[2].transform.position);
+            co_lines[0].SetPosition(2, co_Instances[8].transform.position);
+            co_lines[0].SetPosition(3, co_Instances[7].transform.position);
+            co_lines[0].SetPosition(4, co_Instances[1].transform.position);
 
+            // 왼팔
+            co_lines[1].positionCount = 3;
+            co_lines[1].SetPosition(0, co_Instances[1].transform.position);
+            co_lines[1].SetPosition(1, co_Instances[3].transform.position);
+            co_lines[1].SetPosition(2, co_Instances[5].transform.position);
+
+            // 오른팔
+            co_lines[2].positionCount = 3;
+            co_lines[2].SetPosition(0, co_Instances[2].transform.position);
+            co_lines[2].SetPosition(1, co_Instances[4].transform.position);
+            co_lines[2].SetPosition(2, co_Instances[6].transform.position);
+
+            // 왼발
+            co_lines[3].positionCount = 4;
+            co_lines[3].SetPosition(0, co_Instances[7].transform.position);
+            co_lines[3].SetPosition(1, co_Instances[9].transform.position);
+            co_lines[3].SetPosition(2, co_Instances[11].transform.position);
+            co_lines[3].SetPosition(3, co_Instances[13].transform.position);
+
+            // 오른발
+            co_lines[4].positionCount = 4;
+            co_lines[4].SetPosition(0, co_Instances[8].transform.position);
+            co_lines[4].SetPosition(1, co_Instances[10].transform.position);
+            co_lines[4].SetPosition(2, co_Instances[12].transform.position);
+            co_lines[4].SetPosition(3, co_Instances[14].transform.position);
         }
     }
-
-
-    
 
     void Start()
     {
