@@ -17,6 +17,11 @@ public class CorrectModelController : MonoBehaviour
     // ★정답모델 객체★
     public CorrectModel correctModel;
 
+    // Update 델타타임 관련
+    private int i = 0;                       // 증가할 변수
+    private float elapsedTime = 0.0f;       // 시간 경과를 추적할 변수
+    private const float interval = 3.0f;    // 증가 간격 (초 단위)
+
     /*
     [ 정답모델 INDEX ]
     0 : Co_HEAD
@@ -26,8 +31,63 @@ public class CorrectModelController : MonoBehaviour
     13 : Co_LEFT_INDEX,   14 : Co_RIGHT_INDEX
     */
 
-    // 허벅지 던전 로직(6행 15열) - 스탠딩 사이드 레그레이즈, 스쿼트, 런지 ## 개발 이어서 해야하는 부분 ##
-    public Vector3[,] dungeon_Thigh = new Vector3[6, LANDMARK_COUNT];
+    // ★ 진행되는 던전의 랜드마크 포지션 ★ - 6가지 동작을 담을 수 있음(정자세/운동 1세트로 3개의 운동)
+    public Vector3[,] dungeonProgressPosition = new Vector3[6, LANDMARK_COUNT];
+    
+    // 허벅지 던전 셋팅 - 참조변수
+    public void setDungeon_Thigh(ref Vector3[,] positions)
+    {
+        // 1-1. 사이드 레그레이즈 정자세
+        positions[0, 0] = coParent.position + new Vector3(0.0f, 0.0f, 0.0f);
+        positions[0, 1] = coParent.position + new Vector3(-1.0f, -1.0f, 0.0f);
+        positions[0, 2] = coParent.position + new Vector3(1.0f, -1.0f, 0.0f);
+        positions[0, 3] = coParent.position + new Vector3(-2.0f, -1.0f, 0.0f);
+        positions[0, 4] = coParent.position + new Vector3(2.0f, -1.0f, 0.0f);
+        positions[0, 5] = coParent.position + new Vector3(-3.0f, -1.0f, 0.0f);
+        positions[0, 6] = coParent.position + new Vector3(3.0f, -1.0f, 0.0f);
+        positions[0, 7] = coParent.position + new Vector3(-1.0f, -3.5f, 0.0f);
+        positions[0, 8] = coParent.position + new Vector3(1.0f, -3.5f, 0.0f);
+        positions[0, 9] = coParent.position + new Vector3(-1.0f, -5.5f, 0.0f);
+        positions[0, 10] = coParent.position + new Vector3(1.0f, -5.5f, 0.0f);
+        positions[0, 11] = coParent.position + new Vector3(-1.0f, -7.5f, 0.0f);
+        positions[0, 12] = coParent.position + new Vector3(1.0f, -7.5f, 0.0f);
+        positions[0, 13] = coParent.position + new Vector3(-1.0f, -8.5f, 0.0f);
+        positions[0, 14] = coParent.position + new Vector3(1.0f, -8.5f, 0.0f);
+
+        // 1-2. 사이드 레그 레이즈 
+        positions[1, 0] = coParent.position + new Vector3(0.0f, 0.0f, 0.0f);
+        positions[1, 1] = coParent.position + new Vector3(-1.0f, -1.0f, 0.0f);
+        positions[1, 2] = coParent.position + new Vector3(1.0f, -1.0f, 0.0f);
+        positions[1, 3] = coParent.position + new Vector3(-2.0f, -1.0f, 0.0f);
+        positions[1, 4] = coParent.position + new Vector3(2.0f, -1.0f, 0.0f);
+        positions[1, 5] = coParent.position + new Vector3(-3.0f, -1.0f, 0.0f);
+        positions[1, 6] = coParent.position + new Vector3(3.0f, -1.0f, 0.0f);
+        positions[1, 7] = coParent.position + new Vector3(-1.0f, -3.5f, 0.0f);
+        positions[1, 8] = coParent.position + new Vector3(1.0f, -3.5f, 0.0f);
+        positions[1, 9] = coParent.position + new Vector3(-1.0f, -5.5f, 0.0f);
+        positions[1, 10] = coParent.position + new Vector3(2.43f, -7.62f, 0.0f);
+        positions[1, 11] = coParent.position + new Vector3(-1.0f, -7.5f, 0.0f);
+        positions[1, 12] = coParent.position + new Vector3(3.77f, -10.4f, 0.0f);
+        positions[1, 13] = coParent.position + new Vector3(-1.0f, -8.5f, 0.0f);
+        positions[1, 14] = coParent.position + new Vector3(4.4f, -11.84f, 0.0f);
+
+        // 2-1. 스쿼트 정자세
+
+        // 2-2. 스쿼트
+
+        // 3-1. 런지 정자세
+
+        // 3-2. 런지
+        
+        // 
+        Debug.Log("허벅지 던전이 셋팅되었습니다");
+    }
+
+    // 다른 던전도 셋팅하세요
+    public void setDungeon_pal(ref Vector3[,] position)
+    {
+
+    }
 
 
     // 정답 모델 클래스
@@ -47,7 +107,7 @@ public class CorrectModelController : MonoBehaviour
         // 랜드마크 이름
         public string[] co_LandmarkNames = new string[] {"Co_HEAD", "Co_LEFT_SHOULDER", "Co_RIGHT_SHOULDER", "Co_LEFT_ELBOW",
                                                          "Co_RIGHT_ELBOW", "Co_LEFT_WRIST", "Co_RIGHT_WRIST", "Co_LEFT_HIP",
-                                                         "Co_RIGHT_HOP", "Co_LEFT_KNEE", "Co_RIGHT_KNEE", "Co_LEFT_ANKLE",
+                                                         "Co_RIGHT_HIP", "Co_LEFT_KNEE", "Co_RIGHT_KNEE", "Co_LEFT_ANKLE",
                                                          "Co_RIGHT_ANKLE", "Co_LEFT_INDEX","Co_RIGHT_INDEX"};
 
         // 생성자
@@ -55,20 +115,32 @@ public class CorrectModelController : MonoBehaviour
         {
             this.coParent = coParent;
 
-            // 랜드마크 포지션 초기화
-            for (int i = 0; i < LANDMARK_COUNT; i++)
-            {
-                co_LandmarkPositions[i] = coParent.position;
-            }
+            // 랜드마크 포지션 초기화 - 팔 벌리고 있는 모습
+            co_LandmarkPositions[0] = coParent.position + new Vector3(0.0f, 0.0f, 0.0f);
+            co_LandmarkPositions[1] = coParent.position + new Vector3(-1.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[2] = coParent.position + new Vector3(1.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[3] = coParent.position + new Vector3(-2.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[4] = coParent.position + new Vector3(2.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[5] = coParent.position + new Vector3(-3.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[6] = coParent.position + new Vector3(3.0f, -1.0f, 0.0f);
+            co_LandmarkPositions[7] = coParent.position + new Vector3(-1.0f, -3.5f, 0.0f);
+            co_LandmarkPositions[8] = coParent.position + new Vector3(1.0f, -3.5f, 0.0f);
+            co_LandmarkPositions[9] = coParent.position + new Vector3(-1.0f, -5.5f, 0.0f);
+            co_LandmarkPositions[10] = coParent.position + new Vector3(1.0f, -5.5f, 0.0f);
+            co_LandmarkPositions[11] = coParent.position + new Vector3(-1.0f, -7.5f, 0.0f);
+            co_LandmarkPositions[12] = coParent.position + new Vector3(1.0f, -7.5f, 0.0f);
+            co_LandmarkPositions[13] = coParent.position + new Vector3(-1.0f, -8.5f, 0.0f);
+            co_LandmarkPositions[14] = coParent.position + new Vector3(1.0f, -8.5f, 0.0f);
 
             // 랜드마크 생성
             for (int i = 0; i < LANDMARK_COUNT; i++)
             {
                 co_Instances[i] = Instantiate(landmarkPrefab);
                 co_Instances[i].transform.localScale = Vector3.one * 0.5f;
-                co_Instances[i].transform.parent = coParent;
+                
                 co_Instances[i].name = co_LandmarkNames[i];
                 co_Instances[i].GetComponent<Transform>().position = co_LandmarkPositions[i];
+                co_Instances[i].transform.parent = coParent;
             }
 
             // 라인렌더러 생성
@@ -80,10 +152,17 @@ public class CorrectModelController : MonoBehaviour
             Debug.Log("정답 모델 생성자 작동 완료");
         }
 
-        // 정답 랜드마크 업데이트
-        public void UpdateCoLandmarks()
+        // 정답 랜드마크 업데이트 - dpp : 던전로직포지션, rowNum : 현재 동작이 저장된 행번호
+        public void UpdateCoLandmarks(Vector3[,] dpp, int rowNum)
         {
+            // 랜드마크 업데이트
+            for (int i = 0; i < LANDMARK_COUNT; i++)
+            {
+                co_Instances[i].GetComponent<Transform>().position = dpp[rowNum,i];
+            }
 
+            UpdateCoLines();
+            Debug.Log(rowNum + "번 동작 업데이트 완료");
         }
 
         // 정답 랜드마크 라인 업데이트
@@ -131,12 +210,33 @@ public class CorrectModelController : MonoBehaviour
         transform.SetParent(mainCamera.transform, false);
         Debug.Log("카메라(부모) - 정답모델(자식) 관계 설정 성공");
 
+        // 던전 셋팅
+        setDungeon_Thigh(ref dungeonProgressPosition);
+
         // 모델 생성
         correctModel = new CorrectModel(coParent, landmarkPrefab, linePrefab, LANDMARK_COUNT, LINES_COUNT);
+
+        // 모델 업데이트
+
     }
 
     void Update()
     {
-        //correctModel.UpdateCoLandmarks();
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= interval)
+        {
+            i++;
+            elapsedTime = 0.0f;
+            Debug.Log($"Counter: {i}");
+        }
+
+        // 3초 간격으로 랜드마크 업데이트 [6][15]
+
+        // 랜드마크 업데이트
+        if (i < 2)  //지금 0,1만 포지션 넣어놔서
+        {
+            correctModel.UpdateCoLandmarks(dungeonProgressPosition, i);
+        }
+        if (i > 2) i = 0;
     }
 }
