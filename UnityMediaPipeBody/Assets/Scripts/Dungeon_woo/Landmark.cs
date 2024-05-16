@@ -1,6 +1,5 @@
 // #define FLIP // Comment out this line to flip the landmarks (internally) [technically need to flip here, but kept like this for backward compatibility].
 // NOTE: image = cv2.flip(image, 1) in the Python side may also be of interest to you as well.
-
 #if FLIP
 public enum Landmark
 {
@@ -38,7 +37,9 @@ public enum Landmark
     LEFT_FOOT_INDEX = 32,
     RIGHT_FOOT_INDEX = 31,
 }
+
 #else
+
 public enum Landmark
 {
     //¾ó±¼ (11°³)

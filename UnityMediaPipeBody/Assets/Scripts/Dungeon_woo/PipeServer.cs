@@ -85,7 +85,7 @@ public class PipeServer : MonoBehaviour
             {
                 instances[i] = Instantiate(landmarkPrefab);
                 instances[i].transform.localScale = Vector3.one * s;    // 랜드마크 크기 설정
-                instances[i].transform.parent = parent;                 // 랜드마크의 부모 위치 할당
+                instances[i].transform.parent = parent;                 // 랜드마크의 부모 설정
                 instances[i].name = ((Landmark)i).ToString();           // 랜드마크 enum 가져와서 이름 지정
 
                 // 표정 랜드마크는 화면에 보이지 않도록 설정
@@ -226,6 +226,8 @@ public class PipeServer : MonoBehaviour
         // body 객체 생성
         body = new Body(parent,landmarkPrefab,linePrefab,landmarkScale,enableHead?headPrefab:null);
 
+
+
         // 스레드 생성 - 별도의 백그라운드 스레드에서 Run() 실행
         Thread t = new Thread(new ThreadStart(Run));
         t.Start();
@@ -274,7 +276,7 @@ public class PipeServer : MonoBehaviour
         */
 
 
-        /*
+        
         // 카메라 교정 - 사용X
         if (!b.setCalibration)
         {
@@ -284,7 +286,7 @@ public class PipeServer : MonoBehaviour
             if(FindObjectOfType<CameraController>())
                 FindObjectOfType<CameraController>().Calibrate(b.instances[(int)Landmark.NOSE].transform);
         }
-        */
+        
 
 
         // ★ 2. 랜드마크 게임 오브젝트 위치 갱신 ★
