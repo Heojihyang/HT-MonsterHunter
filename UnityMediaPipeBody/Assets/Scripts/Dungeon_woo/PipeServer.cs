@@ -243,7 +243,7 @@ public class PipeServer : MonoBehaviour
 
         // ★ PlayerController.cs에서 정답을 비교하기 위해 현재 랜드드마크와 헤드 오브젝트 넘겨주기 ★
         // PlayerController.cs의 getLandmarkPosition(body.instances, body.head);
-        GetComponent<PlayerController>().getLandmarkPosition(body.instances, body.head);
+        GetComponent<PlayerAssessment>().getPlayerLandmark(body.instances, body.head);
     }
 
 
