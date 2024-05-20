@@ -5,22 +5,27 @@ using UnityEngine;
 public class CorrectModelController : MonoBehaviour
 {
     // 아울렛 접속
-    public Camera mainCamera;               // 메인카메라
-    public Transform coParent;              // 정답 랜드마크들의 부모 - CorrectModel 하위에 생성되도록
-    public GameObject landmarkPrefab;       // 정답모델 랜드마크 프리팹
-    public GameObject linePrefab;           // 정답모델 랜드마크 라인 프리팹
+    public Camera mainCamera;                // 메인카메라
+    public Transform coParent;               // 정답 랜드마크들의 부모 - CorrectModel 하위에 생성되도록
+    public GameObject landmarkPrefab;        // 정답모델 랜드마크 프리팹
+    public GameObject linePrefab;            // 정답모델 랜드마크 라인 프리팹
+    public GameObject dungeonScene;          //씬 관리 오브젝트
 
     // 랜드마크와 라인 수
-    const int LANDMARK_COUNT = 15;          // 정답모델 랜드마크 수
-    const int LINES_COUNT = 5;             // 정답모델 랜드마크 라인 수
+    const int LANDMARK_COUNT = 15;           // 정답모델 랜드마크 수
+    const int LINES_COUNT = 5;               // 정답모델 랜드마크 라인 수
 
     // ★정답모델 객체★
     public CorrectModel correctModel;
 
     // Update 델타타임 관련
     private int i = 0;                       // 증가할 변수
-    private float elapsedTime = 0.0f;       // 시간 경과를 추적할 변수
-    private const float interval = 3.0f;    // 증가 간격 (초 단위)
+    private float elapsedTime = 0.0f;        // 시간 경과를 추적할 변수
+    private const float interval = 3.0f;     // 증가 간격 (초 단위)
+
+    // ★진행되는 던전의 랜드마크 포지션★ - 6가지 동작을 담을 수 있음(기본자세+운동자세)
+    public Vector3[,] dungeonProgressPosition = new Vector3[6, LANDMARK_COUNT];
+
 
     /*
     [ 정답모델 INDEX ]
@@ -31,10 +36,8 @@ public class CorrectModelController : MonoBehaviour
     13 : Co_LEFT_INDEX,   14 : Co_RIGHT_INDEX
     */
 
-    // ★ 진행되는 던전의 랜드마크 포지션 ★ - 6가지 동작을 담을 수 있음(정자세/운동 1세트로 3개의 운동)
-    public Vector3[,] dungeonProgressPosition = new Vector3[6, LANDMARK_COUNT];
-    
-    // 허벅지 던전 셋팅 - 참조변수
+
+    // 허벅지 던전 셋팅() - 참조변수
     public void setDungeon_Thigh(ref Vector3[,] positions)
     {
         // 1-1. 사이드 레그레이즈 정자세
@@ -79,11 +82,11 @@ public class CorrectModelController : MonoBehaviour
 
         // 3-2. 런지
         
-        // 
+
         Debug.Log("허벅지 던전이 셋팅되었습니다");
     }
 
-    // 다른 던전도 셋팅하세요
+    // 다른 던전도 셋팅하세요()
     public void setDungeon_pal(ref Vector3[,] position)
     {
 
@@ -110,7 +113,7 @@ public class CorrectModelController : MonoBehaviour
                                                          "Co_RIGHT_HIP", "Co_LEFT_KNEE", "Co_RIGHT_KNEE", "Co_LEFT_ANKLE",
                                                          "Co_RIGHT_ANKLE", "Co_LEFT_INDEX","Co_RIGHT_INDEX"};
 
-        // 생성자
+        // 생성자()
         public CorrectModel(Transform coParent, GameObject landmarkPrefab, GameObject linePrefab, int LANDMARK_COUNT, int LINES_COUNT)
         {
             this.coParent = coParent;
@@ -152,7 +155,7 @@ public class CorrectModelController : MonoBehaviour
             Debug.Log("정답 모델 생성자 작동 완료");
         }
 
-        // 정답 랜드마크 업데이트 - dpp : 던전로직포지션, rowNum : 현재 동작이 저장된 행번호
+        // 정답 랜드마크 업데이트() - dpp : 던전로직포지션, rowNum : 현재 동작이 저장된 행번호
         public void UpdateCoLandmarks(Vector3[,] dpp, int rowNum)
         {
             // 랜드마크 업데이트
@@ -162,10 +165,10 @@ public class CorrectModelController : MonoBehaviour
             }
 
             UpdateCoLines();
-            Debug.Log(rowNum + "번 동작 업데이트 완료");
+            // Debug.Log(rowNum + "번 동작 업데이트 완료");
         }
 
-        // 정답 랜드마크 라인 업데이트
+        // 정답 랜드마크 라인 업데이트()
         public void UpdateCoLines()
         {
             // 몸통
@@ -210,8 +213,16 @@ public class CorrectModelController : MonoBehaviour
         transform.SetParent(mainCamera.transform, false);
         Debug.Log("카메라(부모) - 정답모델(자식) 관계 설정 성공");
 
-        // 던전 셋팅
-        setDungeon_Thigh(ref dungeonProgressPosition);
+        // 던전 셋팅(일단 허벅지 0)
+        int dunNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
+        switch (dunNum)
+        {
+            case 0:
+                setDungeon_Thigh(ref dungeonProgressPosition);
+                break;
+            default:
+                break;
+        }
 
         // 모델 생성
         correctModel = new CorrectModel(coParent, landmarkPrefab, linePrefab, LANDMARK_COUNT, LINES_COUNT);
