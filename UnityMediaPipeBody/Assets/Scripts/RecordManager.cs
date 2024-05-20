@@ -9,11 +9,10 @@ public class RecordManager : MonoBehaviour
     // 월과 연도를 표시할 UI 텍스트 요소
     public Text monthYearText;
 
-    // 날짜를 표시할 오브젝트 : 리스트로 받아야할듯...
-    public GameObject dateCellPrefab;
-
     // 현재 달력의 날짜를 저장하는 변수
     private DateTime currentDate;
+
+    public GameObject WhiteBackground;
 
     public GameObject[] DayButton = new GameObject[42];
 
@@ -64,6 +63,7 @@ public class RecordManager : MonoBehaviour
         print("해당 월의 날짜 수  = " + daysInMonth);
 
 
+
         //// 날짜 정보 시각화 
 
         // 일요일 기준 시작 위치 설정
@@ -72,7 +72,8 @@ public class RecordManager : MonoBehaviour
         // 날짜 버튼 초기화
         for (int i = 0; i < DayButton.Length; i++)
         {
-            DayButton[i].transform.GetChild(0).GetComponent<Text>().text = "";
+            // DayButton[i].transform.GetChild(0).GetComponent<Text>().text = "";
+            DayButton[i].SetActive(false);
         }
 
         // 달력 구성
@@ -80,35 +81,45 @@ public class RecordManager : MonoBehaviour
         {
             int index = startDay + day - 1;
             DayButton[index].transform.GetChild(0).GetComponent<Text>().text = day.ToString();
+            DayButton[index].SetActive(true);
         }
+
 
 
         //// 해당 월의 주 수에 따라 달력 배경 height크기 변경 
+        ///
+        RectTransform rectTran = WhiteBackground.GetComponent<RectTransform>();
+        Vector2 anchoredPosition = rectTran.anchoredPosition;
 
-
-        #region * 만약, 프리팹 사용 시 참고 
-
-        /*
-        // 프리팹 사용 시 : 기존의 날짜 셀 삭제
-        foreach (Transform child in datesParent)
+        if (!DayButton[28].activeSelf)
         {
-            Destroy(child.gameObject);
-        }
-        */
+            // 두 줄 줄이기 
+            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 640);
 
-        // 프리팹 사용 시 : 해당 월의 각 날짜에 대해 날짜 셀 생성
-        /*
-        for (int i = 1; i <= daysInMonth; i++)
-        {
-            // DateTime date = new DateTime(currentDate.Year, currentDate.Month, i);
-
-            // 날짜 셀 프리팹을 복제하여 날짜를 텍스트로 표시
-            // GameObject dateCell = Instantiate(dateCellPrefab, datesParent);
-            // dateCell.GetComponentInChildren<Text>().text = i.ToString();
+            anchoredPosition.y = 180;
+            rectTran.anchoredPosition = anchoredPosition;
 
         }
-        */
-        #endregion
+        else if (!DayButton[35].activeSelf)
+        {
+            // 한 줄 줄이기
+            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 700);
+
+            anchoredPosition.y = 120;
+            rectTran.anchoredPosition = anchoredPosition;
+
+        }
+        else
+        {
+            // 원래 크기로 늘리기
+            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 760);
+
+            anchoredPosition.y = 60;
+            rectTran.anchoredPosition = anchoredPosition;
+
+        }
+
+        
     }
 
 }
