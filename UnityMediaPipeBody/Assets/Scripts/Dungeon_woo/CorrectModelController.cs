@@ -209,6 +209,7 @@ public class CorrectModelController : MonoBehaviour
 
     void Start()
     {
+        /*
         // 정답모델을 메인카메라 자식으로 설정
         transform.SetParent(mainCamera.transform, false);
         Debug.Log("카메라(부모) - 정답모델(자식) 관계 설정 성공");
@@ -228,11 +229,12 @@ public class CorrectModelController : MonoBehaviour
         correctModel = new CorrectModel(coParent, landmarkPrefab, linePrefab, LANDMARK_COUNT, LINES_COUNT);
 
         // 모델 업데이트
-
+        */
     }
 
     void Update()
     {
+        /* 
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= interval)
         {
@@ -249,5 +251,6 @@ public class CorrectModelController : MonoBehaviour
             correctModel.UpdateCoLandmarks(dungeonProgressPosition, i);
         }
         if (i > 2) i = 0;
+        */
     }
 }
