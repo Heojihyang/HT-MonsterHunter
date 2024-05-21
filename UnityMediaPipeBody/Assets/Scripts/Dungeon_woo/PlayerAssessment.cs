@@ -16,7 +16,6 @@ public class PlayerAssessment : MonoBehaviour
     const int PLAYER_LANDMARK_COUNT = 22;                                               // 플레이어 랜드마크 수
     
     public GameObject dungeonScene;       // 씬 관리 오브젝트
-    private AngleCalculator angleCal;     // 각도 계산 클래스
     private int count;                    // 코루틴을 위한 count 변수
     public int score;                     // 플레이어 동작 평가 점수
 
@@ -66,33 +65,40 @@ public class PlayerAssessment : MonoBehaviour
         monster.GetComponent<MonsterController>().TakeDamage(damage);
     }
 
+
     // ★허벅지 운동 루틴★
     IEnumerator RunThighRoutine()
     {
-        Debug.Log("허벅지 운동을 시작합니다.");
-        yield return new WaitForSeconds(10);
+        Debug.Log("허벅지 코루틴이 실행되었습니다.");
+        Debug.Log("5초 뒤, 운동을 시작합니다.");
+        for(int i = 5; i > 0 ; i--)
+        {
+            Debug.Log(i + "초");
+            yield return new WaitForSeconds(1);
+        }
+        
 
         // 스탠딩 사이드 레그 레이즈
         count = 12;
-        StartCoroutine(R_StandingSideLegRaise());
-        StartCoroutine(L_StandingSideLegRaise());
+        yield return StartCoroutine(R_StandingSideLegRaise());
+        yield return StartCoroutine(L_StandingSideLegRaise());
         yield return new WaitForSeconds(5);
 
         count = 15;
-        StartCoroutine(R_StandingSideLegRaise());
-        StartCoroutine(L_StandingSideLegRaise());
+        yield return StartCoroutine(R_StandingSideLegRaise());
+        yield return StartCoroutine(L_StandingSideLegRaise());
         yield return new WaitForSeconds(10);
 
         // 스쿼트
         count = 20;
-        StartCoroutine(Squat());
+        yield return StartCoroutine(Squat());
         yield return new WaitForSeconds(10);
 
         // 런지
         count = 20;
-        StartCoroutine(Lunge());
+        yield return StartCoroutine(Lunge());
         yield return new WaitForSeconds(5);
-        StartCoroutine(Lunge());
+        yield return StartCoroutine(Lunge());
 
         Debug.Log("허벅지 운동을 종료합니다.");
     }
@@ -104,24 +110,24 @@ public class PlayerAssessment : MonoBehaviour
         // 2. RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
         for (int i = 0; i < count; i++)
         {
-            Debug.Log("스탠딩 사이드 레그레이즈");
-            //playerLandmark가 Null임
-            float angle1 = angleCal.GetAngle(playerLandmark[12], playerLandmark[13], playerLandmark[17], playerLandmark[13]);
-            float angle2 = angleCal.GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
-
+            //playerLandmark가 Null임 -> 코루틴 실행시 5초정도 기다리니 해결됨
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             int grade = 0;
 
-            // 평가 1번
+            Debug.Log("스탠딩 사이드 레그레이즈(우) " + (i + 1) + "회");
+
+            // 평가 1번 각도
             if (angle1 >= 150 ) { grade += 5;  }
             else if(angle1 >= 135) { grade += 3; }
             else if(angle1 >= 120) { grade += 1; }
 
-            // 평가 2번
+            // 평가 2번 각도
             if (angle2 >= 180) { grade += 5; }
             else if (angle2 >= 170) { grade += 3; }
             else if (angle2 >= 165) { grade += 1; }
 
-            // 동작 평가-> UI업데이트/ score업데이트/ 총알 발사
+            // 동작 종합 평가-> 몬스터 수집요건 score 업데이트/ UI업데이트/ score업데이트/ 총알 발사
             if (grade >= 10) 
             { 
                 Debug.Log("Excellent!");
@@ -142,7 +148,9 @@ public class PlayerAssessment : MonoBehaviour
                 Debug.Log("최악");
             }
 
-            yield return new WaitForSeconds(3);
+            Debug.Log("Grade : " + grade);
+            Debug.Log("현재까지의 Score : " + score);
+            yield return new WaitForSeconds(3); //3초에 한번씩 동작진행
         }
         yield return new WaitForSeconds(0);
     }
@@ -154,10 +162,11 @@ public class PlayerAssessment : MonoBehaviour
         // 2. LEFT_HIP = 12   LEFT_KNEE = 14   LEFT_ANKLE = 16
         for (int i = 0; i < count; i++)
         {
-            float angle1 = angleCal.GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
-            float angle2 = angleCal.GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
-
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             int grade = 0;
+
+            Debug.Log("스탠딩 사이드 레그레이즈(좌) " + (i + 1) + "회");
 
             // 평가 1번
             if (angle1 >= 150) { grade += 5; }
@@ -169,7 +178,7 @@ public class PlayerAssessment : MonoBehaviour
             else if (angle2 >= 170) { grade += 3; }
             else if (angle2 >= 165) { grade += 1; }
 
-            // 동작 평가-> UI업데이트/ score업데이트/ 총알 발사
+            // 동작 평가
             if (grade >= 10)
             {
                 Debug.Log("Excellent!");
@@ -190,6 +199,8 @@ public class PlayerAssessment : MonoBehaviour
                 Debug.Log("최악");
             }
 
+            Debug.Log("Grade : " + grade);
+            Debug.Log("현재까지의 Score : " + score);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -217,7 +228,6 @@ public class PlayerAssessment : MonoBehaviour
 
     private void Start()
     {
-        angleCal = new AngleCalculator();
         score = 0;
         // ★던전 번호 넘겨받고 해당 루틴 실행하기★
         int dunNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
@@ -225,10 +235,12 @@ public class PlayerAssessment : MonoBehaviour
         switch (dunNum)
         {
             case 0:
-                StartCoroutine(RunThighRoutine());          // 허벅지 루틴 함수 호출
+                Debug.Log("넘겨받은 던전 번호에 따라 허벅지 루틴을 호출합니다. - PlayerAssessment");
+                StartCoroutine(RunThighRoutine());          // 허벅지 루틴 코루틴 호출
+
                 break;
             default:
-                StartCoroutine(RunThighRoutine());
+                // StartCoroutine(RunThighRoutine());
                 break;
         }
 
