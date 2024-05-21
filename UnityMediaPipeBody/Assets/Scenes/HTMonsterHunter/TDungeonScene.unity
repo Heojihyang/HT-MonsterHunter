@@ -910,6 +910,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   head: {fileID: 0}
+  dungeonScene: {fileID: 913929077}
+  score: 0
+
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
