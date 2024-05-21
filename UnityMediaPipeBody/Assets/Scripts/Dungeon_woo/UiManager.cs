@@ -47,9 +47,11 @@ public class UiManager : MonoBehaviour
     private void Start()
     {
         // 라벨 초기값 세팅
+        /*
         UpdateActionName("");
-        UpdateActionCount(0, 0, 0);
+        UpdateActionCount(0, 0);
         UpdateAdviceLabel("");
+        */
 
         // 진척도 초기값 세팅
         progressBarImage.fillAmount = 0;
@@ -66,12 +68,13 @@ public class UiManager : MonoBehaviour
     public void UpdateActionName(string actionName)
     {
         actionNameLabel.text = actionName;
+        Debug.Log("운동명 업데이트");
     }
 
     // 카운트 업데이트()
-    public void UpdateActionCount(int count, int maxCount, int sets)
+    public void UpdateActionCount(int count, int maxCount)
     {
-        actionCountLabel.text = count + "회/ " + maxCount + "회 (" + sets + "세트)";
+        actionCountLabel.text = count + "회/ " + maxCount + "회";
     }
 
     // 코멘트 업데이트()

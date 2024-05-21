@@ -61,17 +61,28 @@ public class PlayerAssessment : MonoBehaviour
     {
         Debug.Log("허벅지 코루틴이 실행되었습니다.");
 
-        // 스탠딩 사이드 레그 레이즈
+        // 1. 스탠딩 사이드 레그 레이즈
+         // 1세트(우 12번, 좌 12번)
+        UiManager.Instance.UpdateActionName("스탠딩 사이드 레그 레이즈(우)");
+        UiManager.Instance.UpdateActionCount(0, 12);
+
         Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 1세트'를 시작합니다.");
         for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
             yield return new WaitForSeconds(1);
         }
+
         count = 12;
         yield return StartCoroutine(R_StandingSideLegRaise());
+
+        UiManager.Instance.UpdateActionName("스탠딩 사이드 레그 레이즈(좌)");
+        UiManager.Instance.UpdateActionCount(0, 12);
         yield return StartCoroutine(L_StandingSideLegRaise());
 
+          // 2세트(우 15번, 좌 15번)
+        UiManager.Instance.UpdateActionName("스탠딩 사이드 레그 레이즈(우)");
+        UiManager.Instance.UpdateActionCount(0, 15);
         Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다.");
         for (int i = 5; i > 0; i--)
         {
@@ -80,9 +91,14 @@ public class PlayerAssessment : MonoBehaviour
         }
         count = 15;
         yield return StartCoroutine(R_StandingSideLegRaise());
+
+        UiManager.Instance.UpdateActionName("스탠딩 사이드 레그 레이즈(좌)");
+        UiManager.Instance.UpdateActionCount(0, 15);
         yield return StartCoroutine(L_StandingSideLegRaise());
 
-        // 스쿼트
+        // 2. 스쿼트
+        UiManager.Instance.UpdateActionName("스쿼트");
+        UiManager.Instance.UpdateActionCount(0, 20);
         Debug.Log("10초 뒤, '스쿼트'를 시작합니다.");
         for (int i = 10; i > 0; i--)
         {
@@ -92,7 +108,10 @@ public class PlayerAssessment : MonoBehaviour
         count = 20;
         yield return StartCoroutine(Squat());
 
-        // 런지
+        // 3. 런지
+          // 1세트 (좌우 20번)
+        UiManager.Instance.UpdateActionName("런지");
+        UiManager.Instance.UpdateActionCount(0, 20);
         Debug.Log("10초 뒤, '런지 1세트'를 시작합니다.");
         for (int i = 10; i > 0; i--)
         {
@@ -102,6 +121,8 @@ public class PlayerAssessment : MonoBehaviour
         count = 20;
         yield return StartCoroutine(Lunge());
 
+          // 2세트 (좌우 20번)
+        UiManager.Instance.UpdateActionCount(0, 20);
         Debug.Log("5초 뒤, '런지 2세트'를 시작합니다.");
         for (int i = 5; i > 0; i--)
         {
