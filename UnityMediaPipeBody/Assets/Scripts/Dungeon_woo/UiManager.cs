@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
     private static UiManager instance;
 
     // UI 오브젝트
+    public Text moderatorLabel;      // 진행자 UI
     public Text actionNameLabel;    // 동작 이름 UI
     public Text actionCountLabel;   // 동작 카운트 UI
     public Text adviceLabel;        // 코멘트 UI
@@ -63,12 +64,16 @@ public class UiManager : MonoBehaviour
         UpdateProgress();
     }
 
+    // 진행 텍스트 업데이트()
+    public void UpdateModeratorLabel(string description)
+    {
+        moderatorLabel.text = description;
+    }
 
     // 운동명 업데이트()
     public void UpdateActionName(string actionName)
     {
         actionNameLabel.text = actionName;
-        Debug.Log("운동명 업데이트");
     }
 
     // 카운트 업데이트()
