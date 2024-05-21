@@ -278,10 +278,11 @@ public class PlayerAssessment : MonoBehaviour
         // RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
         // LEFT_HIP = 12   LEFT_KNEE = 14   LEFT_ANKLE = 16
         int grade = 0;
-        for (int i = 0; i < count/2; i++)
+        int k = 0;
+        for (int i = 0; i < count/2; i++)   //10번
         {
             // 런지(우)
-            Debug.Log("런지 " + (i + 1) + "회");   
+            Debug.Log("런지 " + (++k) + "회");   
 
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
@@ -315,7 +316,7 @@ public class PlayerAssessment : MonoBehaviour
             yield return new WaitForSeconds(3);
 
             // 런지(좌)
-            Debug.Log("런지 " + (i + 2) + "회");
+            Debug.Log("런지 " + (++k) + "회");
             
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
