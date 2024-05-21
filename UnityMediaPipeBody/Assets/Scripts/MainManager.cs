@@ -10,7 +10,9 @@ public class MainManager : MonoBehaviour
     public Text PlayerTitle;
     public Slider ExpBar;
     public Text PlayerGoal;
-    
+    public Image LevelImage;
+    public Sprite[] LevelImg = new Sprite[5];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,31 +48,37 @@ public class MainManager : MonoBehaviour
         {
             PlayerTitle.text = "헬신생아";
             PlayerGoal.text = $"앞으로 헬린이까지 {n} 남음"; // 문자열 보간 ==> $"사과랑 포도를 더하면: {apple + grape}"
+            LevelImage.sprite = LevelImg[0];
         }
         else if (title < 2)
         {
             PlayerTitle.text = "헬린이";
             PlayerGoal.text = $"앞으로 헬청년까지 {n} 남음";
+            LevelImage.sprite = LevelImg[1];
         }
         else if (title < 3)
         {
             PlayerTitle.text = "헬청년";
             PlayerGoal.text = $"앞으로 헬창까지 {n} 남음";
+            LevelImage.sprite = LevelImg[2];
+
         }
         else if (title < 4)
         {
             PlayerTitle.text = "헬창";
             PlayerGoal.text = $"앞으로 헬스의 신까지 {n} 남음";
+            LevelImage.sprite = LevelImg[3];
         }
         else if (title >= 4)
         {
             PlayerTitle.text = "헬스의 신";
             PlayerGoal.text = "당신은 만렙 입니다 :)";
+            LevelImage.sprite = LevelImg[4];
         }
         else
         {
-            PlayerTitle.text = "오류났당~ ><";
-            PlayerGoal.text = "화내지 말고 잘 해결해 보쟈큥^^*";
+            PlayerTitle.text = "오류~ ><";
+            PlayerGoal.text = "오류오류오류오류";
         }
 
     }
