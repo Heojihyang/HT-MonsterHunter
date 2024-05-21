@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
     private static UiManager instance;
 
     // UI 오브젝트
+    public Text moderatorLabel;      // 진행자 UI
     public Text actionNameLabel;    // 동작 이름 UI
     public Text actionCountLabel;   // 동작 카운트 UI
     public Text adviceLabel;        // 코멘트 UI
@@ -47,9 +48,11 @@ public class UiManager : MonoBehaviour
     private void Start()
     {
         // 라벨 초기값 세팅
+        /*
         UpdateActionName("");
-        UpdateActionCount(0, 0, 0);
+        UpdateActionCount(0, 0);
         UpdateAdviceLabel("");
+        */
 
         // 진척도 초기값 세팅
         progressBarImage.fillAmount = 0;
@@ -61,6 +64,11 @@ public class UiManager : MonoBehaviour
         UpdateProgress();
     }
 
+    // 진행 텍스트 업데이트()
+    public void UpdateModeratorLabel(string description)
+    {
+        moderatorLabel.text = description;
+    }
 
     // 운동명 업데이트()
     public void UpdateActionName(string actionName)
@@ -69,9 +77,9 @@ public class UiManager : MonoBehaviour
     }
 
     // 카운트 업데이트()
-    public void UpdateActionCount(int count, int maxCount, int sets)
+    public void UpdateActionCount(int count, int maxCount)
     {
-        actionCountLabel.text = count + "회/ " + maxCount + "회 (" + sets + "세트)";
+        actionCountLabel.text = count + "회/ " + maxCount + "회";
     }
 
     // 코멘트 업데이트()

@@ -60,56 +60,122 @@ public class PlayerAssessment : MonoBehaviour
     IEnumerator RunThighRoutine()
     {
         Debug.Log("허벅지 코루틴이 실행되었습니다.");
+        UiManager.Instance.UpdateModeratorLabel("준비!");
+        yield return new WaitForSeconds(2);
 
-        // 스탠딩 사이드 레그 레이즈
+        // 1. 스탠딩 사이드 레그 레이즈
+        // 1세트 - 우
+        UiManager.Instance.UpdateActionName("우 - 스탠딩 사이드 레그 레이즈 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateAdviceLabel("");
+
         Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 1세트'를 시작합니다.");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스탠딩 사이드 레그레이즈' 1세트를 시작합니다");
+        yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
+
         count = 12;
+        UiManager.Instance.UpdateModeratorLabel("");
         yield return StartCoroutine(R_StandingSideLegRaise());
+
+        // 1세트 - 좌
+        UiManager.Instance.UpdateActionName("좌 - 스탠딩 사이드 레그 레이즈 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateAdviceLabel("");
         yield return StartCoroutine(L_StandingSideLegRaise());
 
-        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다.");
+        // 2세트 - 우
+        UiManager.Instance.UpdateActionName("우 - 스탠딩 사이드 레그 레이즈 (2set)");
+        UiManager.Instance.UpdateActionCount(0, 15);
+        UiManager.Instance.UpdateAdviceLabel("");
+
+        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다");
+        yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
         count = 15;
+        UiManager.Instance.UpdateModeratorLabel("");
         yield return StartCoroutine(R_StandingSideLegRaise());
+
+        // 2세트 - 좌
+        UiManager.Instance.UpdateActionName("좌 - 스탠딩 사이드 레그 레이즈 (2set)");
+        UiManager.Instance.UpdateActionCount(0, 15);
+        UiManager.Instance.UpdateAdviceLabel("");
         yield return StartCoroutine(L_StandingSideLegRaise());
 
-        // 스쿼트
-        Debug.Log("10초 뒤, '스쿼트'를 시작합니다.");
+        // 2. 스쿼트
+        UiManager.Instance.UpdateActionName("스쿼트");
+        UiManager.Instance.UpdateActionCount(0, 20);
+        UiManager.Instance.UpdateAdviceLabel("");
+
+        Debug.Log("10초 뒤, '스쿼트'를 시작합니다");
+        UiManager.Instance.UpdateModeratorLabel("10초 뒤, '스쿼트'를 시작합니다");
+        yield return new WaitForSeconds(2);
         for (int i = 10; i > 0; i--)
         {
             Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
         count = 20;
+        UiManager.Instance.UpdateModeratorLabel("");
         yield return StartCoroutine(Squat());
 
-        // 런지
+        // 3. 런지
+          // 1세트 (좌우 20번)
+        UiManager.Instance.UpdateActionName("런지 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 20);
+        UiManager.Instance.UpdateAdviceLabel("");
+
         Debug.Log("10초 뒤, '런지 1세트'를 시작합니다.");
+        UiManager.Instance.UpdateModeratorLabel("10초 뒤, '런지 1세트'를 시작합니다");
+        yield return new WaitForSeconds(2);
         for (int i = 10; i > 0; i--)
         {
             Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
         count = 20;
+        UiManager.Instance.UpdateModeratorLabel("");
         yield return StartCoroutine(Lunge());
 
+          // 2세트 (좌우 20번)
+        UiManager.Instance.UpdateActionName("런지 (2set)");
+        UiManager.Instance.UpdateActionCount(0, 20);
+        UiManager.Instance.UpdateAdviceLabel("");
+
         Debug.Log("5초 뒤, '런지 2세트'를 시작합니다.");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '런지 2세트'를 시작합니다");
+        yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
         count = 20;
+        UiManager.Instance.UpdateModeratorLabel("");
         yield return StartCoroutine(Lunge());
+
+        // 운동 끝
+        UiManager.Instance.UpdateActionName("");
+        UiManager.Instance.UpdateActionCount(0, 0);
+        UiManager.Instance.UpdateAdviceLabel("");
+
+        UiManager.Instance.UpdateModeratorLabel("종료!");
+        yield return new WaitForSeconds(3);
+        UiManager.Instance.UpdateModeratorLabel("평가중 ~ ");
 
         Debug.Log("허벅지 코루틴을 종료합니다.");
     }
@@ -122,6 +188,8 @@ public class PlayerAssessment : MonoBehaviour
         int grade = 0;
         for (int i = 0; i < count; i++)
         {
+            UiManager.Instance.UpdateActionCount(i+1, count);
+
             //playerLandmark가 Null임 -> 코루틴 실행시 5초정도 기다리니 해결됨
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
@@ -143,21 +211,25 @@ public class PlayerAssessment : MonoBehaviour
             if (grade >= 10) 
             { 
                 Debug.Log("Excellent!");
+                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
                 score += 5;
             }
             else if (grade >= 6) 
             { 
                 Debug.Log("Very Good!");
+                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
                 score += 3;
             }
             else if(grade >= 2)
             {
-                Debug.Log("Good!");
+                Debug.Log("Good");
+                UiManager.Instance.UpdateAdviceLabel("좋아요");
                 score += 1;
             }
             else
             {
                 Debug.Log("최악");
+                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
             }
 
             Debug.Log("Grade : " + grade);
@@ -175,6 +247,8 @@ public class PlayerAssessment : MonoBehaviour
         int grade = 0;
         for (int i = 0; i < count; i++)
         {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
@@ -195,21 +269,25 @@ public class PlayerAssessment : MonoBehaviour
             if (grade >= 10)
             {
                 Debug.Log("Excellent!");
+                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
                 score += 5;
             }
             else if (grade >= 6)
             {
                 Debug.Log("Very Good!");
+                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
                 score += 3;
             }
             else if (grade >= 2)
             {
-                Debug.Log("Good!");
+                Debug.Log("Good");
+                UiManager.Instance.UpdateAdviceLabel("좋아요");
                 score += 1;
             }
             else
             {
                 Debug.Log("최악");
+                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
             }
 
             Debug.Log("Grade : " + grade);
@@ -227,6 +305,8 @@ public class PlayerAssessment : MonoBehaviour
         int grade = 0;
         for (int i = 0; i < count; i++)
         {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[15], playerLandmark[13]);
             grade = 0;
@@ -247,21 +327,25 @@ public class PlayerAssessment : MonoBehaviour
             if (grade >= 10)
             {
                 Debug.Log("Excellent!");
+                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
                 score += 5;
             }
             else if (grade >= 6)
             {
                 Debug.Log("Very Good!");
+                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
                 score += 3;
             }
             else if (grade >= 2)
             {
-                Debug.Log("Good!");
+                Debug.Log("Good");
+                UiManager.Instance.UpdateAdviceLabel("좋아요");
                 score += 1;
             }
             else
             {
                 Debug.Log("최악");
+                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
             }
 
             Debug.Log("Grade : " + grade);
@@ -281,8 +365,10 @@ public class PlayerAssessment : MonoBehaviour
         int k = 0;
         for (int i = 0; i < count/2; i++)   //10번
         {
+            UiManager.Instance.UpdateActionCount(++k, count);
+
             // 런지(우)
-            Debug.Log("런지 " + (++k) + "회");   
+            Debug.Log("런지 " + (k) + "회");   
 
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
@@ -294,21 +380,25 @@ public class PlayerAssessment : MonoBehaviour
             if (grade >= 10)
             {
                 Debug.Log("Excellent!");
+                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
                 score += 5;
             }
             else if (grade >= 6)
             {
                 Debug.Log("Very Good!");
+                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
                 score += 3;
             }
             else if (grade >= 2)
             {
-                Debug.Log("Good!");
+                Debug.Log("Good");
+                UiManager.Instance.UpdateAdviceLabel("좋아요");
                 score += 1;
             }
             else
             {
                 Debug.Log("최악");
+                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
             }
 
             Debug.Log("Grade : " + grade);
@@ -316,7 +406,8 @@ public class PlayerAssessment : MonoBehaviour
             yield return new WaitForSeconds(3);
 
             // 런지(좌)
-            Debug.Log("런지 " + (++k) + "회");
+            UiManager.Instance.UpdateActionCount(++k, count);
+            Debug.Log("런지 " + (k) + "회");
             
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
@@ -329,21 +420,25 @@ public class PlayerAssessment : MonoBehaviour
             if (grade >= 10)
             {
                 Debug.Log("Excellent!");
+                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
                 score += 5;
             }
             else if (grade >= 6)
             {
                 Debug.Log("Very Good!");
+                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
                 score += 3;
             }
             else if (grade >= 2)
             {
-                Debug.Log("Good!");
+                Debug.Log("Good");
+                UiManager.Instance.UpdateAdviceLabel("좋아요");
                 score += 1;
             }
             else
             {
                 Debug.Log("최악");
+                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
             }
 
             Debug.Log("Grade : " + grade);
@@ -370,19 +465,5 @@ public class PlayerAssessment : MonoBehaviour
                 // StartCoroutine(RunThighRoutine());
                 break;
         }
-
-
-        // 스페이스바를 눌렀을 때 공격 - 공격 로직 테스트
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }
-        */
-    }
-
-    private void Update()
-    {
-
     }
 }
