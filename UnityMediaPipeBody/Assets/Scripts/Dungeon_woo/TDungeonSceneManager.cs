@@ -11,6 +11,5 @@ public class TDungeonSceneManager : MonoBehaviour
     void Start()
     {
         receivedMonsterNumber = PlayerPrefs.GetInt("MonsterNumberToSend", 0);
-        Debug.Log("Received MonsterNumber: " + receivedMonsterNumber);
     }
 }

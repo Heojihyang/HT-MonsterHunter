@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 499442783}
   - component: {fileID: 499442782}
   - component: {fileID: 499442784}
+  - component: {fileID: 499442785}
   m_Layer: 0
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -912,6 +913,18 @@ MonoBehaviour:
   head: {fileID: 0}
   dungeonScene: {fileID: 913929077}
   score: 0
+--- !u!114 &499442785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499442781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b560107af3769343b30cba41d9e2499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
