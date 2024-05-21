@@ -27,17 +27,9 @@ public class PlayerAssessment : MonoBehaviour
     LEFT_HIP = 12, RIGHT_HIP = 13, LEFT_KNEE = 14, RIGHT_KNEE = 15,
     LEFT_ANKLE = 16, RIGHT_ANKLE = 17, LEFT_HEEL = 18, RIGHT_HEEL = 19,
     LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
-     */
 
-    /*
-    // 공격 방법
-    float n = angleCal.GetAngle(playerLandmark[12], playerLandmark[13], playerLandmark[17], playerLandmark[13]);
-    if (n >= 120)
-    {
-        Attack();
-        Debug.Log("공격!!!!!");
-    }
-    */
+    
+     */
 
     // 현재 랜드마크 가져오기()
     public void getPlayerLandmark(GameObject[] landmark, GameObject head)
@@ -209,9 +201,50 @@ public class PlayerAssessment : MonoBehaviour
     // 허벅지-스쿼트
     IEnumerator Squat()
     {
+        // 1. RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
+        // 2. RIGHT_SHOULDER = 1   RIGHT_HIP = 13   RIGHT_KNEE = 15
         for (int i = 0; i < count; i++)
         {
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[15], playerLandmark[13]);
+            int grade = 0;
 
+            Debug.Log("스쿼트 " + (i + 1) + "회");
+
+            // 평가 1번 - 제대로 푹 앉았는가
+            if (angle1 <= 90) { grade += 5; }
+            else if (angle1 <= 100) { grade += 3; }
+            else if (angle1 <= 110) { grade += 1; }
+
+            // 평가 2번 - 허리를 적절히 굽혔는가
+            if (35 <= angle2 && angle2 <= 55) { grade += 5; }
+            else if (30 <= angle2 && angle2 <= 90) { grade += 3; }
+            else if (20 <= angle2) { grade += 1; }
+
+            // 동작 평가
+            if (grade >= 10)
+            {
+                Debug.Log("Excellent!");
+                score += 5;
+            }
+            else if (grade >= 6)
+            {
+                Debug.Log("Very Good!");
+                score += 3;
+            }
+            else if (grade >= 2)
+            {
+                Debug.Log("Good!");
+                score += 1;
+            }
+            else
+            {
+                Debug.Log("최악");
+            }
+
+            Debug.Log("Grade : " + grade);
+            Debug.Log("현재까지의 Score : " + score);
+            yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
     }
