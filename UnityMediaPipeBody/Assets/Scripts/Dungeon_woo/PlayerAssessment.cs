@@ -27,9 +27,7 @@ public class PlayerAssessment : MonoBehaviour
     LEFT_HIP = 12, RIGHT_HIP = 13, LEFT_KNEE = 14, RIGHT_KNEE = 15,
     LEFT_ANKLE = 16, RIGHT_ANKLE = 17, LEFT_HEEL = 18, RIGHT_HEEL = 19,
     LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
-
-    
-     */
+    */
 
     // 현재 랜드마크 가져오기()
     public void getPlayerLandmark(GameObject[] landmark, GameObject head)
@@ -62,37 +60,58 @@ public class PlayerAssessment : MonoBehaviour
     IEnumerator RunThighRoutine()
     {
         Debug.Log("허벅지 코루틴이 실행되었습니다.");
-        Debug.Log("5초 뒤, 운동을 시작합니다.");
-        for(int i = 5; i > 0 ; i--)
+
+        // 스탠딩 사이드 레그 레이즈
+        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 1세트'를 시작합니다.");
+        for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
             yield return new WaitForSeconds(1);
         }
-        
-
-        // 스탠딩 사이드 레그 레이즈
         count = 12;
         yield return StartCoroutine(R_StandingSideLegRaise());
         yield return StartCoroutine(L_StandingSideLegRaise());
-        yield return new WaitForSeconds(5);
 
+        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다.");
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            yield return new WaitForSeconds(1);
+        }
         count = 15;
         yield return StartCoroutine(R_StandingSideLegRaise());
         yield return StartCoroutine(L_StandingSideLegRaise());
-        yield return new WaitForSeconds(10);
 
         // 스쿼트
+        Debug.Log("10초 뒤, '스쿼트'를 시작합니다.");
+        for (int i = 10; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            yield return new WaitForSeconds(1);
+        }
         count = 20;
         yield return StartCoroutine(Squat());
-        yield return new WaitForSeconds(10);
 
         // 런지
+        Debug.Log("10초 뒤, '런지 1세트'를 시작합니다.");
+        for (int i = 10; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            yield return new WaitForSeconds(1);
+        }
         count = 20;
         yield return StartCoroutine(Lunge());
-        yield return new WaitForSeconds(5);
+
+        Debug.Log("5초 뒤, '런지 2세트'를 시작합니다.");
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            yield return new WaitForSeconds(1);
+        }
+        count = 20;
         yield return StartCoroutine(Lunge());
 
-        Debug.Log("허벅지 운동을 종료합니다.");
+        Debug.Log("허벅지 코루틴을 종료합니다.");
     }
 
     // 허벅지-스탠딩사이드레그레이즈(우)
@@ -100,12 +119,13 @@ public class PlayerAssessment : MonoBehaviour
     {
         // 1. LEFT_HIP = 12  RIGHT_HIP = 13   RIGHT_ANKLE = 17
         // 2. RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
+        int grade = 0;
         for (int i = 0; i < count; i++)
         {
             //playerLandmark가 Null임 -> 코루틴 실행시 5초정도 기다리니 해결됨
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
-            int grade = 0;
+            grade = 0;
 
             Debug.Log("스탠딩 사이드 레그레이즈(우) " + (i + 1) + "회");
 
@@ -152,11 +172,12 @@ public class PlayerAssessment : MonoBehaviour
     {
         // 1. RIGHT_HIP = 13   LEFT_HIP = 12   LEFT_ANKLE = 16
         // 2. LEFT_HIP = 12   LEFT_KNEE = 14   LEFT_ANKLE = 16
+        int grade = 0;
         for (int i = 0; i < count; i++)
         {
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
-            int grade = 0;
+            grade = 0;
 
             Debug.Log("스탠딩 사이드 레그레이즈(좌) " + (i + 1) + "회");
 
@@ -203,11 +224,12 @@ public class PlayerAssessment : MonoBehaviour
     {
         // 1. RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
         // 2. RIGHT_SHOULDER = 1   RIGHT_HIP = 13   RIGHT_KNEE = 15
+        int grade = 0;
         for (int i = 0; i < count; i++)
         {
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[15], playerLandmark[13]);
-            int grade = 0;
+            grade = 0;
 
             Debug.Log("스쿼트 " + (i + 1) + "회");
 
@@ -249,12 +271,83 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-    // 허벅지-런지
+    // 허벅지-런지(좌우 세트)
     IEnumerator Lunge()
     {
-        for (int i = 0; i < count; i++)
+        // 원래 평가항목 2갠데 여기 허리를 어케애햐될지 모르겠어서 평가항목 1개만 하고 점수를 2배로 줌
+        // RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
+        // LEFT_HIP = 12   LEFT_KNEE = 14   LEFT_ANKLE = 16
+        int grade = 0;
+        for (int i = 0; i < count/2; i++)
         {
+            // 런지(우)
+            Debug.Log("런지 " + (i + 1) + "회");   
 
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
+            grade = 0;
+
+            if (87 <= angle1 && angle1 <= 93) { grade += 10; }
+            else if (83 <= angle1 && angle1 <= 97) { grade += 6; }
+            else if (70 <= angle1 && angle1 <= 110) { grade += 2; }
+
+            if (grade >= 10)
+            {
+                Debug.Log("Excellent!");
+                score += 5;
+            }
+            else if (grade >= 6)
+            {
+                Debug.Log("Very Good!");
+                score += 3;
+            }
+            else if (grade >= 2)
+            {
+                Debug.Log("Good!");
+                score += 1;
+            }
+            else
+            {
+                Debug.Log("최악");
+            }
+
+            Debug.Log("Grade : " + grade);
+            Debug.Log("현재까지의 Score : " + score);
+            yield return new WaitForSeconds(3);
+
+            // 런지(좌)
+            Debug.Log("런지 " + (i + 2) + "회");
+            
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
+            grade = 0;
+
+            if (87 <= angle2 && angle1 <= 93) { grade += 10; }
+            else if (83 <= angle2 && angle1 <= 97) { grade += 6; }
+            else if (70 <= angle2 && angle1 <= 110) { grade += 2; }
+
+            // 동작 평가
+            if (grade >= 10)
+            {
+                Debug.Log("Excellent!");
+                score += 5;
+            }
+            else if (grade >= 6)
+            {
+                Debug.Log("Very Good!");
+                score += 3;
+            }
+            else if (grade >= 2)
+            {
+                Debug.Log("Good!");
+                score += 1;
+            }
+            else
+            {
+                Debug.Log("최악");
+            }
+
+            Debug.Log("Grade : " + grade);
+            Debug.Log("현재까지의 Score : " + score);
+            yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
     }
