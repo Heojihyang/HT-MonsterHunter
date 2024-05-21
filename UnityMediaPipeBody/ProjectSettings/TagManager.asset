@@ -41,18 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 1298944655
-    locked: 0
-  - name: ETC
-    uniqueID: 3191557399
-    locked: 0
-  - name: panel
-    uniqueID: 1924324581
-    locked: 0
-  - name: Button
-    uniqueID: 2955437869
-    locked: 0
-  - name: Text
+  - name: New Layer 1
     uniqueID: 2767745133
     locked: 0
