@@ -85,40 +85,6 @@ public class RecordManager : MonoBehaviour
 
 
 
-        //// 해당 월의 주 수에 따라 달력 배경 크기 변경 
-       
-        RectTransform rectTran = WhiteBackground.GetComponent<RectTransform>();
-        Vector2 anchoredPosition = rectTran.anchoredPosition;
-
-        if (!DayButton[28].activeSelf)
-        {
-            // 두 줄 줄이기 
-            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 640);
-
-            anchoredPosition.y = 180;
-            rectTran.anchoredPosition = anchoredPosition;
-
-        }
-        else if (!DayButton[35].activeSelf)
-        {
-            // 한 줄 줄이기
-            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 700);
-
-            anchoredPosition.y = 120;
-            rectTran.anchoredPosition = anchoredPosition;
-
-        }
-        else
-        {
-            // 원래 크기로 늘리기
-            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 760);
-
-            anchoredPosition.y = 60;
-            rectTran.anchoredPosition = anchoredPosition;
-
-        }
-
-        
     }
 
 }
