@@ -18,10 +18,10 @@ public class RecordManager : MonoBehaviour
 
     int daysInMonth;
 
+
     void Start()
     {
-        // 현재 날짜
-        // MM/DD/YYYY 00:00:00 
+        // 현재 날짜  MM/DD/YYYY 00:00:00 
         currentDate = DateTime.Today; 
 
         // 현재 날짜로 달력 업데이트 
@@ -72,7 +72,6 @@ public class RecordManager : MonoBehaviour
         // 날짜 버튼 초기화
         for (int i = 0; i < DayButton.Length; i++)
         {
-            // DayButton[i].transform.GetChild(0).GetComponent<Text>().text = "";
             DayButton[i].SetActive(false);
         }
 
@@ -86,8 +85,8 @@ public class RecordManager : MonoBehaviour
 
 
 
-        //// 해당 월의 주 수에 따라 달력 배경 height크기 변경 
-        ///
+        //// 해당 월의 주 수에 따라 달력 배경 크기 변경 
+       
         RectTransform rectTran = WhiteBackground.GetComponent<RectTransform>();
         Vector2 anchoredPosition = rectTran.anchoredPosition;
 
