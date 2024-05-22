@@ -83,7 +83,7 @@ public class CorrectModelController : MonoBehaviour
         // 3-2. 런지
         
 
-        Debug.Log("허벅지 던전이 셋팅되었습니다");
+        Debug.Log("정답모델 허벅지 던전 셋팅 완료");
     }
 
     // 다른 던전도 셋팅하세요()
@@ -151,8 +151,6 @@ public class CorrectModelController : MonoBehaviour
             {
                 co_lines[i] = Instantiate(linePrefab).GetComponent<LineRenderer>();
             }
-
-            Debug.Log("정답 모델 생성자 작동 완료");
         }
 
         // 정답 랜드마크 업데이트() - dpp : 던전로직포지션, rowNum : 현재 동작이 저장된 행번호
@@ -211,7 +209,6 @@ public class CorrectModelController : MonoBehaviour
     {
         // 정답모델을 메인카메라 자식으로 설정
         transform.SetParent(mainCamera.transform, false);
-        Debug.Log("카메라(부모) - 정답모델(자식) 관계 설정 성공");
 
         // 던전 셋팅(일단 허벅지 0)
         int dunNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
@@ -228,7 +225,7 @@ public class CorrectModelController : MonoBehaviour
         correctModel = new CorrectModel(coParent, landmarkPrefab, linePrefab, LANDMARK_COUNT, LINES_COUNT);
 
         // 모델 업데이트
-
+        
     }
 
     void Update()
@@ -238,7 +235,6 @@ public class CorrectModelController : MonoBehaviour
         {
             i++;
             elapsedTime = 0.0f;
-            Debug.Log($"Counter: {i}");
         }
 
         // 3초 간격으로 랜드마크 업데이트 [6][15]
