@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TDungeonSceneManager : MonoBehaviour
 {
@@ -11,5 +12,11 @@ public class TDungeonSceneManager : MonoBehaviour
     void Start()
     {
         receivedMonsterNumber = PlayerPrefs.GetInt("MonsterNumberToSend", 0);
+    }
+
+    // 메인씬으로 이동
+    public void GoMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
