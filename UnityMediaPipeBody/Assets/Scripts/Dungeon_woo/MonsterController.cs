@@ -25,7 +25,7 @@ public class MonsterController : MonoBehaviour
         currentHealth = maxHealth;                      // 체력 초기화
     }
 
-    // 몬스터 생성 함수
+    // 몬스터 생성
     public void CreateMonster(int monsterNumber) 
     {
         // 부모 오브젝트
@@ -45,6 +45,7 @@ public class MonsterController : MonoBehaviour
         animator.SetBool("ani_Die", false);
     }
     
+    /*
     // 데미지 함수
     public void TakeDamage(float damage)
     {
@@ -68,4 +69,5 @@ public class MonsterController : MonoBehaviour
         Debug.Log("꿱");
         // Destroy(monster);
     }
+    */
 }
