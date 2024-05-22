@@ -75,7 +75,7 @@ public class SoundManager : MonoBehaviour
         Sound s = Array.Find(sfxSounds, sound => sound.name == soundName);
         if (s == null)
         {
-            Debug.LogWarning("SFX: " + soundName + " not found!");
+            Debug.LogWarning("SFX: '" + soundName + "'을 찾을 수 없습ㄴ디ㅏ!");
             return;
         }
         s.source.Play();
@@ -87,7 +87,7 @@ public class SoundManager : MonoBehaviour
         Sound s = Array.Find(sfxSounds, sound => sound.name == soundName);
         if (s == null)
         {
-            Debug.LogWarning("SFX: " + soundName + " not found!");
+            Debug.LogWarning("SFX: '" + soundName + "' 을 찾을 수 없습니다!");
             return;
         }
         s.source.Stop();

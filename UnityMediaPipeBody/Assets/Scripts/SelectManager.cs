@@ -45,8 +45,9 @@ public class SelectManager : MonoBehaviour
     // (시작) 클릭 시 : 던전으로 이동
     public void ChangeTDungeonScene()
     {
-        SceneManager.LoadScene("TDungeonScene");    
-        PlayerPrefs.SetInt("MonsterNumberToSend", 0);   //씬 로드하면서 몬스터 번호 같이 넘겨주기
+        SoundManager.instance.StopBGM("BGM_Main");      // BGM 끄기
+        PlayerPrefs.SetInt("MonsterNumberToSend", 0);   // 씬 로드하면서 몬스터 번호 같이 넘겨주기
+        SceneManager.LoadScene("TDungeonScene");
     }
 
     // (시작) 클릭 시 : 메인 화면으로 이동
