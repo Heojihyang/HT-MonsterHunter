@@ -14,6 +14,8 @@ public class MonListManager : MonoBehaviour
     public Text MonsterName;
     public Text MonsterPart;
 
+    public GameObject popupImage; // "아직잡지않은몬스터임"
+
     public List<MonsterListData> monsterListData;
 
     MonsterData Monsterdata = new MonsterData(); // GameData.cs
@@ -47,11 +49,6 @@ public class MonListManager : MonoBehaviour
                 // GameObject의 FalseImage를 TrueImage로 변경해주기
                 FalseImage.GetComponent<Image>().sprite = TrueImage;
 
-                print(id + "는 보유한 몬스터 입니다.");
-            }
-            else
-            {
-                print(id + "는 아직 보유하지 못한 몬스터 입니다.");
             }
           
         }
@@ -90,7 +87,27 @@ public class MonListManager : MonoBehaviour
             Sprite monsterpartImg = monsterListData[id].MonsterPartImage;
             MonsterPartImg.GetComponent<Image>().sprite = monsterpartImg;
         }
+        else
+        {
+            // "아직 잡지않은 몬스터입니다." 띄우기
+
+            // 팝업 이미지를 활성화
+            popupImage.SetActive(true);
+
+            // 2초 후에 팝업 이미지를 비활성화하는 코루틴 시작
+            StartCoroutine(HidePopupAfterDelay(1f));
+        }
         
+    }
+
+    // 일정 시간 후 팝업 이미지를 비활성화하는 코루틴
+    private IEnumerator HidePopupAfterDelay(float delay)
+    {
+        // 지정한 시간(초) 동안 대기
+        yield return new WaitForSeconds(delay);
+
+        // 팝업 이미지를 비활성화
+        popupImage.SetActive(false);
     }
 
     // 도감에서 뒤로가기 버튼 클릭
