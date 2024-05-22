@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SelectManager : MonoBehaviour
 {
+    public GameObject previousMonster;
+    public GameObject ExplainButton;
     public GameObject Explain;
-    // public GameObject Blob;
 
     // Start is called before the first frame update
     void Start()
@@ -20,17 +21,26 @@ public class SelectManager : MonoBehaviour
         
     }
 
-    public void ActBlob()
+    // 알맞은 몬스터 이미지 활성화 & 운동 설명 버튼 활성화 
+    public void ActBlob(GameObject newMonster)
     {
-        // Blob.SetActive(false);
+        // 이전 몬스터 비활성화
+        if (previousMonster != null)
+            previousMonster.SetActive(false);
+
+        // 새로운 몬스터 활성화 
+        newMonster.SetActive(true);
+
+        ExplainButton.SetActive(true);
+
+        // 이전 몬스터 업데이트
+        previousMonster = newMonster;
     }
 
-
-    // 버튼 클릭 시 : 운동설명 창 활성화
+    // 운동 버튼 클릭 시 : 운동설명 창 활성화
     public void ActExerciseExplain()
     {
         Explain.SetActive(true);
-        
     }
 
     // 운동 설명 창에서 뒤로가기 클릭 시 : 운동설명 창 비활성화
@@ -38,8 +48,12 @@ public class SelectManager : MonoBehaviour
     {
         Explain.SetActive(false);
 
-        // 켜져있던 몬스터 off 
-        // Blob.SetActive(true);
+        // 켜져있던 몬스터와 설명 버튼 비활성화 시키기
+
+        // 이전 몬스터와 설명 버튼 비활성화
+        if (previousMonster != null)
+            previousMonster.SetActive(false);
+        ExplainButton.SetActive(false);
     }
 
     // (시작) 클릭 시 : 던전으로 이동
