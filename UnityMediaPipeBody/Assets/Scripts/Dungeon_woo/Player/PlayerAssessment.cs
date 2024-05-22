@@ -19,6 +19,10 @@ public class PlayerAssessment : MonoBehaviour
     private int count;                    // 코루틴을 위한 count 변수
     public int score;                     // 플레이어 동작 평가 점수
 
+    // BulletGenerator(피격효과)
+    public BulletGenerator bullet;
+
+
     /*
     //몸(22개) 랜드마크 Index
     LEFT_SHOULDER = 0, RIGHT_SHOULDER = 1, LEFT_ELBOW = 2, RIGHT_ELBOW = 3,
@@ -55,6 +59,8 @@ public class PlayerAssessment : MonoBehaviour
         if (motionGrade >= 10)
         {
             // 여기에 피격 호출
+            bullet.GetComponent<BulletGenerator>().ShootBullet();
+
             Debug.Log("Excellent!");
             UiManager.Instance.UpdateAdviceLabel("완벽해요!");
             score += 5;
@@ -62,6 +68,8 @@ public class PlayerAssessment : MonoBehaviour
         else if (motionGrade >= 6)
         {
             // 여기에 피격 호출
+            bullet.GetComponent<BulletGenerator>().ShootBullet();
+
             Debug.Log("Very Good!");
             UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
             score += 3;
@@ -69,12 +77,16 @@ public class PlayerAssessment : MonoBehaviour
         else if (motionGrade >= 2)
         {
             // 여기에 피격 호출
+            bullet.GetComponent<BulletGenerator>().ShootBullet();
+
             Debug.Log("Good");
             UiManager.Instance.UpdateAdviceLabel("좋아요");
             score += 1;
         }
         else
         {
+            bullet.GetComponent<BulletGenerator>().ShootBullet();   //나중에 지우기(테스트용)
+
             Debug.Log("최악");
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
         }
