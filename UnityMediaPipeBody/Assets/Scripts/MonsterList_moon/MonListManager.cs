@@ -30,7 +30,7 @@ public class MonListManager : MonoBehaviour
         // ---
 
         // 총 몬스터 수 임시 
-        for (int id = 0; id < 3; id++)
+        for (int id = 0; id < 10; id++)
         {
             // 몬스터 수집 여부 확인 
             bool haveMonster = GameData.instance.monsterdata.MonsterUnLocked[id];

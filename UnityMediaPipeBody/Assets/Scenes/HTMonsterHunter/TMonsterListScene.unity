@@ -361,7 +361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 957654f7ad68ea14d896eda49427a6ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd36f0d50accfd84d911c6f93446ba08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 339146540}
   - component: {fileID: 339146539}
   m_Layer: 5
-  m_Name: Button_2 (1)
+  m_Name: Button_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 713076203}
   - component: {fileID: 713076202}
   m_Layer: 5
-  m_Name: Button_1 (1)
+  m_Name: Button_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 821978273}
   - component: {fileID: 821978272}
   m_Layer: 5
-  m_Name: Button_0 (2)
+  m_Name: Button_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1990,7 +1990,7 @@ GameObject:
   - component: {fileID: 992326339}
   - component: {fileID: 992326338}
   m_Layer: 5
-  m_Name: Button_2 (2)
+  m_Name: Button_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 11af782409b5ef047b8d14efa15222fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e2d5019f8f20cf4a9b3a3aa871be774, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2353,7 +2353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd36f0d50accfd84d911c6f93446ba08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11af782409b5ef047b8d14efa15222fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 58d03d25aff9847498690a24b9a95f45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 957654f7ad68ea14d896eda49427a6ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2528,7 +2528,7 @@ SpriteRenderer:
   m_Size: {x: 0.56, y: 0.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1287182035
@@ -2808,7 +2808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 33a353dc71fdbdb46b7c88018c4f343a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c94649eff415c844ba06bf591e60879, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3018,7 +3018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3080,19 +3080,54 @@ MonoBehaviour:
   MonsterPart: {fileID: 1903578536}
   monsterListData:
   - <ID>k__BackingField: 0
-    <MonFalseImage>k__BackingField: {fileID: 1389921556}
-    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 6a770c6f32ad0164aacc93e0408c941e, type: 3}
-    <MonsterPart>k__BackingField: "\uBA38\uB9AC"
+    <MonFalseImage>k__BackingField: {fileID: 1614478728}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: c76dad6cb7984ac46be09e3ec0aa94ae, type: 3}
+    <MonsterPart>k__BackingField: "\uAC00\uC2B4"
     <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 4bcbbc6a1cf1efa4eaf0aaf111bd91ee, type: 3}
   - <ID>k__BackingField: 1
-    <MonFalseImage>k__BackingField: {fileID: 2103651188}
-    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 6a770c6f32ad0164aacc93e0408c941e, type: 3}
-    <MonsterPart>k__BackingField: "\uC5B4\uAE68"
-    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 13e7e6fe43a8aa049bcd610bbc1f5ff8, type: 3}
+    <MonFalseImage>k__BackingField: {fileID: 1150168124}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: b293ad61323150d44a6972bac370dd4f, type: 3}
+    <MonsterPart>k__BackingField: "\uB4F1"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7b1b83771ed25cc47becefcb6e7aed27, type: 3}
   - <ID>k__BackingField: 2
-    <MonFalseImage>k__BackingField: {fileID: 1800006834}
-    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 6a770c6f32ad0164aacc93e0408c941e, type: 3}
-    <MonsterPart>k__BackingField: "\uBB34\uB98E"
+    <MonFalseImage>k__BackingField: {fileID: 289777671}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 7b1b83771ed25cc47becefcb6e7aed27, type: 3}
+    <MonsterPart>k__BackingField: "\uBCF5\uBD80"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 3
+    <MonFalseImage>k__BackingField: {fileID: 1228039893}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: ef0753f001c8fd84a980eb2200c37877, type: 3}
+    <MonsterPart>k__BackingField: "\uD5C8\uB9AC"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 4
+    <MonFalseImage>k__BackingField: {fileID: 1416937295}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 78be2e9c7c2250a4bad9fad32fba08ad, type: 3}
+    <MonsterPart>k__BackingField: "\uC774\uB450"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 5
+    <MonFalseImage>k__BackingField: {fileID: 1499441644}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 7b45b1e1e737c034589e0dea7cb3e3c9, type: 3}
+    <MonsterPart>k__BackingField: "\uC804\uC644\uADFC"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 6
+    <MonFalseImage>k__BackingField: {fileID: 761531053}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: b61332f3bc98ddc4a84110fba23c4ec5, type: 3}
+    <MonsterPart>k__BackingField: "\uC0BC\uB450"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 7
+    <MonFalseImage>k__BackingField: {fileID: 1117513756}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 1539b852a024d7d4ab12d348b566e0fe, type: 3}
+    <MonsterPart>k__BackingField: "\uD799"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 8
+    <MonFalseImage>k__BackingField: {fileID: 1346085811}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: afa1ff816e185d2449a4f8f282a68402, type: 3}
+    <MonsterPart>k__BackingField: "\uD5C8\uBC85\uC9C0"
+    <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
+  - <ID>k__BackingField: 9
+    <MonFalseImage>k__BackingField: {fileID: 1778637204}
+    <MonTrueImage>k__BackingField: {fileID: 21300000, guid: 299698e1c30618c40a36fa7d55199543, type: 3}
+    <MonsterPart>k__BackingField: "\uC885\uC544\uB9AC"
     <MonsterPartImage>k__BackingField: {fileID: 21300000, guid: 7fd3cda14282bb7429b8eeb6c121e5bb, type: 3}
 --- !u!4 &1415993128
 Transform:
@@ -3167,7 +3202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1c94649eff415c844ba06bf591e60879, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58d03d25aff9847498690a24b9a95f45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3395,7 +3430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e2d5019f8f20cf4a9b3a3aa871be774, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33a353dc71fdbdb46b7c88018c4f343a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4036,7 +4071,7 @@ GameObject:
   - component: {fileID: 1991333652}
   - component: {fileID: 1991333651}
   m_Layer: 5
-  m_Name: Button_1 (2)
+  m_Name: Button_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4158,7 +4193,7 @@ GameObject:
   - component: {fileID: 2029642738}
   - component: {fileID: 2029642737}
   m_Layer: 5
-  m_Name: Button_0 (1)
+  m_Name: Button_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4709,7 +4744,7 @@ GameObject:
   - component: {fileID: 2098155554}
   - component: {fileID: 2098155553}
   m_Layer: 5
-  m_Name: Button_0 (3)
+  m_Name: Button_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
