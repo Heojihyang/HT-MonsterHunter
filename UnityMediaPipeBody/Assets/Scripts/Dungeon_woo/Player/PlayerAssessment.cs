@@ -49,14 +49,43 @@ public class PlayerAssessment : MonoBehaviour
         headLandmarkPosition = head.transform.position;
     }
 
-    // 몬스터 공격()
-    private void Attack()
+    // 동작 종합 평가
+    public float MotionRating(int motionGrade)
     {
-        monster.GetComponent<MonsterController>().TakeDamage(damage);
+        if (motionGrade >= 10)
+        {
+            // 여기에 피격 호출
+            Debug.Log("Excellent!");
+            UiManager.Instance.UpdateAdviceLabel("완벽해요!");
+            score += 5;
+        }
+        else if (motionGrade >= 6)
+        {
+            // 여기에 피격 호출
+            Debug.Log("Very Good!");
+            UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
+            score += 3;
+        }
+        else if (motionGrade >= 2)
+        {
+            // 여기에 피격 호출
+            Debug.Log("Good");
+            UiManager.Instance.UpdateAdviceLabel("좋아요");
+            score += 1;
+        }
+        else
+        {
+            Debug.Log("최악");
+            UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
+        }
+
+        Debug.Log("Grade : " + motionGrade);
+        Debug.Log("현재까지의 Score : " + score);
+        return 0f;
     }
 
-
-    // ★허벅지 운동 루틴★
+    /* ---------------------------------------------------------------- */
+    // ★ 허벅지 운동 루틴 ★
     IEnumerator RunThighRoutine()
     {
         Debug.Log("허벅지 코루틴이 실행되었습니다.");
@@ -132,7 +161,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return StartCoroutine(Squat());
 
         // 3. 런지
-          // 1세트 (좌우 20번)
+        // 1세트 (좌우 20번)
         UiManager.Instance.UpdateActionName("런지 (1set)");
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
@@ -180,6 +209,7 @@ public class PlayerAssessment : MonoBehaviour
         Debug.Log("허벅지 코루틴을 종료합니다.");
     }
 
+
     // 허벅지-스탠딩사이드레그레이즈(우)
     IEnumerator R_StandingSideLegRaise()
     {
@@ -207,33 +237,8 @@ public class PlayerAssessment : MonoBehaviour
             else if (angle2 >= 170) { grade += 3; }
             else if (angle2 >= 165) { grade += 1; }
 
-            // 동작 종합 평가-> 몬스터 수집요건 score 업데이트/ UI업데이트/ score업데이트/ 총알 발사
-            if (grade >= 10) 
-            { 
-                Debug.Log("Excellent!");
-                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
-                score += 5;
-            }
-            else if (grade >= 6) 
-            { 
-                Debug.Log("Very Good!");
-                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
-                score += 3;
-            }
-            else if(grade >= 2)
-            {
-                Debug.Log("Good");
-                UiManager.Instance.UpdateAdviceLabel("좋아요");
-                score += 1;
-            }
-            else
-            {
-                Debug.Log("최악");
-                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
-            }
-
-            Debug.Log("Grade : " + grade);
-            Debug.Log("현재까지의 Score : " + score);
+            //동작 평가
+            MotionRating(grade);
             yield return new WaitForSeconds(3); //3초에 한번씩 동작진행
         }
         yield return new WaitForSeconds(0);
@@ -265,33 +270,9 @@ public class PlayerAssessment : MonoBehaviour
             else if (angle2 >= 170) { grade += 3; }
             else if (angle2 >= 165) { grade += 1; }
 
-            // 동작 평가
-            if (grade >= 10)
-            {
-                Debug.Log("Excellent!");
-                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
-                score += 5;
-            }
-            else if (grade >= 6)
-            {
-                Debug.Log("Very Good!");
-                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
-                score += 3;
-            }
-            else if (grade >= 2)
-            {
-                Debug.Log("Good");
-                UiManager.Instance.UpdateAdviceLabel("좋아요");
-                score += 1;
-            }
-            else
-            {
-                Debug.Log("최악");
-                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
-            }
+            //동작 평가
+            MotionRating(grade);
 
-            Debug.Log("Grade : " + grade);
-            Debug.Log("현재까지의 Score : " + score);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -323,33 +304,9 @@ public class PlayerAssessment : MonoBehaviour
             else if (30 <= angle2 && angle2 <= 90) { grade += 3; }
             else if (20 <= angle2) { grade += 1; }
 
-            // 동작 평가
-            if (grade >= 10)
-            {
-                Debug.Log("Excellent!");
-                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
-                score += 5;
-            }
-            else if (grade >= 6)
-            {
-                Debug.Log("Very Good!");
-                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
-                score += 3;
-            }
-            else if (grade >= 2)
-            {
-                Debug.Log("Good");
-                UiManager.Instance.UpdateAdviceLabel("좋아요");
-                score += 1;
-            }
-            else
-            {
-                Debug.Log("최악");
-                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
-            }
+            //동작 평가
+            MotionRating(grade);
 
-            Debug.Log("Grade : " + grade);
-            Debug.Log("현재까지의 Score : " + score);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -377,32 +334,9 @@ public class PlayerAssessment : MonoBehaviour
             else if (83 <= angle1 && angle1 <= 97) { grade += 6; }
             else if (70 <= angle1 && angle1 <= 110) { grade += 2; }
 
-            if (grade >= 10)
-            {
-                Debug.Log("Excellent!");
-                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
-                score += 5;
-            }
-            else if (grade >= 6)
-            {
-                Debug.Log("Very Good!");
-                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
-                score += 3;
-            }
-            else if (grade >= 2)
-            {
-                Debug.Log("Good");
-                UiManager.Instance.UpdateAdviceLabel("좋아요");
-                score += 1;
-            }
-            else
-            {
-                Debug.Log("최악");
-                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
-            }
+            //동작 평가
+            MotionRating(grade);
 
-            Debug.Log("Grade : " + grade);
-            Debug.Log("현재까지의 Score : " + score);
             yield return new WaitForSeconds(3);
 
             // 런지(좌)
@@ -416,37 +350,14 @@ public class PlayerAssessment : MonoBehaviour
             else if (83 <= angle2 && angle1 <= 97) { grade += 6; }
             else if (70 <= angle2 && angle1 <= 110) { grade += 2; }
 
-            // 동작 평가
-            if (grade >= 10)
-            {
-                Debug.Log("Excellent!");
-                UiManager.Instance.UpdateAdviceLabel("완벽해요!");
-                score += 5;
-            }
-            else if (grade >= 6)
-            {
-                Debug.Log("Very Good!");
-                UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
-                score += 3;
-            }
-            else if (grade >= 2)
-            {
-                Debug.Log("Good");
-                UiManager.Instance.UpdateAdviceLabel("좋아요");
-                score += 1;
-            }
-            else
-            {
-                Debug.Log("최악");
-                UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
-            }
+            //동작 평가
+            MotionRating(grade);
 
-            Debug.Log("Grade : " + grade);
-            Debug.Log("현재까지의 Score : " + score);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
     }
+    /* ---------------------------------------------------------------- */
 
     private void Start()
     {
