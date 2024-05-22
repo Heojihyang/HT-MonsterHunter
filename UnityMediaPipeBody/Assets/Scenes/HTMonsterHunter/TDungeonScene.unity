@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 181481145}
   - component: {fileID: 181481144}
   - component: {fileID: 181481143}
+  - component: {fileID: 181481147}
   m_Layer: 5
   m_Name: Btn_Stop
   m_TagString: Untagged
@@ -432,6 +433,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 181481147}
+        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+        m_MethodName: ButtonSoundPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &181481145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +483,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181481141}
   m_CullTransparentMesh: 1
+--- !u!114 &181481147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181481141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daf96c02faee204dbd204f6c0ce2b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &210639326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1652,7 @@ GameObject:
   - component: {fileID: 1206084206}
   - component: {fileID: 1206084205}
   - component: {fileID: 1206084204}
+  - component: {fileID: 1206084207}
   m_Layer: 5
   m_Name: PauseBtn
   m_TagString: Untagged
@@ -1710,6 +1736,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1206084207}
+        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+        m_MethodName: ButtonSoundPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1206084205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,6 +1786,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206084202}
   m_CullTransparentMesh: 1
+--- !u!114 &1206084207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206084202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daf96c02faee204dbd204f6c0ce2b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1344459138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,6 +2976,7 @@ GameObject:
   - component: {fileID: 2070250389}
   - component: {fileID: 2070250388}
   - component: {fileID: 2070250387}
+  - component: {fileID: 2070250391}
   m_Layer: 5
   m_Name: Btn_Back
   m_TagString: Untagged
@@ -3062,6 +3113,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2070250391}
+        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+        m_MethodName: ButtonSoundPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2070250389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3100,3 +3163,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070250385}
   m_CullTransparentMesh: 1
+--- !u!114 &2070250391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070250385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daf96c02faee204dbd204f6c0ce2b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

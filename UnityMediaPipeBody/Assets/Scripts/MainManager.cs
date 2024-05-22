@@ -16,6 +16,9 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // BGM strat
+        SoundManager.instance.PlayBGM("BGM_Main");
+
         // --- 플레이어 프로필 세팅 ---
         // 1. 플레이어 ExpBar : playerdata의 경험치 가져와서 슬라이더 연결
         // 2. 플레이어 호칭(헬신생아/헬린이/헬청년/헬창/헬스의 신) 넣어주기 
