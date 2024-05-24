@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RecordManager : MonoBehaviour
 {
@@ -87,4 +88,9 @@ public class RecordManager : MonoBehaviour
 
     }
 
+    // 운동 기록창 에서 뒤로가기 버튼 클릭
+    public void ChangeMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
