@@ -40,13 +40,27 @@ public class GamePlayData
 {
     // 게임을 플레이한 날짜와 그 날짜에
     // (게임을 플레이한 횟수, 플레이 총 시간, 클리어한 게임, 수집한 몬스터) 의 정보들을 저장
+
+    // 게임 플레이 횟수
+    public int playCount; 
+
+    // 총 플레이 시간
+    public float totalPlayTime;
+
+    // 클리어한 게임
+    public bool[] ClearedGames = new bool[10];
+
+    // 수집한 몬스터
+    public bool[] CollectedMonsters = new bool[10];
     
+
+    /*
     public int playCount;
     public float totalPlayTime;
     public List<string> clearedGames = new List<string>();
     public List<string> collectedMonsters = new List<string>();
 
-    /*
+    
     public GamePlayData()
     {
         clearedGames = new List<string>();
@@ -67,7 +81,8 @@ public class GameData : MonoBehaviour
 
     public MonsterData monsterdata = new MonsterData();
     public PlayerData playerdata = new PlayerData();
-    public Dictionary<DateTime, GamePlayData> gamePlayData = new Dictionary<DateTime, GamePlayData>();
+    public GamePlayData gmaeplaydata = new GamePlayData();
+    // public Dictionary<string, GamePlayData> gamePlayData = new Dictionary<string, GamePlayData>();
 
     private void Awake()
     {
@@ -145,9 +160,18 @@ public class GameData : MonoBehaviour
 
     public void SaveGamePlayData()
     {
-        string data = JsonUtility.ToJson(new Serialization<DateTime, GamePlayData>(gamePlayData)); // 데이터를 Json으로 변환
+        // 2. 데이터를 Json으로 변환
+        string data = JsonUtility.ToJson(gmaeplaydata); // Json은 string 형태로 저장됨
 
-        // print(data); // 비어있음 {} 
+        // print(Path); // 로컬 저장경로 확인하기
+
+        // 3. Json을 외부에 저장
+        File.WriteAllText(Path + PlayerFileName, data);
+
+        print("플레이어 데이터 저장 완료");
+
+        // var serializedData = new SerializableDictionary(gamePlayData);
+        // string data = JsonUtility.ToJson(serializedData);
 
         /*
         print(gamePlayData[DateTime.Today].playCount);
@@ -155,51 +179,54 @@ public class GameData : MonoBehaviour
         print(gamePlayData[DateTime.Today].clearedGames[0]);
         print(gamePlayData[DateTime.Today].collectedMonsters[0]);
         */
-        File.WriteAllText(Path + gamePlayFileName, data); // Json을 외부에 저장
-        print("게임 플레이 데이터 저장 완료");
+        // File.WriteAllText(Path + gamePlayFileName, data); // Json을 외부에 저장
+        // print("게임 플레이 데이터 저장 완료");
     }
 
     public void LoadGamePlayData()
     {
+        /*
         if (File.Exists(Path + gamePlayFileName))
         {
-            string data = File.ReadAllText(Path + gamePlayFileName); // 외부에 저장된 Json을 가져옴 
-            gamePlayData = JsonUtility.FromJson<Serialization<DateTime, GamePlayData>>(data).ToDictionary(); // Json을 데이터 형태로 변환
+            string data = File.ReadAllText(Path + gamePlayFileName);
+            var serializedData = JsonUtility.FromJson<SerializableDictionary>(data);
+            gamePlayData = serializedData.ToDictionary();
             print("게임 플레이 데이터 불러오기 완료");
         }
+        */
+        
     }
+
 
     // 게임 플레이 데이터 추가 
+    /*
     public void AddGamePlayData(DateTime date, int playCount, float playTime, string clearedGame, string collectedMonster)
     {
+        string dateKey = date.ToString("yyyy-MM-dd");
+
         // 주어진 날짜의 데이터가 없는 경우에만 새로운 데이터 추가
-        if (!gamePlayData.ContainsKey(date))
+        if (!gamePlayData.ContainsKey(dateKey))
         {
-            gamePlayData[date] = new GamePlayData();
-           
+            gamePlayData[dateKey] = new GamePlayData();
         }
 
+        gamePlayData[dateKey].playCount += playCount;
+        gamePlayData[dateKey].totalPlayTime += playTime;
+        gamePlayData[dateKey].clearedGames.Add(clearedGame);
+        gamePlayData[dateKey].collectedMonsters.Add(collectedMonster);
 
-        gamePlayData[date].playCount += playCount;
-        gamePlayData[date].totalPlayTime += playTime;
-        gamePlayData[date].clearedGames.Add(clearedGame);
-        gamePlayData[date].collectedMonsters.Add(collectedMonster);
-
-        /*
-        print(gamePlayData[date].playCount );
-        print(gamePlayData[date].totalPlayTime );
-        print(gamePlayData[date].clearedGames[0]);
-        print(gamePlayData[date].collectedMonsters[0]);
-        */
-        // SaveGamePlayData(); // 데이터 추가 후 즉시 저장
+        SaveGamePlayData(); // 데이터 추가 후 즉시 저장
     }
+    */
 
     // 게임 플레이 데이터 조회 
+    /*
     public void PrintGamePlayData()
     {
+
         foreach (var record in gamePlayData)
         {
-            Debug.Log("Date: " + record.Key.ToString("yyyy-MM-dd"));
+            Debug.Log("Date: " + record.Key);
             Debug.Log("Play Count: " + record.Value.playCount);
             Debug.Log("Total Play Time: " + record.Value.totalPlayTime + " hours");
 
@@ -215,54 +242,50 @@ public class GameData : MonoBehaviour
                 Debug.Log("- " + monster);
             }
         }
+
     }
+    */
 }
 
-//// Serializable 클래스를 Dictionary로 직렬화
-// JsonUtility =>  Dictionary를 직렬화할 수 없기 때문에,
-// 이 클래스 통해서, Dictionary를 List로 변환하여 직렬화할 수 있게 해줌 
-
+/*
 [Serializable]
-public class Serialization<TKey, TValue> : ISerializationCallbackReceiver
+public class SerializableDictionary
 {
-    // 직렬화할 때 사용할 리스트
     [SerializeField]
-    private List<TKey> keys;
+    private List<string> keys = new List<string>();
     [SerializeField]
-    private List<TValue> values;
+    private List<GamePlayData> values = new List<GamePlayData>();
 
-    // 원래의 Dictionary를 저장할 변수
-    private Dictionary<TKey, TValue> target;
+    private Dictionary<string, GamePlayData> target;
 
-    // 생성자
-    public Serialization(Dictionary<TKey, TValue> _target)
+    public SerializableDictionary(Dictionary<string, GamePlayData> target)
     {
-        target = _target;
+        this.target = target;
     }
-    
-    // 직렬화 이전에 호출
+
     public void OnBeforeSerialize()
     {
-        // Dictionary의 키와 값을 리스트로 변환.
-        keys = new List<TKey>(target.Keys);
-        values = new List<TValue>(target.Values);
+        keys.Clear();
+        values.Clear();
+        foreach (var kvp in target)
+        {
+            keys.Add(kvp.Key);
+            values.Add(kvp.Value);
+        }
     }
 
-    // 직렬화 이후에 호출
     public void OnAfterDeserialize()
     {
-        var count = Math.Min(keys.Count, values.Count);
-        target = new Dictionary<TKey, TValue>(count);
-        for (var i = 0; i < count; i++)
+        target = new Dictionary<string, GamePlayData>();
+        for (int i = 0; i < keys.Count; i++)
         {
-            // 리스트를 Dictionary로 변환
             target.Add(keys[i], values[i]);
         }
     }
 
-    // Dictionary 반환 
-    public Dictionary<TKey, TValue> ToDictionary()
+    public Dictionary<string, GamePlayData> ToDictionary()
     {
         return target;
     }
 }
+*/

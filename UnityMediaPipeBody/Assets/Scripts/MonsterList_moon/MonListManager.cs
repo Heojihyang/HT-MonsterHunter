@@ -19,7 +19,13 @@ public class MonListManager : MonoBehaviour
     public List<MonsterListData> monsterListData;
 
     MonsterData Monsterdata = new MonsterData(); // GameData.cs
-    
+
+    // SpriteRenderer 컴포넌트를 가져오기 위한 변수
+    private SpriteRenderer spriteRenderer;
+    public Color ActiveColor = Color.white;
+
+    // RGB 값을 이용해 색상을 생성. (16진수 676767)
+    Color OriginColor = new Color32(0x67, 0x67, 0x67, 0xFF);
 
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
@@ -86,6 +92,21 @@ public class MonListManager : MonoBehaviour
             // 4. 몬스터 발생 부위 이미지 
             Sprite monsterpartImg = monsterListData[id].MonsterPartImage;
             MonsterPartImg.GetComponent<Image>().sprite = monsterpartImg;
+
+            // 4. 몬스터 발생 부위 활성화
+            GameObject monsterobj = monsterListData[id].MonsterPartObj;
+
+            // 현재 게임 오브젝트에서 SpriteRenderer 컴포넌트를 가져옵니다.
+            spriteRenderer = monsterobj.GetComponent<SpriteRenderer>();
+
+            // SpriteRenderer가 존재하는지 확인합니다.
+            if (spriteRenderer != null)
+            {
+                // SpriteRenderer의 색상을 변경합니다.
+                spriteRenderer.color = ActiveColor;
+            }
+
+
         }
         else
         {
@@ -120,6 +141,13 @@ public class MonListManager : MonoBehaviour
     public void InActMonsterInfo()
     {
         MonsterInfo.SetActive(false);
+
+        // 비어있지 않으면 
+        if (spriteRenderer != null)
+        {
+            // SpriteRenderer의 색상을 변경합니다.
+            spriteRenderer.color = OriginColor;
+        }
     }
 
 }
@@ -142,5 +170,9 @@ public class MonsterListData
 
     [field: SerializeField]
     public Sprite MonsterPartImage { get; private set; } // 몬스터 발생 부위 이미지
+
+    [field: SerializeField]
+    public GameObject MonsterPartObj { get; private set; } // 몬스터 발생 부위 이미지 활성화 
+
 
 }
