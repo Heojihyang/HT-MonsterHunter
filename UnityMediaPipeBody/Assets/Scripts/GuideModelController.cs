@@ -8,6 +8,6 @@ public class GuideModelController : MonoBehaviour
 
     void Start()
     {
-        transform.SetParent(mainCamera.transform, false);
+        this.transform.SetParent(mainCamera.transform, false);
     }
 }
