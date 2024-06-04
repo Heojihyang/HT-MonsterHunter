@@ -404,7 +404,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 48619633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 48619630}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &48619633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 117315858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 117315855}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &117315858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +908,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 181062134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 181062131}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &181062134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,7 +1042,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 225483969}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 225483966}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &225483969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1176,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 242397290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 242397287}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &242397290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,7 +1390,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 273933675}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 273933672}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &273933675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,7 +1524,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298096678}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 298096675}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &298096678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,7 +1658,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 312899803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 312899800}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &312899803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,7 +1792,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 342988037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 342988034}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &342988037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,7 +2006,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409383635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 409383632}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &409383635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,7 +2140,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 434564538}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 434564535}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &434564538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,7 +2354,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470270186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 470270183}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &470270186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,7 +2648,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 523098087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 523098084}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &523098087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2706,7 +2862,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 555758691}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 555758688}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &555758691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3068,7 +3236,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 580079860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 580079857}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &580079860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3403,7 +3583,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 613809866}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 613809863}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &613809866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3605,7 +3797,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 643821246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 643821243}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &643821246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3887,7 +4091,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 682575947}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 682575944}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &682575947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4333,7 +4549,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 764377197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 764377194}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &764377197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4455,7 +4683,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 784994484}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 784994481}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &784994484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4897,7 +5137,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 871821425}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 871821422}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &871821425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5099,7 +5351,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 876053228}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 876053225}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &876053228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5221,7 +5485,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 878716261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 878716258}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &878716261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,7 +6032,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1079826712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1079826709}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1079826712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6024,7 +6312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1122141973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1122141970}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1122141973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6146,7 +6446,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1159359803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1159359800}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1159359803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6268,7 +6580,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1173630253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1173630250}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1173630253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6550,7 +6874,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243021857}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1243021854}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1243021857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6752,7 +7088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1280518123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1280518120}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1280518123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7034,7 +7382,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1349521366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1349521363}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1349521366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7156,7 +7516,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1358385654}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1358385651}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1358385654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7358,7 +7730,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1396994960}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1396994957}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1396994960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7480,7 +7864,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1430206057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1430206054}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1430206057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7759,7 +8155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monthYearText: {fileID: 1670891460}
-  WhiteBackground: {fileID: 104355526}
   DayButton:
   - {fileID: 1122141970}
   - {fileID: 876053225}
@@ -8061,7 +8456,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584421362}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1584421359}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1584421362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8316,7 +8723,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1588674794}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1588674791}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1588674794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8598,7 +9017,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1620763717}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1620763714}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1620763717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8880,7 +9311,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1731240400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1731240397}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1731240400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9002,7 +9445,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1736866566}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1736866563}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1736866566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9540,7 +9995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1871298287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1871298284}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1871298287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10087,7 +10554,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1929105129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1929105126}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1929105129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10365,7 +10844,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2065164446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2065164443}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2065164446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10647,7 +11138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2129798876}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501303748}
+        m_TargetAssemblyTypeName: RecordManager, Assembly-CSharp
+        m_MethodName: SelectDay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2129798873}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2129798876
 MonoBehaviour:
   m_ObjectHideFlags: 0

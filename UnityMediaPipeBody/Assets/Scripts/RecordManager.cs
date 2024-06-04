@@ -13,7 +13,8 @@ public class RecordManager : MonoBehaviour
     // 현재 달력의 날짜를 저장하는 변수
     private DateTime currentDate;
 
-    public GameObject WhiteBackground;
+    // public GameObject WhiteBackground;
+    private GameObject selectedDay; // 선택된 날짜 버튼 
 
     public GameObject[] DayButton = new GameObject[42];
 
@@ -80,11 +81,60 @@ public class RecordManager : MonoBehaviour
         for (int day = 1; day <= daysInMonth; day++)
         {
             int index = startDay + day - 1;
-            DayButton[index].transform.GetChild(0).GetComponent<Text>().text = day.ToString();
+            Text dayText = DayButton[index].transform.GetChild(0).GetComponent<Text>();
+            dayText.text = day.ToString();
             DayButton[index].SetActive(true);
+
+            // 오늘 날짜 : 텍스트 색상을 빨간색으로 변경
+            if (currentDate.Year == DateTime.Today.Year && currentDate.Month == DateTime.Today.Month && day == DateTime.Today.Day)
+            {
+                dayText.color = new Color32(0xFE, 0x22, 0x04, 0xFF); // 빨간색
+                DayButton[index].tag = "Today"; // 태그 부여 
+            }
+            else
+            {
+                // 기본 색상으로 설정 (예: 검정색)
+                dayText.color = Color.black;
+            }
+
         }
 
+        // 운동 기록이 있는 날 : 버튼 색상 주황색 FAB000
+        // (당일은 제외) 
+        
+    }
 
+    // 선택한 날짜 시각화
+    // 버튼 클릭 시, 클릭된 오브젝트 가져옴 
+    public void SelectDay(GameObject selectDay)
+    {
+        // 이전에 클릭한 버튼이 있다면 && 당일이 아니었으면 -> 버튼 초기화 
+        // SelectedDay : 이전에 클릭한 버튼 
+        if((selectedDay != null)&&(!selectedDay.CompareTag("Today")))
+        {
+            // 활성화 되어있던 버튼의
+            // 버튼 색상 : 흰색
+            // 텍스트 색상 : 검은색
+            // 으로 변경 
+            selectedDay.GetComponent<Image>().color = Color.white;
+            selectedDay.GetComponentInChildren<Text>().color = Color.black;
+        }
+
+        // 새롭게 클릭된 버튼으로 할당 변경 
+        selectedDay = selectDay;
+
+        // 당일이면 : 변화 X 
+        if(selectDay.CompareTag("Today"))
+        {
+            print("오늘을 클릭했습니다.");
+            return;
+        }
+
+        // 당일이 아니면 : 버튼색 빨간색 , 글자 하얀색 
+        selectDay.GetComponent<Image>().color = new Color(0xFE / 255f, 0x22 / 255f, 0x04 / 255f); // #FE2204;
+        selectDay.GetComponentInChildren<Text>().color = Color.white;
+
+        // 하단 정보 
 
     }
 
