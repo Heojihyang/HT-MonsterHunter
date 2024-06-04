@@ -972,6 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 332175360}
+  mosterAnimator: {fileID: 0}
   damage: 7.5
   playerLandmark:
   - {fileID: 0}
@@ -3446,7 +3447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122291940}
   m_Layer: 0
-  m_Name: =
+  m_Name: ====================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

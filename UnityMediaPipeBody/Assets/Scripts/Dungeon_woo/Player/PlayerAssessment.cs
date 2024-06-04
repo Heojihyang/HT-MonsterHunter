@@ -6,6 +6,7 @@ public class PlayerAssessment : MonoBehaviour
 {
     // 몬스터
     public GameObject monster;
+    public Animator mosterAnimator;
     public float damage = 7.5f;
 
     // 플레이어
@@ -57,13 +58,16 @@ public class PlayerAssessment : MonoBehaviour
         headLandmarkPosition = head.transform.position;
     }
 
-    // 동작 종합 평가
+    // 동작 종합 평가 -> 공격
     public float MotionRating(int motionGrade)
     {
         if (motionGrade >= 10)
         {
             // 여기에 피격 호출
             bullet.GetComponent<BulletGenerator>().ShootBullet();
+
+            // 몬스터 데미지 애니메이션
+            mosterAnimator.SetBool("ani_Damage", true);
 
             Debug.Log("Excellent!");
             UiManager.Instance.UpdateAdviceLabel("완벽해요!");
@@ -74,6 +78,9 @@ public class PlayerAssessment : MonoBehaviour
             // 여기에 피격 호출
             bullet.GetComponent<BulletGenerator>().ShootBullet();
 
+            // 몬스터 데미지 애니메이션
+            mosterAnimator.SetBool("ani_Damage", true);
+
             Debug.Log("Very Good!");
             UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
             score += 3;
@@ -83,13 +90,20 @@ public class PlayerAssessment : MonoBehaviour
             // 여기에 피격 호출
             bullet.GetComponent<BulletGenerator>().ShootBullet();
 
+            // 몬스터 데미지 애니메이션
+            mosterAnimator.SetBool("ani_Damage", true);
+
             Debug.Log("Good");
             UiManager.Instance.UpdateAdviceLabel("좋아요");
             score += 1;
         }
         else
         {
-            bullet.GetComponent<BulletGenerator>().ShootBullet();   //나중에 지우기(테스트용)
+            // 피격효과 테스트
+            bullet.GetComponent<BulletGenerator>().ShootBullet();
+
+            // 몬스터 데미지 애니메이션 테스트
+            mosterAnimator.SetBool("ani_Damage", true);
 
             Debug.Log("최악");
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
@@ -268,6 +282,7 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(3); //3초에 한번씩 동작진행
         }
         yield return new WaitForSeconds(0);
@@ -302,7 +317,7 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
-
+            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -337,7 +352,7 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
-
+            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -368,7 +383,7 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
-
+            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(3);
 
             // 런지(좌)
@@ -385,7 +400,7 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
-
+            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(3);
         }
         yield return new WaitForSeconds(0);
@@ -400,6 +415,9 @@ public class PlayerAssessment : MonoBehaviour
 
         // 가이드 모델 애니메이터
         animator = guideModel.GetComponent<Animator>();
+
+        // 몬스터 애니메이터
+        mosterAnimator = monster.GetComponent<MonsterController>().animator;
 
         switch (dunNum)
         {
