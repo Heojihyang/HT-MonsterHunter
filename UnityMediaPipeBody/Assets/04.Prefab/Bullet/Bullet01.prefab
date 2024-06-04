@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa23ccf01eb468e498abdd8a46f4114e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
   speed: 20
-  height: 2
+  effect: {fileID: 4003768776120843040, guid: 37cd57eb7c055ae40b8019b57c58af09, type: 3}
 --- !u!1 &920311855361352138
 GameObject:
   m_ObjectHideFlags: 0

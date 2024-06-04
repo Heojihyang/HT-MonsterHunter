@@ -796,10 +796,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b2db6917288cf439d0475a54122410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 275719437086631103, guid: b8f76228b00aa37418f5909dda3b8534, type: 3}
+  bulletPrefabs:
+  - {fileID: 275719437086631103, guid: b8f76228b00aa37418f5909dda3b8534, type: 3}
+  - {fileID: 243236758507444900, guid: 05ad84cf652e1bf4281457771b474bd8, type: 3}
+  - {fileID: 7469341131129212672, guid: 97ed55c1a2f60c74a82e8570210e24c2, type: 3}
   startPoint: {fileID: 1661589169}
   endPoint: {fileID: 332175361}
-  effect: {fileID: 4003768776120843040, guid: 37cd57eb7c055ae40b8019b57c58af09, type: 3}
 --- !u!1 &442684387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9061678994955014477, guid: dd26947e6676ee54dad337aafd153db6, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9061678994955014477, guid: dd26947e6676ee54dad337aafd153db6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1579,7 +1581,7 @@ RectTransform:
   - {fileID: 1707285751}
   - {fileID: 442684388}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2661,7 +2663,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1777299141
 GameObject:

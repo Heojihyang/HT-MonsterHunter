@@ -64,7 +64,7 @@ public class PlayerAssessment : MonoBehaviour
         if (motionGrade >= 10)
         {
             // 여기에 피격 호출
-            bullet.GetComponent<BulletGenerator>().ShootBullet();
+            bullet.GetComponent<BulletGenerator>().ShootBullet(2);
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
@@ -76,7 +76,7 @@ public class PlayerAssessment : MonoBehaviour
         else if (motionGrade >= 6)
         {
             // 여기에 피격 호출
-            bullet.GetComponent<BulletGenerator>().ShootBullet();
+            bullet.GetComponent<BulletGenerator>().ShootBullet(1);
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
@@ -88,7 +88,7 @@ public class PlayerAssessment : MonoBehaviour
         else if (motionGrade >= 2)
         {
             // 여기에 피격 호출
-            bullet.GetComponent<BulletGenerator>().ShootBullet();
+            bullet.GetComponent<BulletGenerator>().ShootBullet(0);
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
@@ -100,7 +100,7 @@ public class PlayerAssessment : MonoBehaviour
         else
         {
             // 피격효과 테스트
-            bullet.GetComponent<BulletGenerator>().ShootBullet();
+            bullet.GetComponent<BulletGenerator>().ShootBullet(0);
 
             // 몬스터 데미지 애니메이션 테스트
             mosterAnimator.SetBool("ani_Damage", true);
