@@ -20,6 +20,9 @@ public class RecordManager : MonoBehaviour
 
     int daysInMonth;
 
+    // 선택한 날짜 이전의 색상을 저장하는 변수
+    private Color previousDayColor;
+    private Color previousDayTextColor;
 
     void Start()
     {
@@ -85,22 +88,46 @@ public class RecordManager : MonoBehaviour
             dayText.text = day.ToString();
             DayButton[index].SetActive(true);
 
-            // 오늘 날짜 : 텍스트 색상을 빨간색으로 변경
-            if (currentDate.Year == DateTime.Today.Year && currentDate.Month == DateTime.Today.Month && day == DateTime.Today.Day)
+            // 오늘 날짜 확인
+            DateTime currentDateInLoop = new DateTime(currentDate.Year, currentDate.Month, day);
+
+            // 오늘과 같은 달에 해당하는 운동 기록이 있는지 확인
+            string dateString = currentDateInLoop.ToString("yyyy-MM-dd");
+            if (GameData.instance.recordData.dailyRecords.ContainsKey(dateString))
             {
-                dayText.color = new Color32(0xFE, 0x22, 0x04, 0xFF); // 빨간색
-                DayButton[index].tag = "Today"; // 태그 부여 
+                // 운동 기록이 있는 경우
+                if (currentDate.Year == DateTime.Today.Year && currentDate.Month == DateTime.Today.Month && day == DateTime.Today.Day)
+                {
+                    // 당일인 경우 빨간색 굵은 글씨로 변경
+                    dayText.color = new Color32(0xFE, 0x22, 0x04, 0xFF); // 빨간색
+                    dayText.fontStyle = FontStyle.Bold; // 굵은 글씨
+                }
+                else
+                {
+                    // 당일이 아닌 경우 버튼을 노란색으로 변경하고 텍스트를 흰색으로 설정
+                    DayButton[index].GetComponent<Image>().color = new Color(0xFA / 255f, 0xB0 / 255f, 0x00 / 255f); // 노란색
+                    dayText.color = Color.white;
+                }
             }
             else
             {
-                // 기본 색상으로 설정 (예: 검정색)
-                dayText.color = Color.black;
+                // 운동 기록이 없는 경우 버튼의 색을 기본 색상으로 변경
+                DayButton[index].GetComponent<Image>().color = Color.white;
+                dayText.fontStyle = FontStyle.Normal; // 텍스트를 기본 글씨로 설정
+
+                // 오늘 날짜 : 텍스트 색상을 빨간색으로 변경
+                if (currentDate.Year == DateTime.Today.Year && currentDate.Month == DateTime.Today.Month && day == DateTime.Today.Day)
+                {
+                    dayText.color = new Color32(0xFE, 0x22, 0x04, 0xFF); // 빨간색
+                    DayButton[index].tag = "Today"; // 태그 부여 
+                }
+                else
+                {
+                    // 기본 색상으로 설정 (예: 검정색)
+                    dayText.color = Color.black;
+                }
             }
-
         }
-
-        // 운동 기록이 있는 날 : 버튼 색상 주황색 FAB000
-        // (당일은 제외) 
 
     }
 
@@ -112,12 +139,12 @@ public class RecordManager : MonoBehaviour
         // SelectedDay : 이전에 클릭한 버튼 
         if((selectedDay != null)&&(!selectedDay.CompareTag("Today")))
         {
-            // 활성화 되어있던 버튼의
-            // 버튼 색상 : 흰색
-            // 텍스트 색상 : 검은색
-            // 으로 변경 
-            selectedDay.GetComponent<Image>().color = Color.white;
-            selectedDay.GetComponentInChildren<Text>().color = Color.black;
+            // 활성화 되어있던 버튼의 이전 색상으로 변경
+            // selectedDay.GetComponent<Image>().color = Color.white;
+            // selectedDay.GetComponentInChildren<Text>().color = Color.black;
+
+            selectedDay.GetComponent<Image>().color = previousDayColor;
+            selectedDay.GetComponentInChildren<Text>().color = previousDayTextColor;
         }
 
         // 새롭게 클릭된 버튼으로 할당 변경 
@@ -129,6 +156,10 @@ public class RecordManager : MonoBehaviour
             print("오늘을 클릭했습니다.");
             return;
         }
+
+        // 현재 버튼의 색상을 저장
+        previousDayColor = selectDay.GetComponent<Image>().color;
+        previousDayTextColor = selectDay.GetComponentInChildren<Text>().color;
 
         // 당일이 아니면 : 버튼색 빨간색 , 글자 하얀색 
         selectDay.GetComponent<Image>().color = new Color(0xFE / 255f, 0x22 / 255f, 0x04 / 255f); // #FE2204;

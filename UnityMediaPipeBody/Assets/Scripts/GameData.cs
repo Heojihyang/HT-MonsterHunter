@@ -45,7 +45,8 @@ public class GamePlayData
 
     // public float TotalPlayTime; // 플레이 총 시간 = 운동 부위의 시간 활용해서 계산 
 
-    public List<string> ClearedMaps; // 클리어한 게임맵 리스트 : 운동 부위 
+    // public List<string> ClearedMaps; // 클리어한 게임맵 리스트 : 운동 부위 
+    public List<int> ClearedMaps; // 클리어한 게임맵 리스트 : 운동 부위 
 
     // public MonsterData CollectedMonsters; // 수집한 몬스터 데이터
 }
