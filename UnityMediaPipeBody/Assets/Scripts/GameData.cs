@@ -39,17 +39,15 @@ public class PlayerData
 [Serializable]
 public class GamePlayData
 {
-    // 게임을 플레이한 날짜와 그 날짜에
-    // (게임을 플레이한 횟수, 플레이 총 시간, 클리어한 게임, 수집한 몬스터) 의 정보들을 저장
+    // 게임을 플레이한 날짜와 그 날짜에 정보들 저장
 
     public int PlayCount; // 게임을 플레이한 횟수
 
-    public float TotalPlayTime; // 플레이 총 시간
+    // public float TotalPlayTime; // 플레이 총 시간 = 운동 부위의 시간 활용해서 계산 
 
-    public List<string> ClearedMaps; // 클리어한 게임맵 리스트
+    public List<string> ClearedMaps; // 클리어한 게임맵 리스트 : 운동 부위 
 
-    public MonsterData CollectedMonsters; // 수집한 몬스터 데이터
-
+    // public MonsterData CollectedMonsters; // 수집한 몬스터 데이터
 }
 
 // 날짜별 운동 기록 

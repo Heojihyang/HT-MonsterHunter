@@ -13,8 +13,8 @@ public class RecordManager : MonoBehaviour
     // 현재 달력의 날짜를 저장하는 변수
     private DateTime currentDate;
 
-    // public GameObject WhiteBackground;
     private GameObject selectedDay; // 선택된 날짜 버튼 
+    public GameObject calendarParent; // 달력 버튼을 포함하는 부모 오브젝트
 
     public GameObject[] DayButton = new GameObject[42];
 
@@ -101,7 +101,7 @@ public class RecordManager : MonoBehaviour
 
         // 운동 기록이 있는 날 : 버튼 색상 주황색 FAB000
         // (당일은 제외) 
-        
+
     }
 
     // 선택한 날짜 시각화
