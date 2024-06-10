@@ -6193,7 +6193,7 @@ GameObject:
   - component: {fileID: 1073431809}
   - component: {fileID: 1073431808}
   m_Layer: 5
-  m_Name: Maps
+  m_Name: MapCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8588,7 +8588,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monthYearText: {fileID: 1670891460}
-  calendarParent: {fileID: 0}
+  calendarParent: {fileID: 1102010584}
+  recordNone: {fileID: 1911174417}
+  recordYes: {fileID: 1403003736}
+  Date: {fileID: 1620520881}
+  ClearMaps: {fileID: 806870040}
+  MapCount: {fileID: 1073431808}
+  PlayTime: {fileID: 1558254649}
+  Kcal: {fileID: 2121971918}
   DayButton:
   - {fileID: 1122141970}
   - {fileID: 876053225}
