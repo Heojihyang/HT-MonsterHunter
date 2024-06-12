@@ -18,6 +18,12 @@ public class MonListManager : MonoBehaviour
 
     public GameObject PopUp_L; 
     public GameObject PopUp_R;
+    public Text Title_L;
+    public Text Title_R;
+    public GameObject L_upper;
+    public GameObject L_lower;
+    public GameObject R_upper;
+    public GameObject R_lower;
 
     public GameObject popupImage; // "아직잡지않은몬스터임"
 
@@ -75,10 +81,15 @@ public class MonListManager : MonoBehaviour
         // ID = id; // 현재 활성화된 몬스터의ID 
 
         // 상체/하체 몬스터 구분 
-        if (id >= 7 && id <= 9)
+        if (id >= 0 && id <= 6)
+        {
+            isPartLower = false;
+        }
+        else if (id >= 7 && id <= 9)
         {
             isPartLower = true;
         }
+
 
         bool monsterUnLooked = GameData.instance.monsterdata.MonsterUnLocked[id];
 
@@ -198,36 +209,57 @@ public class MonListManager : MonoBehaviour
     // 00운동을 해야하는 이유
     public void ActPopUp_L() 
     {
-        if(!isPartLower) // 상체몬스터
+        MonsterPartImg.SetActive(false);
+        PopUp_L.SetActive(true);
+
+        if (!isPartLower) // 상체몬스터
         {
-            PopUp_L.SetActive(true);
-
-
+            print("상체 몬스터 입니다.");
+            Title_L.text = "상체운동을 해야하는이유";
+            L_upper.SetActive(true);
         }
         else // 하체몬스터 
         {
-
+            print("하체 몬스터 입니다.");
+            Title_L.text = "하체운동을 해야하는이유";
+            L_lower.SetActive(true);
         }
     }
 
     // 추천하는 00운동
     public void ActPopUp_R() 
     {
+        MonsterPartImg.SetActive(false);
+        PopUp_R.SetActive(true);
+
         if (!isPartLower) // 상체몬스터
         {
-
-
+            print("상체 몬스터 입니다.");
+            Title_R.text = "추천하는 상체운동";
+            R_upper.SetActive(true);
         }
         else // 하체몬스터 
         {
-
+            print("하체 몬스터 입니다.");
+            Title_R.text = "추천하는 하체운동";
+            R_lower.SetActive(true);
         }
     }
 
     // 팝업에서 뒤로가기 버튼 클릭 
     public void InActPopUp()
     {
+        MonsterPartImg.SetActive(true);
+
         // 활성화 하면서 띄웠던 것들 다 닫기 
+        L_upper.SetActive(false);
+        L_lower.SetActive(false);
+        R_upper.SetActive(false);
+        R_lower.SetActive(false);
+        PopUp_R.SetActive(false);
+        PopUp_L.SetActive(false);
+
+
     }
 }
 
