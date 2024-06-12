@@ -67,6 +67,6 @@ public class SelectManager : MonoBehaviour
     // (시작) 클릭 시 : 메인 화면으로 이동
     public void ChangeMainScene()
     {
-        SceneManager.LoadScene("TMainScene");
+        SceneManager.LoadScene("MainScene");
     }
 }

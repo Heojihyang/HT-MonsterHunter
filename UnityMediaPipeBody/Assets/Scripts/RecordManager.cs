@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RecordManager : MonoBehaviour
 {
@@ -25,8 +26,20 @@ public class RecordManager : MonoBehaviour
     public Text Kcal; // 칼로리 소모 
 
     public GameObject[] DayButton = new GameObject[42];
-    private string[] bodyParts = { "가슴", "등", "복부", "허리", "이두" , "전완근", "삼두", "힙", "허벅지", "종아리" };
-
+    
+    private Dictionary<string, (int playTime, int calories)> bodyParts = new Dictionary<string, (int playTime, int calories)>
+    {
+        { "가슴", (5, 100) },
+        { "등", (7, 50) },
+        { "복부", (8, 90) },
+        { "허리", (11, 120) },
+        { "이두", (8, 80) },
+        { "전완근", (10, 105) },
+        { "삼두", (8, 100) },
+        { "힙", (5, 80) },
+        { "허벅지", (6, 70) },
+        { "종아리", (4, 65) }
+    };
 
     int daysInMonth;
 
@@ -202,26 +215,40 @@ public class RecordManager : MonoBehaviour
             // Date 텍스트에 MM.DD 형태로 날짜 설정
             Date.text = date.ToString("MM.dd");
 
+
+
+            // ClearMaps 클리어 운동 부위 목록 : GamePlayData 
             GamePlayData gamePlayData = GameData.instance.recordData.dailyRecords[dateString];
-            ClearMaps.text = " ";
+
+            ClearMaps.text = "";
+            int totalPlayTime = 0;
+            int totalCalories = 0;
+
+            // 클리어한 운동 부위 별 계산 
             foreach (int map in gamePlayData.ClearedMaps)
             {
                 // 운동 부위 문자열로 변환해 추가
-                if (map >= 0 && map < bodyParts.Length)
+                if (map >= 0 && map < bodyParts.Count)
                 {
-                    ClearMaps.text += bodyParts[map] + ", ";
+                    var bodyPart = bodyParts.ElementAt(map);
+
+                    ClearMaps.text += bodyPart.Key + ", ";
+                    totalPlayTime += bodyPart.Value.playTime;
+                    totalCalories += bodyPart.Value.calories;
                 }
             }
             ClearMaps.text = ClearMaps.text.TrimEnd(',', ' ');
 
+
             // MapCount 클리어 운동 횟수 : GamePlayData 
             MapCount.text = gamePlayData.ClearedMaps.Count.ToString() + " 개";
 
-            // PlayTime 플레이 시간 (예시 0)
-            PlayTime.text = " 0 s";
+            // PlayTime 플레이 시간
+            PlayTime.text = totalPlayTime.ToString() + " 분";
 
-            // Kcal 칼로리 소모 (예시 0)
-            Kcal.text = "0 Kcal";
+            // Kcal 칼로리 소모
+            Kcal.text = totalCalories.ToString() + " Kcal";
+
 
         }
         else
