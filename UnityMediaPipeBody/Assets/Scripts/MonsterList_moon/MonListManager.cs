@@ -9,11 +9,15 @@ using UnityEngine.SceneManagement;
 public class MonListManager : MonoBehaviour
 {
     public GameObject MonsterInfo;
-    // public GameObject MonsterImage;
     public Image MonsterImage; // 이미지 컴포넌트
     public GameObject MonsterPartImg;
     public Text MonsterName;
     public Text MonsterPart;
+    public Text Button_L; // 상체운동을 해야하는 이유
+    public Text Button_R; // 상체운동 추천 
+
+    public GameObject PopUp_L; 
+    public GameObject PopUp_R;
 
     public GameObject popupImage; // "아직잡지않은몬스터임"
 
@@ -27,6 +31,8 @@ public class MonListManager : MonoBehaviour
 
     // RGB 값을 이용해 색상을 생성. (16진수 676767)
     Color OriginColor = new Color32(0x67, 0x67, 0x67, 0xFF);
+
+    private bool isPartLower ; // 하체 몬스터인가? 
 
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
@@ -66,6 +72,14 @@ public class MonListManager : MonoBehaviour
     // 해당 버튼의 몬스터 ID 넘겨주고 정보 연결시켜주기 
     public void ActMonsterInfo(int id)
     {
+        // ID = id; // 현재 활성화된 몬스터의ID 
+
+        // 상체/하체 몬스터 구분 
+        if (id >= 7 && id <= 9)
+        {
+            isPartLower = true;
+        }
+
         bool monsterUnLooked = GameData.instance.monsterdata.MonsterUnLocked[id];
 
         // 수집완료 몬스터인가?
@@ -116,6 +130,25 @@ public class MonListManager : MonoBehaviour
                 spriteRenderer.color = ActiveColor;
             }
 
+            // -------
+
+            // 하단 버튼 텍스트 업데이트
+
+            if (id >= 0 && id <= 6)
+            {
+                Button_L.text = "상체운동을\n해야하는 이유";
+                Button_R.text = "추천하는\n상체 운동";
+            }
+            else if (id >= 7 && id <= 9)
+            {
+                Button_L.text = "하체운동을\n해야하는 이유";
+                Button_R.text = "추천하는\n하체 운동";
+            }
+            else
+            {
+                Button_L.text = "알 수 없는\n운동 유형";
+                Button_R.text = "알 수 없는\n운동";
+            }
 
         }
         else
@@ -147,7 +180,7 @@ public class MonListManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    // 팝업에서 뒤로가기 버튼 클릭
+    // 상세정보에서 뒤로가기 버튼 클릭
     public void InActMonsterInfo()
     {
         MonsterInfo.SetActive(false);
@@ -160,6 +193,42 @@ public class MonListManager : MonoBehaviour
         }
     }
 
+    // 상세정보에서 팝업 버튼 클릭
+
+    // 00운동을 해야하는 이유
+    public void ActPopUp_L() 
+    {
+        if(!isPartLower) // 상체몬스터
+        {
+            PopUp_L.SetActive(true);
+
+
+        }
+        else // 하체몬스터 
+        {
+
+        }
+    }
+
+    // 추천하는 00운동
+    public void ActPopUp_R() 
+    {
+        if (!isPartLower) // 상체몬스터
+        {
+
+
+        }
+        else // 하체몬스터 
+        {
+
+        }
+    }
+
+    // 팝업에서 뒤로가기 버튼 클릭 
+    public void InActPopUp()
+    {
+        // 활성화 하면서 띄웠던 것들 다 닫기 
+    }
 }
 
 // 몬스터 도감 시각화 관련 데이터 
