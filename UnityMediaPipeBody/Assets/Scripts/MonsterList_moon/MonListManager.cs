@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 public class MonListManager : MonoBehaviour
 {
     public GameObject MonsterInfo;
-    public GameObject MonsterImage;
+    // public GameObject MonsterImage;
+    public Image MonsterImage; // 이미지 컴포넌트
     public GameObject MonsterPartImg;
     public Text MonsterName;
     public Text MonsterPart;
@@ -76,10 +77,19 @@ public class MonListManager : MonoBehaviour
 
             // 1. 몬스터 이미지 
             Sprite MonsterImg = monsterListData[id].MonTrueImage; // 가져오기
-            MonsterImage.GetComponent<Image>().sprite = MonsterImg; // 넣어주기 (UI조정 필요: 노션확인)
 
-            // 몬스터 데이터 로드
-            // GameData.instance.LoadMonsterData();
+            // 이미지의 원본 비율 가져오기
+            float aspectRatio = (float)MonsterImg.texture.width / MonsterImg.texture.height;
+
+            // UI 요소의 RectTransform 컴포넌트 가져오기
+            RectTransform rectTransform = MonsterImage.GetComponent<RectTransform>();
+
+            // 이미지 비율에 따라 UI 요소의 크기 조정
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.x / aspectRatio);
+
+            // 이미지 넣기 
+            MonsterImage.sprite = MonsterImg;
+
 
             // 2. 몬스터 이름 : 몬스터 데이터 사용 
             string monstername = GameData.instance.monsterdata.MonsterName[id];
@@ -99,10 +109,10 @@ public class MonListManager : MonoBehaviour
             // 현재 게임 오브젝트에서 SpriteRenderer 컴포넌트를 가져옵니다.
             spriteRenderer = monsterobj.GetComponent<SpriteRenderer>();
 
-            // SpriteRenderer가 존재하는지 확인합니다.
+            // SpriteRenderer가 존재하는지 확인
             if (spriteRenderer != null)
             {
-                // SpriteRenderer의 색상을 변경합니다.
+                // SpriteRenderer의 색상 변경
                 spriteRenderer.color = ActiveColor;
             }
 
