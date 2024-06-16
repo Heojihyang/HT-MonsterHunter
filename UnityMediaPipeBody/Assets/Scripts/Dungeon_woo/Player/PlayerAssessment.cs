@@ -140,7 +140,7 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
-        /*
+        
         count = 15;
         UiManager.Instance.UpdateModeratorLabel("");
         animator.SetBool("SideLegRaise", true);
@@ -240,7 +240,7 @@ public class PlayerAssessment : MonoBehaviour
         animator.SetBool("Launge", true);
         yield return StartCoroutine(Lunge());
         animator.SetBool("Launge", false);
-        */
+        
         // ¿îµ¿ ³¡
         UiManager.Instance.UpdateActionName("");
         UiManager.Instance.UpdateActionCount(0, 0);
