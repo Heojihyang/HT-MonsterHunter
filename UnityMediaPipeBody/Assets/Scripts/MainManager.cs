@@ -84,6 +84,7 @@ public class MainManager : MonoBehaviour
             PlayerGoal.text = "오류오류오류오류";
         }
 
+
     }
 
     // Update is called once per frame
