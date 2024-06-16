@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HTMonsterHunter/TRecordScene.unity
     guid: f09a6b31a1874ac46a778c92639c4e32
+  - enabled: 1
+    path: Assets/Scenes/HTMonsterHunter/OverScene.unity
+    guid: a94077db446d1194db07211eb9968060
   m_configObjects: {}

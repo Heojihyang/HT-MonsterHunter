@@ -16,7 +16,7 @@ public class UiManager : MonoBehaviour
     public Image progressBarImage;  // 진척도 UI
 
     // 세팅값
-    public float duration = 120f;   // 전체 플레이 타임
+    public float duration = 389.0f;   // 전체 플레이 타임
     private float elapsedTime = 0f; // 플레이 경과 시간
 
     // 싱글톤
