@@ -27,6 +27,8 @@ public class PlayerAssessment : MonoBehaviour
     // BulletGenerator(피격효과)
     public BulletGenerator bullet;
 
+    // 게임 종료 오브젝트
+    public GameObject TerminationGameManager;
 
     /*
     //몸(22개) 랜드마크 Index
@@ -122,6 +124,7 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateModeratorLabel("준비!");
         yield return new WaitForSeconds(2);
 
+    
         // 1. 스탠딩 사이드 레그 레이즈
         // 1세트 - 우
         UiManager.Instance.UpdateActionName("우 - 스탠딩 사이드 레그 레이즈 (1set)");
@@ -137,12 +140,12 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
-        
+        /*
         count = 15;
         UiManager.Instance.UpdateModeratorLabel("");
         animator.SetBool("SideLegRaise", true);
         yield return StartCoroutine(R_StandingSideLegRaise());
-        
+ 
 
         // 1세트 - 좌
         UiManager.Instance.UpdateActionName("좌 - 스탠딩 사이드 레그 레이즈 (1set)");
@@ -237,19 +240,19 @@ public class PlayerAssessment : MonoBehaviour
         animator.SetBool("Launge", true);
         yield return StartCoroutine(Lunge());
         animator.SetBool("Launge", false);
-
+        */
         // 운동 끝
         UiManager.Instance.UpdateActionName("");
         UiManager.Instance.UpdateActionCount(0, 0);
         UiManager.Instance.UpdateAdviceLabel("");
 
+        SoundManager.instance.StopBGM("BGM_Ingame");
         SoundManager.instance.PlaySFX("SFX_Count_2");
         UiManager.Instance.UpdateModeratorLabel("종료!");
         yield return new WaitForSeconds(3);
 
-        //여기서 몬스터 수집 구현
-        
-        Debug.Log("허벅지 코루틴을 종료합니다.");
+        //종료 및 평가씬 이동
+        dungeonScene.GetComponent<TDungeonSceneManager>().GoOverScene(score);
     }
 
 
