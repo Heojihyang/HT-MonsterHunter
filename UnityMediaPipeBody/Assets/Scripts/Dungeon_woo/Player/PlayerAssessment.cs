@@ -125,7 +125,7 @@ public class PlayerAssessment : MonoBehaviour
         // 1. 스탠딩 사이드 레그 레이즈
         // 1세트 - 우
         UiManager.Instance.UpdateActionName("우 - 스탠딩 사이드 레그 레이즈 (1set)");
-        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateActionCount(0, 15);
         UiManager.Instance.UpdateAdviceLabel("");
 
         Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 1세트'를 시작합니다.");
@@ -138,7 +138,7 @@ public class PlayerAssessment : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         
-        count = 12;
+        count = 15;
         UiManager.Instance.UpdateModeratorLabel("");
         animator.SetBool("SideLegRaise", true);
         yield return StartCoroutine(R_StandingSideLegRaise());
@@ -146,7 +146,7 @@ public class PlayerAssessment : MonoBehaviour
 
         // 1세트 - 좌
         UiManager.Instance.UpdateActionName("좌 - 스탠딩 사이드 레그 레이즈 (1set)");
-        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateActionCount(0, 15);
         UiManager.Instance.UpdateAdviceLabel("");
         yield return StartCoroutine(L_StandingSideLegRaise());
         animator.SetBool("SideLegRaise", false);
@@ -182,10 +182,10 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("10초 뒤, '스쿼트'를 시작합니다");
+        Debug.Log("5초 뒤, '스쿼트'를 시작합니다");
         UiManager.Instance.UpdateModeratorLabel("10초 뒤, '스쿼트'를 시작합니다");
         yield return new WaitForSeconds(2);
-        for (int i = 10; i > 0; i--)
+        for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
@@ -203,10 +203,10 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("10초 뒤, '런지 1세트'를 시작합니다.");
+        Debug.Log("5초 뒤, '런지 1세트'를 시작합니다.");
         UiManager.Instance.UpdateModeratorLabel("10초 뒤, '런지 1세트'를 시작합니다");
         yield return new WaitForSeconds(2);
-        for (int i = 10; i > 0; i--)
+        for (int i = 5; i > 0; i--)
         {
             Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
@@ -246,8 +246,9 @@ public class PlayerAssessment : MonoBehaviour
         SoundManager.instance.PlaySFX("SFX_Count_2");
         UiManager.Instance.UpdateModeratorLabel("종료!");
         yield return new WaitForSeconds(3);
-        UiManager.Instance.UpdateModeratorLabel("평가중 ~ ");
 
+        //여기서 몬스터 수집 구현
+        
         Debug.Log("허벅지 코루틴을 종료합니다.");
     }
 
@@ -270,6 +271,8 @@ public class PlayerAssessment : MonoBehaviour
 
             Debug.Log("스탠딩 사이드 레그레이즈(우) " + (i + 1) + "회");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             // 평가 1번 각도
             if (angle1 >= 150 ) { grade += 5;  }
             else if(angle1 >= 135) { grade += 3; }
@@ -283,7 +286,7 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
             mosterAnimator.SetBool("ani_Damage", false);
-            yield return new WaitForSeconds(3); //3초에 한번씩 동작진행
+            yield return new WaitForSeconds(1.5f); //3초에 한번씩 동작진행
         }
         yield return new WaitForSeconds(0);
     }
@@ -305,6 +308,8 @@ public class PlayerAssessment : MonoBehaviour
 
             Debug.Log("스탠딩 사이드 레그레이즈(좌) " + (i + 1) + "회");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             // 평가 1번
             if (angle1 >= 150) { grade += 5; }
             else if (angle1 >= 135) { grade += 3; }
@@ -318,7 +323,7 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
             mosterAnimator.SetBool("ani_Damage", false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
         }
         yield return new WaitForSeconds(0);
     }
@@ -340,6 +345,8 @@ public class PlayerAssessment : MonoBehaviour
 
             Debug.Log("스쿼트 " + (i + 1) + "회");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             // 평가 1번 - 제대로 푹 앉았는가
             if (angle1 <= 90) { grade += 5; }
             else if (angle1 <= 100) { grade += 3; }
@@ -353,7 +360,7 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
             mosterAnimator.SetBool("ani_Damage", false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
         }
         yield return new WaitForSeconds(0);
     }
@@ -377,6 +384,8 @@ public class PlayerAssessment : MonoBehaviour
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             if (87 <= angle1 && angle1 <= 93) { grade += 10; }
             else if (83 <= angle1 && angle1 <= 97) { grade += 6; }
             else if (70 <= angle1 && angle1 <= 110) { grade += 2; }
@@ -384,7 +393,7 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
             mosterAnimator.SetBool("ani_Damage", false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
 
             // 런지(좌)
             UiManager.Instance.UpdateActionCount(++k, count);
@@ -394,6 +403,8 @@ public class PlayerAssessment : MonoBehaviour
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             if (87 <= angle2 && angle1 <= 93) { grade += 10; }
             else if (83 <= angle2 && angle1 <= 97) { grade += 6; }
             else if (70 <= angle2 && angle1 <= 110) { grade += 2; }
@@ -401,7 +412,7 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
             mosterAnimator.SetBool("ani_Damage", false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
         }
         yield return new WaitForSeconds(0);
     }

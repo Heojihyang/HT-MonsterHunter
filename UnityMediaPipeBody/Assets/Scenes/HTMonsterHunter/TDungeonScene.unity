@@ -1944,7 +1944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -112, y: -34.999886}
+  m_AnchoredPosition: {x: -42, y: -34.999886}
   m_SizeDelta: {x: 90.8, y: 118.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344459140
@@ -2382,7 +2382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 122, y: -34.999886}
+  m_AnchoredPosition: {x: 177, y: -34.999886}
   m_SizeDelta: {x: 90.8, y: 118.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574239177
@@ -3226,7 +3226,7 @@ MonoBehaviour:
   actionCountLabel: {fileID: 991096906}
   adviceLabel: {fileID: 2051458048}
   progressBarImage: {fileID: 1883942336}
-  duration: 120
+  duration: 389
 --- !u!1 &2070250385
 GameObject:
   m_ObjectHideFlags: 0
