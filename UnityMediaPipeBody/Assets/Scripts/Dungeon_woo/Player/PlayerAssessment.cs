@@ -66,24 +66,24 @@ public class PlayerAssessment : MonoBehaviour
         if (motionGrade >= 10)
         {
             // 여기에 피격 호출
-            bullet.GetComponent<BulletGenerator>().ShootBullet(2);
+            bullet.GetComponent<BulletGenerator>().ShootBullet(0);
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
 
-            Debug.Log("Excellent!");
+            Debug.Log("평가 : 1등급");
             UiManager.Instance.UpdateAdviceLabel("완벽해요!");
             score += 5;
         }
         else if (motionGrade >= 6)
         {
             // 여기에 피격 호출
-            bullet.GetComponent<BulletGenerator>().ShootBullet(1);
+            bullet.GetComponent<BulletGenerator>().ShootBullet(0);
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
 
-            Debug.Log("Very Good!");
+            Debug.Log("평가 : 2등급");
             UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
             score += 3;
         }
@@ -95,7 +95,7 @@ public class PlayerAssessment : MonoBehaviour
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
 
-            Debug.Log("Good");
+            Debug.Log("평가 : 3등급");
             UiManager.Instance.UpdateAdviceLabel("좋아요");
             score += 1;
         }
@@ -107,7 +107,7 @@ public class PlayerAssessment : MonoBehaviour
             // 몬스터 데미지 애니메이션 테스트
             mosterAnimator.SetBool("ani_Damage", true);
 
-            Debug.Log("최악");
+            Debug.Log("평가 : 4등급");
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
         }
 
@@ -268,23 +268,23 @@ public class PlayerAssessment : MonoBehaviour
             SoundManager.instance.PlaySFX("SFX_Count_1");
 
             //playerLandmark가 Null임 -> 코루틴 실행시 5초정도 기다리니 해결됨
-            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[13], playerLandmark[17], playerLandmark[13]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
 
             Debug.Log("스탠딩 사이드 레그레이즈(우) " + (i + 1) + "회");
+            
+            // 평가 1번 각도(완화) 다리를 얼마나 들어올렸는가
+            if (angle1 >= 120 ) { grade += 5;  }
+            else if(angle1 >= 115) { grade += 3; }
+            else if(angle1 >= 110) { grade += 1; }
 
-            // 각도 측정
-            yield return new WaitForSeconds(1.5f);
-            // 평가 1번 각도
-            if (angle1 >= 150 ) { grade += 5;  }
-            else if(angle1 >= 135) { grade += 3; }
-            else if(angle1 >= 120) { grade += 1; }
-
-            // 평가 2번 각도
-            if (angle2 >= 180) { grade += 5; }
-            else if (angle2 >= 170) { grade += 3; }
-            else if (angle2 >= 165) { grade += 1; }
+            // 평가 2번 각도(완화) 다리를 구부리지 않고 잘 폈는가
+            if (angle2 >= 150) { grade += 5; }
+            else if (angle2 >= 140) { grade += 3; }
+            else if (angle2 >= 135) { grade += 1; }
 
             //동작 평가
             MotionRating(grade);
@@ -305,23 +305,24 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateActionCount(i + 1, count);
             SoundManager.instance.PlaySFX("SFX_Count_1");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
 
             Debug.Log("스탠딩 사이드 레그레이즈(좌) " + (i + 1) + "회");
 
-            // 각도 측정
-            yield return new WaitForSeconds(1.5f);
-            // 평가 1번
-            if (angle1 >= 150) { grade += 5; }
-            else if (angle1 >= 135) { grade += 3; }
-            else if (angle1 >= 120) { grade += 1; }
 
-            // 평가 2번
-            if (angle2 >= 180) { grade += 5; }
-            else if (angle2 >= 170) { grade += 3; }
-            else if (angle2 >= 165) { grade += 1; }
+            // 평가 1번(완화) 다리를 얼마나 들어올렸는가
+            if (angle1 >= 120) { grade += 5; }
+            else if (angle1 >= 115) { grade += 3; }
+            else if (angle1 >= 110) { grade += 1; }
+
+            // 평가 2번(완화) 다리를 구부리지 않고 잘 폈는가
+            if (angle2 >= 150) { grade += 5; }
+            else if (angle2 >= 140) { grade += 3; }
+            else if (angle2 >= 135) { grade += 1; }
 
             //동작 평가
             MotionRating(grade);
@@ -342,23 +343,24 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateActionCount(i + 1, count);
             SoundManager.instance.PlaySFX("SFX_Count_1");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[15], playerLandmark[13]);
             grade = 0;
 
             Debug.Log("스쿼트 " + (i + 1) + "회");
 
-            // 각도 측정
-            yield return new WaitForSeconds(1.5f);
-            // 평가 1번 - 제대로 푹 앉았는가
-            if (angle1 <= 90) { grade += 5; }
-            else if (angle1 <= 100) { grade += 3; }
-            else if (angle1 <= 110) { grade += 1; }
+            
+            // 평가 1번(완화) - 제대로 푹 앉았는가
+            if (angle1 <= 100) { grade += 5; }
+            else if (angle1 <= 115) { grade += 3; }
+            else if (angle1 <= 130) { grade += 1; }
 
-            // 평가 2번 - 허리를 적절히 굽혔는가
+            // 평가 2번(완화) - 허리를 적절히 굽혔는가
             if (35 <= angle2 && angle2 <= 55) { grade += 5; }
-            else if (30 <= angle2 && angle2 <= 90) { grade += 3; }
-            else if (20 <= angle2) { grade += 1; }
+            else if (35 <= angle2 && angle2 <= 90) { grade += 3; }
+            else if (10 <= angle2) { grade += 1; }
 
             //동작 평가
             MotionRating(grade);
@@ -382,16 +384,16 @@ public class PlayerAssessment : MonoBehaviour
             SoundManager.instance.PlaySFX("SFX_Count_1");
 
             // 런지(우)
-            Debug.Log("런지 " + (k) + "회");   
+            Debug.Log("런지 " + (k) + "회");
 
+            // 각도 측정(완화)
+            yield return new WaitForSeconds(1.5f);
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
 
-            // 각도 측정
-            yield return new WaitForSeconds(1.5f);
-            if (87 <= angle1 && angle1 <= 93) { grade += 10; }
-            else if (83 <= angle1 && angle1 <= 97) { grade += 6; }
-            else if (70 <= angle1 && angle1 <= 110) { grade += 2; }
+            if (80 <= angle1 && angle1 <= 100) { grade += 10; }
+            else if (70 <= angle1 && angle1 <= 105) { grade += 6; }
+            else if (60 <= angle1 && angle1 <= 110) { grade += 2; }
 
             //동작 평가
             MotionRating(grade);
@@ -402,15 +404,16 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateActionCount(++k, count);
             SoundManager.instance.PlaySFX("SFX_Count_1");
             Debug.Log("런지 " + (k) + "회");
-            
-            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
-            grade = 0;
 
             // 각도 측정
             yield return new WaitForSeconds(1.5f);
-            if (87 <= angle2 && angle1 <= 93) { grade += 10; }
-            else if (83 <= angle2 && angle1 <= 97) { grade += 6; }
-            else if (70 <= angle2 && angle1 <= 110) { grade += 2; }
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
+            grade = 0;
+
+            
+            if (80 <= angle2 && angle1 <= 100) { grade += 10; }
+            else if (70 <= angle2 && angle1 <= 105) { grade += 6; }
+            else if (60 <= angle2 && angle1 <= 110) { grade += 2; }
 
             //동작 평가
             MotionRating(grade);
