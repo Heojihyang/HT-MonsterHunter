@@ -15,6 +15,12 @@ public class UiManager : MonoBehaviour
     public Text adviceLabel;        // 코멘트 UI
     public Image progressBarImage;  // 진척도 UI
 
+    // 개발자용 UI
+    public Text angle1Label;
+    public Text angle2Label;
+    public Text overallLabel;
+    public Text scoreLabel;
+
     // 세팅값
     public float duration = 389.0f;   // 전체 플레이 타임
     private float elapsedTime = 0f; // 플레이 경과 시간
@@ -94,10 +100,30 @@ public class UiManager : MonoBehaviour
         elapsedTime += Time.deltaTime;
         float progress = Mathf.Clamp01(elapsedTime / duration);
         progressBarImage.fillAmount = progress;
+    }
 
-        if(elapsedTime > duration)
-        {
-            elapsedTime = 0;
-        }
+    // 개발자용 UI 업데이트
+    // (1) 1번 각도평가항목 업데이트
+    public void UpdateAngle1Label(string description)
+    {
+        angle1Label.text = description;
+    }
+
+    // (2) 2번 각도평가항목 업데이트
+    public void UpdateAngle2Label(string description)
+    {
+        angle2Label.text = description;
+    }
+
+    // (3) 동작 종합평가 업데이트
+    public void UpdateOverallLabel(string description)
+    {
+        overallLabel.text = description;
+    }
+
+    // (4) 던전 스코어 종합평가 업데이트
+    public void UpdateScorelLabel(string description)
+    {
+        scoreLabel.text = description;
     }
 }

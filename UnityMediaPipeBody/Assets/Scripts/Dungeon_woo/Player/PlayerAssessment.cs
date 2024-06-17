@@ -186,7 +186,7 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateAdviceLabel("");
 
         Debug.Log("5초 뒤, '스쿼트'를 시작합니다");
-        UiManager.Instance.UpdateModeratorLabel("10초 뒤, '스쿼트'를 시작합니다");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스쿼트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
@@ -206,8 +206,11 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
 
+        // 개발자용 2번 라벨 없애기
+        UiManager.Instance.UpdateAngle2Label("");
+
         Debug.Log("5초 뒤, '런지 1세트'를 시작합니다.");
-        UiManager.Instance.UpdateModeratorLabel("10초 뒤, '런지 1세트'를 시작합니다");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '런지 1세트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
@@ -288,7 +291,14 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
-            mosterAnimator.SetBool("ani_Damage", false);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("다리를 적절히 들어올렸는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("다리를 구부리지 않았는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
+            mosterAnimator.SetBool("ani_Damage", false); 
             yield return new WaitForSeconds(1.5f); //3초에 한번씩 동작진행
         }
         yield return new WaitForSeconds(0);
@@ -326,6 +336,13 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("다리를 적절히 들어올렸는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("다리를 구부리지 않았는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
             mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
         }
@@ -364,6 +381,13 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("적절한 각도로 앉았는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("허리를 적절히 굽혔는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
             mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
         }
@@ -397,6 +421,12 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("다리를 적절히 굽혔는가 : " + angle1);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
             mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
 
@@ -417,6 +447,12 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("다리를 적절히 굽혔는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
             mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
         }
