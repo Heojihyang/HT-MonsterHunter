@@ -102,10 +102,10 @@ public class PlayerAssessment : MonoBehaviour
         else
         {
             // 피격효과 테스트
-            bullet.GetComponent<BulletGenerator>().ShootBullet(0);
+            //bullet.GetComponent<BulletGenerator>().ShootBullet(0);
 
             // 몬스터 데미지 애니메이션 테스트
-            mosterAnimator.SetBool("ani_Damage", true);
+            //mosterAnimator.SetBool("ani_Damage", true);
 
             Debug.Log("평가 : 4등급");
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
