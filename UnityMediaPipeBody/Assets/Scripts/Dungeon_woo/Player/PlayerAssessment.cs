@@ -30,6 +30,9 @@ public class PlayerAssessment : MonoBehaviour
     // 게임 종료 오브젝트
     public GameObject TerminationGameManager;
 
+    // 시연 영상 촬영용 몬스터 
+    public GameObject bagMonster;
+
     /*
     //몸(22개) 랜드마크 Index
     LEFT_SHOULDER = 0, RIGHT_SHOULDER = 1, LEFT_ELBOW = 2, RIGHT_ELBOW = 3,
@@ -70,6 +73,8 @@ public class PlayerAssessment : MonoBehaviour
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Hit();
 
             Debug.Log("평가 : 1등급");
             UiManager.Instance.UpdateAdviceLabel("완벽해요!");
@@ -82,6 +87,8 @@ public class PlayerAssessment : MonoBehaviour
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Hit();
 
             Debug.Log("평가 : 2등급");
             UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
@@ -94,6 +101,8 @@ public class PlayerAssessment : MonoBehaviour
 
             // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Hit();
 
             Debug.Log("평가 : 3등급");
             UiManager.Instance.UpdateAdviceLabel("좋아요");
@@ -292,6 +301,9 @@ public class PlayerAssessment : MonoBehaviour
             //동작 평가
             MotionRating(grade);
 
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Idle();
+
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("다리를 적절히 들어올렸는가 : " + angle1);
             UiManager.Instance.UpdateAngle2Label("다리를 구부리지 않았는가 : " + angle2);
@@ -336,6 +348,8 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Idle();
 
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("다리를 적절히 들어올렸는가 : " + angle1);
@@ -381,6 +395,8 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Idle();
 
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("적절한 각도로 앉았는가 : " + angle1);
@@ -421,6 +437,8 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Idle();
 
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("다리를 적절히 굽혔는가 : " + angle1);
@@ -447,6 +465,8 @@ public class PlayerAssessment : MonoBehaviour
 
             //동작 평가
             MotionRating(grade);
+            // 시연용 몬스터 데미지 애니메이션
+            bagMonster.GetComponent<BagMonsterController>().Idle();
 
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("다리를 적절히 굽혔는가 : " + angle2);
