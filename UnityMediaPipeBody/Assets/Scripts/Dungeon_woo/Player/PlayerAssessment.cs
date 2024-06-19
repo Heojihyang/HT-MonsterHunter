@@ -146,7 +146,7 @@ public class PlayerAssessment : MonoBehaviour
         animator.SetBool("SideLegRaise", true);
         yield return StartCoroutine(R_StandingSideLegRaise());
  
-        /*
+        
         // 1세트 - 좌
         UiManager.Instance.UpdateActionName("좌 - 스탠딩 사이드 레그 레이즈 (1set)");
         UiManager.Instance.UpdateActionCount(0, 15);
@@ -243,7 +243,7 @@ public class PlayerAssessment : MonoBehaviour
         animator.SetBool("Launge", true);
         yield return StartCoroutine(Lunge());
         animator.SetBool("Launge", false);
-        */
+        
         // 운동 끝
         UiManager.Instance.UpdateActionName("");
         UiManager.Instance.UpdateActionCount(0, 0);
