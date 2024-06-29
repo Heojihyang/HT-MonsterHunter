@@ -9,7 +9,7 @@ public class BulletGenerator : MonoBehaviour
     public Transform startPoint;    // 시작 위치
     public Transform endPoint;      // 목표 지점
     
-
+    
     public void ShootBullet(int n)
     {
         // 피격 단계에 따라 총알 프리팹 생성과 이펙트 전달
