@@ -6,25 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
-        // 파일 생성 부분 코드 (처음 데이터 저장 시작할 때 필요한 과정)
-        // GameData.instance.SavePlayerData();
-        // GameData.instance.SaveGamePlayData();
-        // GameData.instance.SaveMonsterData();
-        // 위 3줄(Save함수들) 주석 해제해서 한번 플레이 시키고 다시 주석처리 필수ㅎㅎ
-
-        // --------------------------------------------------------------------------
-
-
-        // 게임 데이터 로드 해주기 !! 
+        // 게임 데이터 로드
         GameData.instance.LoadMonsterData();
         GameData.instance.LoadPlayerData();
         GameData.instance.LoadGamePlayData();
 
 
-        #region 데이터 추가 하는 코드 
+        #region 임시 데이터 추가 하는 코드 
         /*
 
         // 당일 날짜 (오늘)
@@ -34,7 +25,6 @@ public class StartManager : MonoBehaviour
         // string targetDate = "2024-05-22"; // 대상 날짜 설정
 
         int ClearMonsterNum = 8; // 8번 몬스터는 허벅지 (현재 0번~9번까지 있음)
-
 
         // 대상 날짜의 게임 플레이 데이터 확인
         if (!GameData.instance.recordData.dailyRecords.ContainsKey(targetDate))
@@ -90,17 +80,12 @@ public class StartManager : MonoBehaviour
         GameData.instance.LoadPlayerData();
         GameData.instance.LoadGamePlayData();
         GameData.instance.LoadMonsterData();
-
         */
+
         #endregion
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeMainScene()
     {

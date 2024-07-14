@@ -5,58 +5,50 @@ using UnityEngine;
 using System.IO;
 
 //// Json 사용
-// 딕셔너리를 지원하지 않아서, 배열로 주고받아야함
+//   Json은 string 형태로 저장
+//   딕셔너리를 지원하지 않아서, 배열로 주고받아야함
 
-// 저장하는 방법
-// 1. 저장할 데이터 존재
-// 2. 데이터를 Json으로 변환
-// 3. Json을 외부에 저장
+//   저장하는 방법
+//    1. 저장할 데이터 존재
+//    2. 데이터를 Json으로 변환
+//    3. Json을 외부에 저장
 
-// 불러오는 방법
-// 1. 외부에 저장된 Json을 가져옴
-// 2. Json을 데이터 형태로 변환
-// 3. 불러온 데이터 사용
+//   불러오는 방법
+//    1. 외부에 저장된 Json을 가져옴
+//    2. Json을 데이터 형태로 변환
+//    3. 불러온 데이터 사용
 
 
-
-//// 1. 저장할 데이터 존재
 public class MonsterData
 {
-    // 몬스터(20개) 수집 여부
-    // 수집O : true , 수집X : False
-    public bool[] MonsterUnLocked = new bool[10];
-
-    // 몬스터 이름
-    public string[] MonsterName = new string[10];
+    public bool[] MonsterUnLocked = new bool[10];   // 몬스터(20개) 수집 여부
+    public string[] MonsterName = new string[10];   // 몬스터 이름
 }
 
 public class PlayerData
 {
-    //  플레이어 경험치 
-    public int PlayerExp;
+    public int PlayerExp;   // 플레이어 경험치 
 }
 
 [Serializable]
 public class GamePlayData
 {
-    // 게임을 플레이한 날짜와 그 날짜에 정보들 저장
-
-    public int PlayCount; // 게임을 플레이한 횟수
-
-    public List<int> ClearedMaps; // 클리어한 게임맵 리스트 : 운동 부위 
+    public int PlayCount;            // 게임을 플레이한 횟수
+    public List<int> ClearedMaps;    // 클리어한 게임맵 리스트 : 운동 부위 
 
 }
 
-// 날짜별 운동 기록 
 [Serializable]
 public class RecordData
 {
-    public Dictionary<string, GamePlayData> dailyRecords; // 날짜별 게임 플레이 데이터를 저장하는 Dictionary
+    public Dictionary<string, GamePlayData> dailyRecords;   // 날짜별 게임플레이 데이터 저장
 }
+
+// -----------------------------------------------------------------------------------------------------------
 
 public class GameData : MonoBehaviour
 {
-    public static GameData instance; // 싱글톤
+    public static GameData instance;   // 싱글톤
 
     string Path;
     string MonsterFileName = "MonsterDataSave";
@@ -70,6 +62,7 @@ public class GameData : MonoBehaviour
     private void Awake()
     {
         #region 싱글톤
+
         if (instance == null)
         {
             instance = this;
@@ -79,79 +72,76 @@ public class GameData : MonoBehaviour
             Destroy(instance.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+
         #endregion
 
-        // 경로를 만들어줌
-        Path = Application.persistentDataPath + "/";
-        print("경로생성 "+Path); // 경로 확인 
+        Path = Application.persistentDataPath + "/";  // 경로
+        print("경로생성 " + Path);
 
-        // 초기화
-        recordData.dailyRecords = new Dictionary<string, GamePlayData>();
+        recordData.dailyRecords = new Dictionary<string, GamePlayData>();   // 초기화
     }
 
-    void Start()
-    {
-        
-    }
+
+
+    // MonsterData -------------------------------------------------------------------------------------------
 
     public void SaveMonsterData()
     {
-        // 2. 데이터를 Json으로 변환
-        string data = JsonUtility.ToJson(monsterdata); // Json은 string 형태로 저장됨
-
-        // print(Path); // 로컬 저장경로 확인하기
-
-        // 3. Json을 외부에 저장
-        File.WriteAllText(Path + MonsterFileName, data);
-
+        string data = JsonUtility.ToJson(monsterdata);     // 2. 데이터 -> Json 
+        File.WriteAllText(Path + MonsterFileName, data);   // 3. Json 외부에 저장
         print("몬스터 데이터 저장 완료");
     }
 
     public void LoadMonsterData()
     {
-        // 1. 외부에 저장된 제이슨을 가져옴
-        // 2. Json을 데이터 형태로 변환
-        string data = File.ReadAllText(Path + MonsterFileName); // Json이기 때문에 string 형태로 받아짐
-
-        // 3. 불러온 데이터 사용
-        monsterdata = JsonUtility.FromJson<MonsterData>(data); // 불러온 데이터가 monsterdata에 덮어씌워짐
-
-        print("몬스터 데이터 불러오기 완료");
+        // 파일 존재 유무 확인 
+        if (File.Exists(Path + MonsterFileName))
+        {                                                             // 1. 외부 저장된 제이슨 가져옴
+            string data = File.ReadAllText(Path + MonsterFileName);   // 2. Json -> 데이터
+            monsterdata = JsonUtility.FromJson<MonsterData>(data);    // 3. 불러온 데이터 -> monsterdata에 덮어씌우기
+            print("몬스터 데이터 불러오기 완료");
+        }
+        else
+        {
+            SaveMonsterData();                                        // 파일 없으면 기본 데이터 저장
+            print("기본 몬스터 데이터 생성 완료");
+        }
     }
+
+
+
+    // PlayerData -------------------------------------------------------------------------------------------
 
     public void SavePlayerData()
     {
-        // 2. 데이터를 Json으로 변환
-        string data = JsonUtility.ToJson(playerdata); // Json은 string 형태로 저장됨
-
-        // print(Path); // 로컬 저장경로 확인하기
-
-        // 3. Json을 외부에 저장
-        File.WriteAllText(Path + PlayerFileName, data);
-
+        string data = JsonUtility.ToJson(playerdata);     // 2. 데이터 -> Json 
+        File.WriteAllText(Path + PlayerFileName, data);   // 3. Json 외부에 저장
         print("플레이어 데이터 저장 완료");
     }
 
     public void LoadPlayerData()
     {
-        // 1. 외부에 저장된 제이슨을 가져옴
-        // 2. Json을 데이터 형태로 변환
-        string data = File.ReadAllText(Path + PlayerFileName); // Json이기 때문에 string 형태로 받아짐
-
-        // 3. 불러온 데이터 사용
-        playerdata = JsonUtility.FromJson<PlayerData>(data); // 불러온 데이터가 monsterdata에 덮어씌워짐
-
-        print("플레이어 데이터 불러오기 완료");
+        if (File.Exists(Path + PlayerFileName))
+        {                                                             // 1. 외부 저장된 제이슨 가져옴
+            string data = File.ReadAllText(Path + PlayerFileName);    // 2. Json -> 데이터
+            playerdata = JsonUtility.FromJson<PlayerData>(data);      // 3. 불러온 데이터 -> playerdata에 덮어씌우기
+            print("플레이어 데이터 불러오기 완료");
+        }
+        else
+        {
+            SavePlayerData();                                         // 파일 없으면 기본 데이터 저장
+            print("기본 플레이어 데이터 생성 완료");
+        }
     }
+
+
+
+    // GamePlayData -------------------------------------------------------------------------------------------
 
     public void SaveGamePlayData()
     {
-        // 2. 데이터를 Json으로 변환
-        string data = DictionaryJsonUtility.ToJson(recordData.dailyRecords, true); // JSON 변환
-
-        // 3. Json을 외부에 저장
-        File.WriteAllText(Path + GamePlayFileName, data);
-
+        string data = DictionaryJsonUtility.ToJson(recordData.dailyRecords, true);   // 2. 데이터 -> Json (직접 만든 변환 사용)
+        File.WriteAllText(Path + GamePlayFileName, data);                            // 3. Json 외부에 저장
         print("게임 플레이 데이터 저장 완료");
 
     }
@@ -159,14 +149,15 @@ public class GameData : MonoBehaviour
     public void LoadGamePlayData()
     {
         if (File.Exists(Path + GamePlayFileName))
-        {
-            string data = File.ReadAllText(Path + GamePlayFileName);
-            recordData.dailyRecords = DictionaryJsonUtility.FromJson<string, GamePlayData>(data);
+        {                                                                                             // 1. 외부 저장된 제이슨 가져옴
+            string data = File.ReadAllText(Path + GamePlayFileName);                                  // 2. Json -> 데이터
+            recordData.dailyRecords = DictionaryJsonUtility.FromJson<string, GamePlayData>(data);     // 3. 불러온 데이터 -> gameplaydata에 덮어씌우기
             print("게임 플레이 데이터 불러오기 완료");
         }
         else
         {
-            print("게임 플레이 데이터 파일이 존재하지 않습니다.");
+            SaveGamePlayData();                                                                       // 파일 없으면 기본 데이터 저장
+            print("기본 게임 플레이 데이터 생성 완료");
         }
     }
 

@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable] // 이 클래스가 JSON으로 직렬화될 수 있음을 의미
-public class DataDictionary<TKey, TValue> // 한 쌍의 키와 값을 저장하는 용도로 사용
+
+[Serializable]                                    // 이 클래스가 JSON으로 직렬화될 수 있음을 의미
+public class DataDictionary<TKey, TValue>         // 한 쌍의 키와 값을 저장하는 용도로 사용
 {
     public TKey Key;
     public TValue Value;
 }
 
 [Serializable]
-public class JsonDataArray<TKey, TValue> // 모든 키-값 쌍을 저장하는 리스트를 포함
+public class JsonDataArray<TKey, TValue>          // 모든 키-값 쌍을 저장하는 리스트를 포함
 {
     public List<DataDictionary<TKey, TValue>> data;
 }
@@ -36,6 +37,7 @@ public static class DictionaryJsonUtility
 
         return JsonUtility.ToJson(arrayJson, pretty); // 반환값: JSON 문자열
     }
+
 
     // Json Data -> Dictionary로 파싱
     public static Dictionary<TKey, TValue> FromJson<TKey, TValue>(string jsonData)
