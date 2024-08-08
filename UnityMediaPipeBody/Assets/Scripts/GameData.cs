@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
 //// Json 사용
 //   Json은 string 형태로 저장
 //   딕셔너리를 지원하지 않아서, 배열로 주고받아야함
+
 
 //   저장하는 방법
 //    1. 저장할 데이터 존재
 //    2. 데이터를 Json으로 변환
 //    3. Json을 외부에 저장
 
+
 //   불러오는 방법
 //    1. 외부에 저장된 Json을 가져옴
 //    2. Json을 데이터 형태로 변환
 //    3. 불러온 데이터 사용
+
 
 
 public class MonsterData
@@ -59,7 +63,9 @@ public class RecordData
     public Dictionary<string, GamePlayData> dailyRecords;   // 날짜별 게임플레이 데이터 저장
 }
 
+
 // -----------------------------------------------------------------------------------------------------------
+
 
 public class GameData : MonoBehaviour
 {

@@ -42,11 +42,13 @@ public class MonListManager : MonoBehaviour
     void Start()
     {
 
-        // --- 데이터 저장 예시 (노션 확인) ---
+        #region --- 데이터 저장 예시 (노션 확인) ---
         // GameData.instance.LoadMonsterData();
         // GameData.instance.monsterdata.MonsterName[0] = "0번 몬스터";
         // GameData.instance.monsterdata.MonsterUnLocked[0] = true;
         // GameData.instance.SaveMonsterData();
+        #endregion
+
 
 
         for (int id = 0; id < 10; id++)   // 총 몬스터 수 10
@@ -268,22 +270,22 @@ public class MonListManager : MonoBehaviour
 public class MonsterListData
 {
     [field: SerializeField]
-    public int ID { get; private set; } // MonsterData의 배열 ID와 연결
+    public int ID { get; private set; }                       // MonsterData의 배열 ID와 연결
 
     [field: SerializeField]
-    public GameObject MonFalseImage { get; private set; } // 수집X 표시
+    public GameObject MonFalseImage { get; private set; }     // 수집X 표시
 
     [field: SerializeField]
-    public Sprite MonTrueImage { get; private set; } // 수집O 표시 
+    public Sprite MonTrueImage { get; private set; }          // 수집O 표시 
 
     [field: SerializeField]
-    public string MonsterPart { get; private set; } // 몬스터 발생 부위
+    public string MonsterPart { get; private set; }           // 몬스터 발생 부위
 
     [field: SerializeField]
-    public Sprite MonsterPartImage { get; private set; } // 몬스터 발생 부위 이미지
+    public Sprite MonsterPartImage { get; private set; }      // 몬스터 발생 부위 이미지
 
     [field: SerializeField]
-    public GameObject MonsterPartObj { get; private set; } // 몬스터 발생 부위 이미지 활성화 
+    public GameObject MonsterPartObj { get; private set; }    // 몬스터 발생 부위 이미지 활성화 
 
 
 }
