@@ -63,6 +63,7 @@ public class RecordManager : MonoBehaviour
         UpdateCalendar();
     }
 
+
     // 이전 달로 이동하는 함수
     public void PreviousMonth()
     {
@@ -91,12 +92,14 @@ public class RecordManager : MonoBehaviour
 
         int startDay = (int)dayOfWeek;                 // 일요일 기준 시작 위치 설정
 
-        for (int i = 0; i < DayButton.Length; i++)     // 날짜 버튼 초기화
+        // 날짜 버튼 초기화
+        for (int i = 0; i < DayButton.Length; i++)     
         {
             DayButton[i].SetActive(false);
         }
 
-        for (int day = 1; day <= daysInMonth; day++)   // 달력 구성
+        // 달력 구성
+        for (int day = 1; day <= daysInMonth; day++)   
         {
             int index = startDay + day - 1;
             Text dayText = DayButton[index].transform.GetChild(0).GetComponent<Text>();
@@ -191,6 +194,7 @@ public class RecordManager : MonoBehaviour
 
     }
 
+
     // 선택한 날짜의 운동 기록 여부에 따라 오브젝트 활성화
     private void CheckAndActivateObject(DateTime date)
     {
@@ -241,6 +245,8 @@ public class RecordManager : MonoBehaviour
             recordYes.SetActive(false);
         }
     }
+
+
 
     // 운동 기록창 에서 뒤로가기 버튼 클릭
     public void ChangeMainScene()

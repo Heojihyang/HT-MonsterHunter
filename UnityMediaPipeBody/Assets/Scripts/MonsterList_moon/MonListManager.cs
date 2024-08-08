@@ -9,12 +9,12 @@ using UnityEngine.SceneManagement;
 public class MonListManager : MonoBehaviour
 {
     public GameObject MonsterInfo;
-    public Image MonsterImage; // 이미지 컴포넌트
+    public Image MonsterImage;           // 이미지 컴포넌트
     public GameObject MonsterPartImg;
     public Text MonsterName;
     public Text MonsterPart;
-    public Text Button_L; // 상체운동을 해야하는 이유
-    public Text Button_R; // 상체운동 추천 
+    public Text Button_L;                // 상체운동을 해야하는 이유
+    public Text Button_R;                // 상체운동 추천 
 
     public GameObject PopUp_L; 
     public GameObject PopUp_R;
@@ -24,63 +24,53 @@ public class MonListManager : MonoBehaviour
     public GameObject L_lower;
     public GameObject R_upper;
     public GameObject R_lower;
-
-    public GameObject popupImage; // "아직잡지않은몬스터임"
+    public GameObject popupImage;        // "아직잡지않은몬스터임"
 
     public List<MonsterListData> monsterListData;
+    MonsterData Monsterdata = new MonsterData();               // GameData.cs
 
-    MonsterData Monsterdata = new MonsterData(); // GameData.cs
-
-    // SpriteRenderer 컴포넌트를 가져오기 위한 변수
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;                     // SpriteRenderer 컴포넌트를 가져오기 위한 변수
     public Color ActiveColor = Color.white;
 
-    // RGB 값을 이용해 색상을 생성. (16진수 676767)
-    Color OriginColor = new Color32(0x67, 0x67, 0x67, 0xFF);
+    Color OriginColor = new Color32(0x67, 0x67, 0x67, 0xFF);   // RGB 값을 이용해 색상을 생성. (16진수 676767)
 
-    private bool isPartLower ; // 하체 몬스터인가? 
+    private bool isPartLower ;                                 // 하체 몬스터인가? 
+
+
 
     // 몬스터 수집 여부 시각화 -> 게임오브젝트의 이미지 변경 시키기 
     void Start()
     {
+
         // --- 데이터 저장 예시 (노션 확인) ---
         // GameData.instance.LoadMonsterData();
         // GameData.instance.monsterdata.MonsterName[0] = "0번 몬스터";
         // GameData.instance.monsterdata.MonsterUnLocked[0] = true;
         // GameData.instance.SaveMonsterData();
-        // ---
 
-        // 총 몬스터 수 임시 
-        for (int id = 0; id < 10; id++)
+
+        for (int id = 0; id < 10; id++)   // 총 몬스터 수 10
         {
-            // 몬스터 수집 여부 확인 
-            bool haveMonster = GameData.instance.monsterdata.MonsterUnLocked[id];
+            bool haveMonster = GameData.instance.monsterdata.MonsterUnLocked[id];   // 몬스터 수집 여부 확인 
 
             if (haveMonster) 
             {
-                // monsterListData 리스트에서 동일한 ID찾기
-                int monsterId = monsterListData.FindIndex(data => data.ID == id);
+                int monsterId = monsterListData.FindIndex(data => data.ID == id);    // monsterListData 리스트에서 동일한 ID찾기
 
-                // 해당 ID의 GameObject와 Sprite 가져와서
-                GameObject FalseImage = monsterListData[monsterId].MonFalseImage;
+                GameObject FalseImage = monsterListData[monsterId].MonFalseImage;    // 해당 ID의 GameObject와 Sprite 가져와서
                 Sprite TrueImage = monsterListData[monsterId].MonTrueImage;
 
-                // GameObject의 FalseImage를 TrueImage로 변경해주기
-                FalseImage.GetComponent<Image>().sprite = TrueImage;
-
+                FalseImage.GetComponent<Image>().sprite = TrueImage;                 // GameObject의 FalseImage를 TrueImage로 변경해주기
             }
-          
         }
-        
     }
 
-    // 수집된 몬스터 클릭 시 설명창 활성화
-    // 해당 버튼의 몬스터 ID 넘겨주고 정보 연결시켜주기 
+
+
+    // 수집된 몬스터 클릭 시 설명창 활성화 : 해당 버튼의 몬스터 ID 넘겨주고 정보 연결시켜주기 
     public void ActMonsterInfo(int id)
     {
-        // ID = id; // 현재 활성화된 몬스터의ID 
-
-        // 상체/하체 몬스터 구분 
+        // 상/하체 몬스터 구분 
         if (id >= 0 && id <= 6)
         {
             isPartLower = false;
@@ -90,59 +80,61 @@ public class MonListManager : MonoBehaviour
             isPartLower = true;
         }
 
-
         bool monsterUnLooked = GameData.instance.monsterdata.MonsterUnLocked[id];
+
 
         // 수집완료 몬스터인가?
         if (monsterUnLooked)
         {
             MonsterInfo.SetActive(true);
 
+
             // --- 데이터 가져와서 넣어주기 1~4 ---
+
 
             // 1. 몬스터 이미지 
             Sprite MonsterImg = monsterListData[id].MonTrueImage; // 가져오기
 
-            // 이미지의 원본 비율 가져오기
-            float aspectRatio = (float)MonsterImg.texture.width / MonsterImg.texture.height;
+            float aspectRatio = (float)MonsterImg.texture.width / MonsterImg.texture.height;    // 이미지의 원본 비율 가져오기
 
-            // UI 요소의 RectTransform 컴포넌트 가져오기
-            RectTransform rectTransform = MonsterImage.GetComponent<RectTransform>();
+            RectTransform rectTransform = MonsterImage.GetComponent<RectTransform>();           // UI 요소의 RectTransform 컴포넌트 가져오기
 
-            // 이미지 비율에 따라 UI 요소의 크기 조정
-            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.x / aspectRatio);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.x / aspectRatio);  // 이미지 비율에 따라 UI 요소의 크기 조정
 
-            // 이미지 넣기 
-            MonsterImage.sprite = MonsterImg;
+            MonsterImage.sprite = MonsterImg;    // 이미지 넣기 
+
 
 
             // 2. 몬스터 이름 : 몬스터 데이터 사용 
             string monstername = GameData.instance.monsterdata.MonsterName[id];
             MonsterName.text = monstername;
 
+
+
             // 3. 몬스터 발생 부위
             string monsterpart = monsterListData[id].MonsterPart;
             MonsterPart.text = monsterpart;
+
+
 
             // 4. 몬스터 발생 부위 이미지 
             Sprite monsterpartImg = monsterListData[id].MonsterPartImage;
             MonsterPartImg.GetComponent<Image>().sprite = monsterpartImg;
 
-            // 4. 몬스터 발생 부위 활성화
-            GameObject monsterobj = monsterListData[id].MonsterPartObj;
+            GameObject monsterobj = monsterListData[id].MonsterPartObj;     // 몬스터 발생 부위 활성화
 
-            // 현재 게임 오브젝트에서 SpriteRenderer 컴포넌트를 가져옵니다.
-            spriteRenderer = monsterobj.GetComponent<SpriteRenderer>();
+            spriteRenderer = monsterobj.GetComponent<SpriteRenderer>();     // 현재 게임 오브젝트의 SpriteRenderer 컴포넌트를 가져오기.
 
-            // SpriteRenderer가 존재하는지 확인
-            if (spriteRenderer != null)
+            
+
+            if (spriteRenderer != null)                // SpriteRenderer가 존재하는지 확인
             {
-                // SpriteRenderer의 색상 변경
-                spriteRenderer.color = ActiveColor;
+                spriteRenderer.color = ActiveColor;    // SpriteRenderer의 색상 변경
             }
 
-            // -------
 
+
+            // -------
             // 하단 버튼 텍스트 업데이트
 
             if (id >= 0 && id <= 6)
@@ -161,29 +153,30 @@ public class MonListManager : MonoBehaviour
                 Button_R.text = "알 수 없는\n운동";
             }
 
+
+
         }
-        else
+        else   // "아직 잡지않은 몬스터입니다." 띄우기
         {
-            // "아직 잡지않은 몬스터입니다." 띄우기
+            popupImage.SetActive(true);                // 팝업 이미지를 활성화
 
-            // 팝업 이미지를 활성화
-            popupImage.SetActive(true);
-
-            // 2초 후에 팝업 이미지를 비활성화하는 코루틴 시작
-            StartCoroutine(HidePopupAfterDelay(1f));
+            StartCoroutine(HidePopupAfterDelay(1f));   // 2초 후에 팝업 이미지를 비활성화하는 코루틴 시작
         }
         
     }
 
+
+
     // 일정 시간 후 팝업 이미지를 비활성화하는 코루틴
     private IEnumerator HidePopupAfterDelay(float delay)
     {
-        // 지정한 시간(초) 동안 대기
-        yield return new WaitForSeconds(delay);
+        
+        yield return new WaitForSeconds(delay);     // 지정한 시간(초) 동안 대기
 
-        // 팝업 이미지를 비활성화
-        popupImage.SetActive(false);
+        popupImage.SetActive(false);                // 팝업 이미지를 비활성화
     }
+
+
 
     // 도감에서 뒤로가기 버튼 클릭
     public void ChangeMainScene()
@@ -191,18 +184,20 @@ public class MonListManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+
+
     // 상세정보에서 뒤로가기 버튼 클릭
     public void InActMonsterInfo()
     {
         MonsterInfo.SetActive(false);
 
-        // 비어있지 않으면 
-        if (spriteRenderer != null)
+        if (spriteRenderer != null)  // 비어있지 않으면 
         {
-            // SpriteRenderer의 색상을 변경합니다.
-            spriteRenderer.color = OriginColor;
+            spriteRenderer.color = OriginColor;   // SpriteRenderer의 색상을 변경합니다.
         }
     }
+
+
 
     // 상세정보에서 팝업 버튼 클릭
 
@@ -212,13 +207,13 @@ public class MonListManager : MonoBehaviour
         MonsterPartImg.SetActive(false);
         PopUp_L.SetActive(true);
 
-        if (!isPartLower) // 상체몬스터
+        if (!isPartLower)                             // 상체몬스터
         {
             print("상체 몬스터 입니다.");
             Title_L.text = "상체운동을 해야하는이유";
             L_upper.SetActive(true);
         }
-        else // 하체몬스터 
+        else                                          // 하체몬스터 
         {
             print("하체 몬스터 입니다.");
             Title_L.text = "하체운동을 해야하는이유";
@@ -226,25 +221,28 @@ public class MonListManager : MonoBehaviour
         }
     }
 
+
+
     // 추천하는 00운동
     public void ActPopUp_R() 
     {
         MonsterPartImg.SetActive(false);
         PopUp_R.SetActive(true);
 
-        if (!isPartLower) // 상체몬스터
+        if (!isPartLower)                            // 상체몬스터
         {
             print("상체 몬스터 입니다.");
             Title_R.text = "추천하는 상체운동";
             R_upper.SetActive(true);
         }
-        else // 하체몬스터 
+        else                                         // 하체몬스터 
         {
             print("하체 몬스터 입니다.");
             Title_R.text = "추천하는 하체운동";
             R_lower.SetActive(true);
         }
     }
+
 
     // 팝업에서 뒤로가기 버튼 클릭 
     public void InActPopUp()
@@ -258,10 +256,12 @@ public class MonListManager : MonoBehaviour
         R_lower.SetActive(false);
         PopUp_R.SetActive(false);
         PopUp_L.SetActive(false);
-
-
     }
 }
+
+
+// --------------------------------------------------------------------------------------------------
+
 
 // 몬스터 도감 시각화 관련 데이터 
 [Serializable]
