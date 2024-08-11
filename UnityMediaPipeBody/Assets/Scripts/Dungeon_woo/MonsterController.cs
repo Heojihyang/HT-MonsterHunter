@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // 몬스터 프리팹에 적용
 public class MonsterController : MonoBehaviour
@@ -20,12 +21,13 @@ public class MonsterController : MonoBehaviour
         transform.SetParent(mainCamera.transform, false);
         Debug.Log("카메라(부모) - 몬스터(자식) 관계 설정 성공");
 
-        int monNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
+        int monNum = PlayerPrefs.GetInt("MonsterNumberToSend");
+        //Debug.Log("몬스터 번호 " +  monNum);
         CreateMonster(monNum);                          // 몬스터 생성
         currentHealth = maxHealth;                      // 체력 초기화
     }
 
-    // 몬스터 생성
+    /// 몬스터 생성
     public void CreateMonster(int monsterNumber) 
     {
         // 부모 오브젝트
@@ -44,30 +46,4 @@ public class MonsterController : MonoBehaviour
         animator.SetBool("ani_Damage", false);
         animator.SetBool("ani_Die", false);
     }
-    
-    /*
-    // 데미지 함수
-    public void TakeDamage(float damage)
-    {
-        animator.SetBool("ani_Damage", true);
-        currentHealth -= damage;
-        Debug.Log("아파라!");
-
-        // 현재 체력이 0 이하라면 사망 처리
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        //yield return new WaitForSeconds(2.0f);
-        //animator.SetBool("ani_Damage", false);
-    }
-    
-    // 사망처리 함수
-    private void Die()
-    {
-        animator.SetBool("ani_DIe", true);
-        Debug.Log("꿱");
-        // Destroy(monster);
-    }
-    */
 }

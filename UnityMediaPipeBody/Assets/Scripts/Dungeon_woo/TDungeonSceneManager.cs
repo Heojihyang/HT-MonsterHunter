@@ -15,7 +15,8 @@ public class TDungeonSceneManager : MonoBehaviour
     void Start()
     {
         // 어떤 던전에 들어온건지 데이터 받아오기
-        receivedMonsterNumber = PlayerPrefs.GetInt("MonsterNumberToSend", 0);
+        receivedMonsterNumber = PlayerPrefs.GetInt("MonsterNumberToSend");
+
         // BGM Start
         SoundManager.instance.PlayBGM("BGM_Ingame");
 

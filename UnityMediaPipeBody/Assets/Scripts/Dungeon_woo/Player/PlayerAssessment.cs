@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAssessment : MonoBehaviour
 {
+    // 던전 정보
+    public int dunNum;
+
     // 몬스터
     public GameObject monster;
     public Animator mosterAnimator;
@@ -463,8 +467,10 @@ public class PlayerAssessment : MonoBehaviour
     private void Start()
     {
         score = 0;
+
         // ★던전 번호 넘겨받고 해당 루틴 실행하기★
-        int dunNum = dungeonScene.GetComponent<TDungeonSceneManager>().receivedMonsterNumber;
+        dunNum = PlayerPrefs.GetInt("MonsterNumberToSend");
+        //Debug.Log("운동 루틴 호출 번호 " + dunNum);
 
         // 가이드 모델 애니메이터
         animator = guideModel.GetComponent<Animator>();
@@ -472,15 +478,51 @@ public class PlayerAssessment : MonoBehaviour
         // 몬스터 애니메이터
         mosterAnimator = monster.GetComponent<MonsterController>().animator;
 
+        // 부위에 맞는 운동 루틴 실행
         switch (dunNum)
         {
             case 0:
-                Debug.Log("넘겨받은 던전 번호에 따라 허벅지 루틴을 호출합니다. - PlayerAssessment");
-                StartCoroutine(RunThighRoutine());          // 허벅지 루틴 코루틴 호출
-
+                Debug.Log("가슴 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 1:
+                Debug.Log("등 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 2:
+                Debug.Log("복부 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 3:
+                Debug.Log("허리 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 4:
+                Debug.Log("이두 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 5:
+                Debug.Log("전완근 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 6:
+                Debug.Log("삼두근 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 7:
+                Debug.Log("힙 루틴을 실행합니다.");
+                //StartCoroutine(RunThighRoutine());
+                break;
+            case 8:
+                Debug.Log("허벅지 루틴을 실행합니다.");
+                StartCoroutine(RunThighRoutine());
+                break;
+            case 9:
+                Debug.Log("종아리 루틴을 실행합니다.");
+                StartCoroutine(RunThighRoutine());
                 break;
             default:
-                // StartCoroutine(RunThighRoutine());
+                Debug.Log("이게 호출되면 안되는데?");
                 break;
         }
     }
