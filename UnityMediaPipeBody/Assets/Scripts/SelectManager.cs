@@ -89,20 +89,25 @@ public class SelectManager : MonoBehaviour
     // (시작) 클릭 시 : 던전으로 이동
     public void ChangeTDungeonScene()
     {
-        if (Explain_LeftLeg1.activeSelf)        // 허벅지 던전 
+        if (Explain_LeftLeg1.activeSelf)        // 허벅지 던전 : 8번
         {
             print("허벅지 던전으로 이동합니다.");
 
-            SoundManager.instance.StopBGM("BGM_Main");      // BGM 끄기
-            PlayerPrefs.SetInt("MonsterNumberToSend", 0);   // 씬 로드하면서 몬스터 번호 같이 넘겨주기
-            SceneManager.LoadScene("TDungeonScene");
+            PlayerPrefs.SetInt("MonsterNumberToSend", 8);   // 씬 로드하면서 몬스터 번호 같이 넘겨주기
 
         }
-        else if (Explain_RightArm1.activeSelf)  // 삼두 던전 
+        else if (Explain_RightArm1.activeSelf)  // 삼두 던전 : 6번
         {
             print("삼두 던전으로 이동합니다.");
+
+            PlayerPrefs.SetInt("MonsterNumberToSend", 6);   
+
         }
+
+        SoundManager.instance.StopBGM("BGM_Main");      // BGM 끄기
+        SceneManager.LoadScene("TDungeonScene");
     }
+
 
     // (뒤로가기) 클릭 시 : 메인 화면으로 이동
     public void ChangeMainScene()

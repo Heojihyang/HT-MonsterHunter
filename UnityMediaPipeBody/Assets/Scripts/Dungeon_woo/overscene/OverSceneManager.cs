@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class OverSceneManager : MonoBehaviour
 {
     public int score;
+    public int monsternum;
     public GameObject smoke;
 
     public GameObject[] stars;
@@ -18,6 +19,10 @@ public class OverSceneManager : MonoBehaviour
     {
         // 종합 점수 넘겨받기
         score = PlayerPrefs.GetInt("ScoreToSend", score);
+
+        // 몬스터 번호 넘겨받기
+        monsternum = PlayerPrefs.GetInt("MonsterNumberToSend");
+
         Debug.Log("score : " + score);
 
         // 종료 루틴 호출
@@ -120,7 +125,7 @@ public class OverSceneManager : MonoBehaviour
     // 몬스터 수집
     IEnumerator Success()
     {
-        SaveData();
+        SaveData(monsternum);      // 몬스터 번호 
 
         label.text = "몬스터 수집 성공!";
         yield return new WaitForSeconds(2);
@@ -136,33 +141,28 @@ public class OverSceneManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    /// 플레이 데이터 저장
-    private void SaveData()
-    {
-        // 당일 날짜 (오늘)
-        string targetDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-        // 특정 날짜 (지정)
-        // string targetDate = "2024-05-22"; // 대상 날짜 설정
+    // 플레이 데이터 저장
+    private void SaveData(int MonsterNum)
+    {   
+        
+        string targetDate = DateTime.Now.ToString("yyyy-MM-dd");  // 당일 날짜
 
-        int ClearMonsterNum = 8; // 8번 몬스터는 허벅지 (현재 0번~9번까지 있음)
-
-        // 대상 날짜의 게임 플레이 데이터 확인
         if (!GameData.instance.recordData.dailyRecords.ContainsKey(targetDate))
         {
             // 대상 날짜의 게임 플레이 데이터가 없는 경우: 새로운 데이터 생성
 
             GamePlayData targetDateGamePlayData = new GamePlayData();
             targetDateGamePlayData.PlayCount = 1;
-            targetDateGamePlayData.ClearedMaps = new List<int> { ClearMonsterNum }; // 임시 값 추가
+            targetDateGamePlayData.ClearedMaps = new List<int> { MonsterNum }; // 임시 값 추가
 
-            // 해당 운동 부위에 대한 몬스터 잠금 해제
-            GameData.instance.monsterdata.MonsterUnLocked[ClearMonsterNum] = true;
+            // 해당 운동 부위 몬스터 잠금 해제
+            GameData.instance.monsterdata.MonsterUnLocked[MonsterNum] = true;
 
             // 새로운 데이터를 대상 날짜의 게임 플레이 데이터로 설정
             GameData.instance.recordData.dailyRecords[targetDate] = targetDateGamePlayData;
 
-            print(ClearMonsterNum + "번 몬스터가 새로운 게임 플레이 데이터에 저장되었습니다.");
+            print(MonsterNum + "번 몬스터가 새로운 게임 플레이 데이터에 저장되었습니다.");
 
             // 플레이어 경험치 1 증가 
             GameData.instance.playerdata.PlayerExp += 1;
@@ -174,23 +174,23 @@ public class OverSceneManager : MonoBehaviour
 
             GamePlayData targetDateGamePlayData = GameData.instance.recordData.dailyRecords[targetDate];
             targetDateGamePlayData.PlayCount++; // 플레이 횟수 증가
-            targetDateGamePlayData.ClearedMaps.Add(ClearMonsterNum); // 클리어 맵 리스트에 추가 
+            targetDateGamePlayData.ClearedMaps.Add(MonsterNum); // 클리어 맵 리스트에 추가 
 
-            // 해당 운동 부위에 대한 몬스터 잠금 해제
-            GameData.instance.monsterdata.MonsterUnLocked[ClearMonsterNum] = true; // 바로 윗 줄 코드와 숫자 동일해야함 
+            // 해당 운동 부위 몬스터 잠금 해제
+            GameData.instance.monsterdata.MonsterUnLocked[MonsterNum] = true;
 
             // 업데이트된 데이터를 대상 날짜의 게임 플레이 데이터로 설정
             GameData.instance.recordData.dailyRecords[targetDate] = targetDateGamePlayData;
 
-            print(ClearMonsterNum + "번 몬스터가 게임 플레이 데이터에 추가되었습니다.");
+            print(MonsterNum + "번 몬스터가 게임 플레이 데이터에 추가되었습니다.");
 
             // 플레이어 경험치 1 증가 
             GameData.instance.playerdata.PlayerExp += 1;
         }
 
 
-        // 새로운 데이터 추가 저장 후, 반드시 Load도 진행 해주어야함
-        // : 새로 업데이트된 데이터를 가져와야하기 때문 
+
+        // 새로운 데이터 추가 저장 후, 반드시 Load도 진행 해주어야함 : 새로 업데이트된 데이터를 가져와야하기 때문 
 
         // 데이터를 저장
         GameData.instance.SavePlayerData();
