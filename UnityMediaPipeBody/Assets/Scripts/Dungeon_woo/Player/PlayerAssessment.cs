@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerAssessment : MonoBehaviour
 {
     // 던전 정보
-    public int dunNum;
+    private int dunNum;
 
     // 몬스터
     public GameObject monster;
@@ -44,7 +44,7 @@ public class PlayerAssessment : MonoBehaviour
     LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
     */
 
-    // 현재 랜드마크 가져오기()
+    /// 현재 랜드마크 가져오기()
     public void getPlayerLandmark(GameObject[] landmark, GameObject head)
     {
         for (int i = 11; i < landmark.Length; ++i)
@@ -54,7 +54,7 @@ public class PlayerAssessment : MonoBehaviour
         this.head = head;
     }
 
-    // 플레이어 랜드마크의 포지션 구하기()
+    /// 플레이어 랜드마크의 포지션 구하기()
     public void getPlayerLandmarkPosition(GameObject[] landmark, GameObject head)
     {
         for (int i = 0; i < PLAYER_LANDMARK_COUNT; ++i)
@@ -64,7 +64,7 @@ public class PlayerAssessment : MonoBehaviour
         headLandmarkPosition = head.transform.position;
     }
 
-    // 동작 종합 평가 -> 공격
+    /// 동작 종합 평가
     public float MotionRating(int motionGrade)
     {
         if (motionGrade >= 10)

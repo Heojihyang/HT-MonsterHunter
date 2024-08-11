@@ -10,7 +10,6 @@ public class OverSceneManager : MonoBehaviour
     public int score;
     public int monsternum;
     public GameObject smoke;
-
     public GameObject[] stars;
     public SpriteRenderer[] spriteRenderer;
     public Text label;
