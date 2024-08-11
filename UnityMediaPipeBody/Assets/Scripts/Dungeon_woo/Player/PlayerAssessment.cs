@@ -121,10 +121,9 @@ public class PlayerAssessment : MonoBehaviour
     }
 
     /* ---------------------------------------------------------------- */
-    // ★ 허벅지 운동 루틴 ★
+    /// ★ 허벅지 운동 루틴 ★
     IEnumerator RunThighRoutine()
     {
-        Debug.Log("허벅지 코루틴이 실행되었습니다.");
         UiManager.Instance.UpdateModeratorLabel("준비!");
         yield return new WaitForSeconds(2);
 
@@ -135,7 +134,6 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 15);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 1세트'를 시작합니다.");
         UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스탠딩 사이드 레그레이즈' 1세트를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
@@ -163,7 +161,6 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 15);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다");
         UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스탠딩사이드레그레이즈 2세트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
@@ -189,7 +186,6 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("5초 뒤, '스쿼트'를 시작합니다");
         UiManager.Instance.UpdateModeratorLabel("5초 뒤, '스쿼트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
@@ -213,7 +209,6 @@ public class PlayerAssessment : MonoBehaviour
         // 개발자용 2번 라벨 없애기
         UiManager.Instance.UpdateAngle2Label("");
 
-        Debug.Log("5초 뒤, '런지 1세트'를 시작합니다.");
         UiManager.Instance.UpdateModeratorLabel("5초 뒤, '런지 1세트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
@@ -233,7 +228,6 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateActionCount(0, 20);
         UiManager.Instance.UpdateAdviceLabel("");
 
-        Debug.Log("5초 뒤, '런지 2세트'를 시작합니다.");
         UiManager.Instance.UpdateModeratorLabel("5초 뒤, '런지 2세트'를 시작합니다");
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
@@ -263,7 +257,7 @@ public class PlayerAssessment : MonoBehaviour
     }
 
 
-    // 허벅지-스탠딩사이드레그레이즈(우)
+    /// 허벅지-스탠딩사이드레그레이즈(우)
     IEnumerator R_StandingSideLegRaise()
     {
         // 1. LEFT_HIP = 12  RIGHT_HIP = 13   RIGHT_ANKLE = 17
@@ -308,7 +302,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-    // 허벅지-스탠딩사이드레그레이즈(좌)
+    /// 허벅지-스탠딩사이드레그레이즈(좌)
     IEnumerator L_StandingSideLegRaise()
     {
         // 1. RIGHT_HIP = 13   LEFT_HIP = 12   LEFT_ANKLE = 16
@@ -353,7 +347,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-    // 허벅지-스쿼트
+    /// 허벅지-스쿼트
     IEnumerator Squat()
     {
         // 1. RIGHT_HIP = 13   RIGHT_KNEE = 15   RIGHT_ANKLE = 17
@@ -398,7 +392,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-    // 허벅지-런지(좌우 세트)
+    /// 허벅지-런지(좌우 세트)
     IEnumerator Lunge()
     {
         // 원래 평가항목 2갠데 여기 허리를 어케애햐될지 모르겠어서 평가항목 1개만 하고 점수를 2배로 줌
@@ -464,6 +458,162 @@ public class PlayerAssessment : MonoBehaviour
     }
     /* ---------------------------------------------------------------- */
 
+
+
+    /* ---------------------------------------------------------------- */
+    /// ★ 삼두근 운동 루틴 ★
+    IEnumerator RunTricepsRoutine()
+    {
+        UiManager.Instance.UpdateModeratorLabel("준비!");
+        yield return new WaitForSeconds(2);
+
+        // 1. 레이즈
+        UiManager.Instance.UpdateActionName("레이즈 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 15);
+        UiManager.Instance.UpdateAdviceLabel("");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '레이즈' 1세트를 시작합니다");
+        yield return new WaitForSeconds(2);
+
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
+            yield return new WaitForSeconds(1);
+        }
+        UiManager.Instance.UpdateModeratorLabel("");
+
+        count = 15;
+        animator.SetBool("SideLegRaise", true);
+        yield return StartCoroutine(Rais());
+
+
+        // 2. 숄더프레스
+        UiManager.Instance.UpdateActionName("숄더프레스 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 15);
+        UiManager.Instance.UpdateAdviceLabel("");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '숄더프레스'1세트를 시작합니다");
+        yield return new WaitForSeconds(2);
+
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
+            yield return new WaitForSeconds(1);
+        }
+        UiManager.Instance.UpdateModeratorLabel("");
+
+        count = 15;
+        animator.SetBool("Squat", true);
+        yield return StartCoroutine(ShoulderPress());
+        animator.SetBool("Squat", false);
+
+
+        // 3. 킥백
+        UiManager.Instance.UpdateActionName("킥백 (1set)");
+        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateAdviceLabel("");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '킥백'1세트를 시작합니다");
+        yield return new WaitForSeconds(2);
+
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
+            yield return new WaitForSeconds(1);
+        }
+        UiManager.Instance.UpdateModeratorLabel("");
+
+        count = 12;
+        animator.SetBool("Squat", true);
+        yield return StartCoroutine(KickBack());
+        animator.SetBool("Squat", false);
+
+
+        // 운동 끝
+        UiManager.Instance.UpdateActionName("");
+        UiManager.Instance.UpdateActionCount(0, 0);
+        UiManager.Instance.UpdateAdviceLabel("");
+
+        SoundManager.instance.StopBGM("BGM_Ingame");
+        SoundManager.instance.PlaySFX("SFX_Count_2");
+        UiManager.Instance.UpdateModeratorLabel("종료!");
+        yield return new WaitForSeconds(3);
+
+        //종료 및 평가씬 이동
+        dungeonScene.GetComponent<TDungeonSceneManager>().GoOverScene(score);
+
+    }
+
+
+/*
+//몸(22개) 랜드마크 Index
+LEFT_SHOULDER = 0, RIGHT_SHOULDER = 1, LEFT_ELBOW = 2, RIGHT_ELBOW = 3,
+LEFT_WRIST = 4, RIGHT_WRIST = 5, LEFT_PINKY = 6, RIGHT_PINKY = 7,
+LEFT_INDEX = 8, RIGHT_INDEX = 9, LEFT_THUMB = 10, RIGHT_THUMB = 11,
+LEFT_HIP = 12, RIGHT_HIP = 13, LEFT_KNEE = 14, RIGHT_KNEE = 15,
+LEFT_ANKLE = 16, RIGHT_ANKLE = 17, LEFT_HEEL = 18, RIGHT_HEEL = 19,
+LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
+*/
+
+    /// 삼두근 - 레이즈
+    IEnumerator Rais()
+    {
+        // 1. RIGHT_SHOULDER = 1   RIGHT_ELBOW = 3   RIGHT_WRIST = 5
+        // 2. RIGHT_WRIST = 5   LEFT_WRIST = 4
+        int grade = 0;
+        for (int i = 0; i < count; i++)
+        {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+            SoundManager.instance.PlaySFX("SFX_Count_1");
+
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[3], playerLandmark[5], playerLandmark[3]);
+            float angle2 = Mathf.Abs(playerLandmark[5].transform.position.y - playerLandmark[4].transform.position.y);
+            grade = 0;
+
+            // 평가 1번 - 팔을 제대로 들었는가
+            if (angle1 >= 85) { grade += 5; }
+            else if (angle1 >= 80) { grade += 3; }
+            else if (angle1 >= 70) { grade += 1; }
+
+            // 평가 2번 - 양 손이 수평인가  -> 테스트 필요
+            if (angle2 <= 1) { grade += 5; }
+            else if (angle1 <= 3) { grade += 3; }
+            else if (angle1 <= 5) { grade += 1; }
+
+
+            //동작 평가
+            MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("팔을 제대로 들었는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("양 손이 수평인가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
+            mosterAnimator.SetBool("ani_Damage", false);
+            yield return new WaitForSeconds(1.5f);
+        }
+        yield return new WaitForSeconds(0);
+    }
+
+    /// 삼두근 - 숄더프레스
+    IEnumerator ShoulderPress()
+    {
+
+        yield return new WaitForSeconds(0);
+    }
+
+    /// 삼두근 - 킥백
+    IEnumerator KickBack()
+    {
+
+        yield return new WaitForSeconds(0);
+    }
+    /* ---------------------------------------------------------------- */
+
+
     private void Start()
     {
         score = 0;
@@ -483,35 +633,35 @@ public class PlayerAssessment : MonoBehaviour
         {
             case 0:
                 Debug.Log("가슴 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 가슴 루틴을 호출하세요
                 break;
             case 1:
                 Debug.Log("등 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 등 루틴을 호출하세요
                 break;
             case 2:
                 Debug.Log("복부 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 복부 루틴을 호출하세요
                 break;
             case 3:
                 Debug.Log("허리 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 허리 루틴을 호출하세요
                 break;
             case 4:
                 Debug.Log("이두 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 이두 루틴을 호출하세요
                 break;
             case 5:
                 Debug.Log("전완근 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 전완근 루틴을 호출하세요
                 break;
             case 6:
                 Debug.Log("삼두근 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                StartCoroutine(RunTricepsRoutine());
                 break;
             case 7:
                 Debug.Log("힙 루틴을 실행합니다.");
-                //StartCoroutine(RunThighRoutine());
+                // 힙 루틴을 호출하세요
                 break;
             case 8:
                 Debug.Log("허벅지 루틴을 실행합니다.");
@@ -519,10 +669,10 @@ public class PlayerAssessment : MonoBehaviour
                 break;
             case 9:
                 Debug.Log("종아리 루틴을 실행합니다.");
-                StartCoroutine(RunThighRoutine());
+                // 종아리 루틴을 호출하세요
                 break;
             default:
-                Debug.Log("이게 호출되면 안되는데?");
+                Debug.Log("여기 오면 안되는데?");
                 break;
         }
     }
