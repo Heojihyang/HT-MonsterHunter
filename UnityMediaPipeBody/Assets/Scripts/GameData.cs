@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
 //// Json 사용
 //   Json은 string 형태로 저장
 //   딕셔너리를 지원하지 않아서, 배열로 주고받아야함
+
 
 //   저장하는 방법
 //    1. 저장할 데이터 존재
 //    2. 데이터를 Json으로 변환
 //    3. Json을 외부에 저장
+
 
 //   불러오는 방법
 //    1. 외부에 저장된 Json을 가져옴
@@ -19,10 +22,26 @@ using System.IO;
 //    3. 불러온 데이터 사용
 
 
+
 public class MonsterData
 {
-    public bool[] MonsterUnLocked = new bool[10];   // 몬스터(20개) 수집 여부
+    public bool[] MonsterUnLocked = new bool[10];   // 몬스터(10개) 수집 여부
     public string[] MonsterName = new string[10];   // 몬스터 이름
+
+    // 몬스터 기본 이름 설정 메서드
+    public void InitializeDefaultNames()
+    {
+        MonsterName[0] = "한벙두";
+        MonsterName[1] = "읃닥거";
+        MonsterName[2] = "최중계";
+        MonsterName[3] = "허리스토텔레스";
+        MonsterName[4] = "이두나";
+        MonsterName[5] = "덤벙벨";
+        MonsterName[6] = "김삼두";
+        MonsterName[7] = "힙찔이";
+        MonsterName[8] = "곽배식";
+        MonsterName[9] = "쫑알이";
+    }
 }
 
 public class PlayerData
@@ -44,7 +63,9 @@ public class RecordData
     public Dictionary<string, GamePlayData> dailyRecords;   // 날짜별 게임플레이 데이터 저장
 }
 
+
 // -----------------------------------------------------------------------------------------------------------
+
 
 public class GameData : MonoBehaviour
 {
@@ -61,6 +82,7 @@ public class GameData : MonoBehaviour
 
     private void Awake()
     {
+        // 게임 데이터는 싱글톤으로 관리한다.
         #region 싱글톤
 
         if (instance == null)
@@ -74,6 +96,7 @@ public class GameData : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         #endregion
+
 
         Path = Application.persistentDataPath + "/";  // 경로
         print("경로생성 " + Path);
@@ -103,6 +126,7 @@ public class GameData : MonoBehaviour
         }
         else
         {
+            monsterdata.InitializeDefaultNames();   // 기본 이름 설정
             SaveMonsterData();                                        // 파일 없으면 기본 데이터 저장
             print("기본 몬스터 데이터 생성 완료");
         }

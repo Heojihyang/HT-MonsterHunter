@@ -9,13 +9,15 @@ public class StartManager : MonoBehaviour
 
     void Start()
     {
+
         // 게임 데이터 로드
         GameData.instance.LoadMonsterData();
         GameData.instance.LoadPlayerData();
         GameData.instance.LoadGamePlayData();
 
 
-        #region 임시 데이터 추가 하는 코드 
+
+        #region 데이터 추가 하는 코드 (던전 추가)
         /*
 
         // 당일 날짜 (오늘)
@@ -82,7 +84,9 @@ public class StartManager : MonoBehaviour
         GameData.instance.LoadMonsterData();
         */
 
+
         #endregion
+
 
     }
 
