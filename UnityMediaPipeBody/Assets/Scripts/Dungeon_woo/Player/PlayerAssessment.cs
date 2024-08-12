@@ -508,11 +508,11 @@ public class PlayerAssessment : MonoBehaviour
         animator.SetBool("Squat", false);
 
 
-        // 3. 킥백
-        UiManager.Instance.UpdateActionName("킥백 (1set)");
+        // 3. 킥백 - 우
+        UiManager.Instance.UpdateActionName("킥백 - 우 (1set)");
         UiManager.Instance.UpdateActionCount(0, 12);
         UiManager.Instance.UpdateAdviceLabel("");
-        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '킥백'1세트를 시작합니다");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '킥백 - 우' 1세트를 시작합니다");
         yield return new WaitForSeconds(2);
 
         for (int i = 5; i > 0; i--)
@@ -525,7 +525,28 @@ public class PlayerAssessment : MonoBehaviour
 
         count = 12;
         animator.SetBool("Squat", true);
-        yield return StartCoroutine(KickBack());
+        yield return StartCoroutine(R_KickBack());
+        animator.SetBool("Squat", false);
+
+
+        // 4. 킥백 - 좌
+        UiManager.Instance.UpdateActionName("킥백 - 좌 (2set)");
+        UiManager.Instance.UpdateActionCount(0, 12);
+        UiManager.Instance.UpdateAdviceLabel("");
+        UiManager.Instance.UpdateModeratorLabel("5초 뒤, '킥백 - 좌' 2세트를 시작합니다");
+        yield return new WaitForSeconds(2);
+
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log(i + "초");
+            UiManager.Instance.UpdateModeratorLabel(i.ToString());
+            yield return new WaitForSeconds(1);
+        }
+        UiManager.Instance.UpdateModeratorLabel("");
+
+        count = 12;
+        animator.SetBool("Squat", true);
+        yield return StartCoroutine(L_KickBack());
         animator.SetBool("Squat", false);
 
 
@@ -545,15 +566,6 @@ public class PlayerAssessment : MonoBehaviour
     }
 
 
-/*
-//몸(22개) 랜드마크 Index
-LEFT_SHOULDER = 0, RIGHT_SHOULDER = 1, LEFT_ELBOW = 2, RIGHT_ELBOW = 3,
-LEFT_WRIST = 4, RIGHT_WRIST = 5, LEFT_PINKY = 6, RIGHT_PINKY = 7,
-LEFT_INDEX = 8, RIGHT_INDEX = 9, LEFT_THUMB = 10, RIGHT_THUMB = 11,
-LEFT_HIP = 12, RIGHT_HIP = 13, LEFT_KNEE = 14, RIGHT_KNEE = 15,
-LEFT_ANKLE = 16, RIGHT_ANKLE = 17, LEFT_HEEL = 18, RIGHT_HEEL = 19,
-LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
-*/
 
     /// 삼두근 - 레이즈
     IEnumerator Rais()
@@ -569,26 +581,25 @@ LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
             // 각도 측정
             yield return new WaitForSeconds(1.5f);
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[3], playerLandmark[5], playerLandmark[3]);
-            float angle2 = Mathf.Abs(playerLandmark[5].transform.position.y - playerLandmark[4].transform.position.y);
+            //float angle2 = Mathf.Abs(playerLandmark[5].transform.position.y - playerLandmark[4].transform.position.y);
             grade = 0;
 
             // 평가 1번 - 팔을 제대로 들었는가
-            if (angle1 >= 85) { grade += 5; }
-            else if (angle1 >= 80) { grade += 3; }
-            else if (angle1 >= 70) { grade += 1; }
+            if (angle1 >= 85) { grade += 10; }
+            else if (angle1 >= 80) { grade += 6; }
+            else if (angle1 >= 70) { grade += 2; }
 
             // 평가 2번 - 양 손이 수평인가  -> 테스트 필요
-            if (angle2 <= 1) { grade += 5; }
-            else if (angle1 <= 3) { grade += 3; }
-            else if (angle1 <= 5) { grade += 1; }
-
+            //if (angle2 <= 1) { grade += 5; }
+            //else if (angle1 <= 3) { grade += 3; }
+            //else if (angle1 <= 5) { grade += 1; }
 
             //동작 평가
             MotionRating(grade);
 
             // 개발자용 라벨
             UiManager.Instance.UpdateAngle1Label("팔을 제대로 들었는가 : " + angle1);
-            UiManager.Instance.UpdateAngle2Label("양 손이 수평인가 : " + angle2);
+            //UiManager.Instance.UpdateAngle2Label("양 손이 수평인가 : " + angle2);
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
@@ -601,14 +612,127 @@ LEFT_FOOT_INDEX = 20, RIGHT_FOOT_INDEX = 21,
     /// 삼두근 - 숄더프레스
     IEnumerator ShoulderPress()
     {
+        // 1. LEFT_WRIST = 4   LEFT_ELBOW = 2   LEFT_SHOULDER = 0
+        // 2. RIGHT_WRIST = 5   RIGHT_ELBOW = 3   RIGHT_SHOULDER = 1
+        int grade = 0;
+        for (int i = 0; i < count; i++)
+        {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+            SoundManager.instance.PlaySFX("SFX_Count_1");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[4], playerLandmark[2], playerLandmark[0], playerLandmark[2]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[5], playerLandmark[3], playerLandmark[1], playerLandmark[3]);
+            grade = 0;
+
+            // 평가 1번 - 왼쪽 팔을 적절하게 구부렸나
+            if (angle1 >= 80 && angle1 <=100) { grade += 5; }
+            else if (angle1 >= 70 && angle1 <= 110) { grade += 3; }
+            else if (angle1 >= 60 && angle1 <= 120) { grade += 1; }
+
+            // 평가 2번 - 오른쪽 팔을 적절하게 구부렸나
+            if (angle2 >= 80 && angle1 <= 100) { grade += 5; }
+            else if (angle2 >= 70 && angle1 <= 110) { grade += 3; }
+            else if (angle2 >= 60 && angle1 <= 120) { grade += 1; }
+
+            //동작 평가
+            MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("왼쪽 팔을 적절하게 구부렸나 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("오른쪽 팔을 적절하게 구부렸나 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
+            mosterAnimator.SetBool("ani_Damage", false);
+            yield return new WaitForSeconds(1.5f);
+        }
         yield return new WaitForSeconds(0);
     }
 
-    /// 삼두근 - 킥백
-    IEnumerator KickBack()
+    /// 삼두근 - 킥백(우)
+    IEnumerator R_KickBack()
     {
+        // 1. RIGHT_SHOULDER = 1   RIGHT_HIP = 13   RIGHT_ANKLE = 17
+        // 2. RIGHT_WRIST = 5   RIGHT_ELBOW = 3   RIGHT_HIP = 13
+        int grade = 0;
+        for (int i = 0; i < count; i++)
+        {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+            SoundManager.instance.PlaySFX("SFX_Count_1");
 
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[17], playerLandmark[13]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[5], playerLandmark[3], playerLandmark[13], playerLandmark[3]);
+            grade = 0;
+
+            // 평가 1번 - 상체를 적절히 숙였는가?
+            if (angle1 >= 160) { grade += 5; }
+            else if (angle1 >= 150) { grade += 3; }
+            else if (angle1 >= 140) { grade += 1; }
+
+            // 평가 2번 - 팔을 적절하게 들었는가?
+            if (angle2 <= 25) { grade += 5; }
+            else if (angle2 <= 30) { grade += 3; }
+            else if (angle2 <= 40) { grade += 1; }
+
+            //동작 평가
+            MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("상체를 적절히 숙였는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("팔을 적절하게 들었는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
+            mosterAnimator.SetBool("ani_Damage", false);
+            yield return new WaitForSeconds(1.5f);
+        }
+        yield return new WaitForSeconds(0);
+    }
+
+
+    /// 삼두근 - 킥백(좌)
+    IEnumerator L_KickBack()
+    {
+        // 1. LEFT_SHOULDER = 0   LEFT_HIP = 12   LEFT_ANKLE = 16
+        // 2. LEFT_WRIST = 4  LEFT_ELBOW = 2   LEFT_HIP = 12
+        int grade = 0;
+        for (int i = 0; i < count; i++)
+        {
+            UiManager.Instance.UpdateActionCount(i + 1, count);
+            SoundManager.instance.PlaySFX("SFX_Count_1");
+
+            // 각도 측정
+            yield return new WaitForSeconds(1.5f);
+            float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[0], playerLandmark[12], playerLandmark[16], playerLandmark[12]);
+            float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[4], playerLandmark[2], playerLandmark[12], playerLandmark[2]);
+            grade = 0;
+
+            // 평가 1번 - 상체를 적절히 숙였는가?
+            if (angle1 >= 160) { grade += 5; }
+            else if (angle1 >= 150) { grade += 3; }
+            else if (angle1 >= 140) { grade += 1; }
+
+            // 평가 2번 - 팔을 적절하게 들었는가?
+            if (angle2 <= 25) { grade += 5; }
+            else if (angle2 <= 30) { grade += 3; }
+            else if (angle2 <= 40) { grade += 1; }
+
+            //동작 평가
+            MotionRating(grade);
+
+            // 개발자용 라벨
+            UiManager.Instance.UpdateAngle1Label("상체를 적절히 숙였는가 : " + angle1);
+            UiManager.Instance.UpdateAngle2Label("팔을 적절하게 들었는가 : " + angle2);
+            UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
+            UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
+
+            mosterAnimator.SetBool("ani_Damage", false);
+            yield return new WaitForSeconds(1.5f);
+        }
         yield return new WaitForSeconds(0);
     }
     /* ---------------------------------------------------------------- */
