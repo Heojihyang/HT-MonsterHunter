@@ -12,46 +12,69 @@ public class SelectExAnim : MonoBehaviour
     public GameObject Guide2;
     public GameObject Guide3;
 
-    private bool sideLegRaiseState;
-    private bool SquatState;
-    private bool LaungeState;
+    public GameObject Explain_LeftLeg1;    // 허벅지
+    public GameObject Explain_RightArm1;   // 삼두
 
-    // Start is called before the first frame update
     void Start()
     {
         GuideAnim1 = Guide1.GetComponent<Animator>();
         GuideAnim2 = Guide2.GetComponent<Animator>();
         GuideAnim3 = Guide3.GetComponent<Animator>();
 
-        sideLegRaiseState = true;
-        SquatState = true;
-        LaungeState = true;
+        if (Explain_LeftLeg1.activeSelf)
+        {
+            GuideAnim1.SetBool("SideLegRaise", true);
+            GuideAnim2.SetBool("Squat", true);
+            GuideAnim3.SetBool("Launge", true);
+            
 
-        GuideAnim1.SetBool("SideLegRaise", sideLegRaiseState);
-        GuideAnim2.SetBool("Squat", SquatState);
-        GuideAnim3.SetBool("Launge", LaungeState);
+        }
+        else if (Explain_RightArm1.activeSelf)
+        {
+            GuideAnim1.SetBool("Reize", true);
+            GuideAnim2.SetBool("ShoulderPress", true);
+            GuideAnim3.SetBool("KickBack", true);
+        }
+            
     }
 
+    
     // 게임 오브젝트가 활성화될 때마다 호출
     void OnEnable()
     {
-        if (GuideAnim1 != null)
+        if (Explain_LeftLeg1.activeSelf)
         {
-            GuideAnim1.SetBool("SideLegRaise", sideLegRaiseState);
+            if (GuideAnim1 != null)
+            {
+                GuideAnim1.SetBool("SideLegRaise", true);
+            }
+            if (GuideAnim2 != null)
+            {
+                GuideAnim2.SetBool("Squat", true);
+            }
+            if (GuideAnim3 != null)
+            {
+                GuideAnim3.SetBool("Launge", true);
+            }
         }
-        if (GuideAnim2 != null)
+        else if (Explain_RightArm1.activeSelf)
         {
-            GuideAnim2.SetBool("Squat", SquatState);
-        }
-        if (GuideAnim3 != null)
-        {
-            GuideAnim3.SetBool("Launge", LaungeState);
-        }
-    }
+            if (GuideAnim1 != null)
+            {
+                GuideAnim1.SetBool("Reize", true);
+            }
+            if (GuideAnim2 != null)
+            {
+                GuideAnim2.SetBool("ShoulderPress", true);
+            }
+            if (GuideAnim3 != null)
+            {
+                GuideAnim3.SetBool("KickBack", true);
+            }
 
-    // Update is called once per frame
-    void Update()
-    {
+        }
         
     }
+       
+
 }
