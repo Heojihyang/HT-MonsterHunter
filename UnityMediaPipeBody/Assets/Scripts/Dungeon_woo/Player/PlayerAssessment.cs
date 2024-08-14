@@ -5,34 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerAssessment : MonoBehaviour
 {
-    // 던전 정보
-    private int dunNum;
+    [Header("셋팅")]
+    public GameObject dungeonScene;
+    public BulletGenerator bullet;
+    public Camera mainCamera;
 
-    // 몬스터
+    [Header ("몬스터")]
     public GameObject monster;
     public Animator mosterAnimator;
-    public float damage = 7.5f;
 
-    // 플레이어
+    [Header("가이드모델")]
+    public GameObject guideModel;
+    public List<GameObject> guideModels;
+    public Animator animator;
+
+    [Header("플레이어")]
+    public int score;                                                                   // 플레이어 동작 평가 점수
     public GameObject[] playerLandmark = new GameObject[PLAYER_LANDMARK_COUNT];         // 플레이어 몸 랜드마크
     public GameObject head;                                                             // 플레이어 머리
     private Vector3[] playerLandmarkPosition = new Vector3[PLAYER_LANDMARK_COUNT];      // 플레이어 몸 랜드마크 포지션
     private Vector3 headLandmarkPosition = new Vector3(0, 0, 0);                        // 플레이어 머리 포지션
     const int PLAYER_LANDMARK_COUNT = 22;                                               // 플레이어 랜드마크 수
     
-    public GameObject dungeonScene;       // 씬 관리 오브젝트
-    private int count;                    // 코루틴을 위한 count 변수
-    public int score;                     // 플레이어 동작 평가 점수
+    private int count;  // 코루틴을 위한 count 변수
+    private int dunNum; // 던전 정보
 
-    // 가이드 모델
-    public GameObject guideModel;
-    public Animator animator;
-
-    // BulletGenerator(피격효과)
-    public BulletGenerator bullet;
-
-    // 게임 종료 오브젝트
-    public GameObject TerminationGameManager;
 
     /*
     //몸(22개) 랜드마크 Index
@@ -483,8 +480,9 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateModeratorLabel("");
 
         count = 15;
-        animator.SetBool("SideLegRaise", true);
+        animator.SetBool("Reize", true);
         yield return StartCoroutine(Rais());
+        animator.SetBool("Reize", false);
 
 
         // 2. 숄더프레스
@@ -503,9 +501,9 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateModeratorLabel("");
 
         count = 15;
-        animator.SetBool("Squat", true);
+        animator.SetBool("ShoulderPress", true);
         yield return StartCoroutine(ShoulderPress());
-        animator.SetBool("Squat", false);
+        animator.SetBool("ShoulderPress", false);
 
 
         // 3. 킥백 - 우
@@ -524,9 +522,9 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateModeratorLabel("");
 
         count = 12;
-        animator.SetBool("Squat", true);
+        animator.SetBool("KickBack", true);
         yield return StartCoroutine(R_KickBack());
-        animator.SetBool("Squat", false);
+        animator.SetBool("KickBack", false);
 
 
         // 4. 킥백 - 좌
@@ -545,9 +543,9 @@ public class PlayerAssessment : MonoBehaviour
         UiManager.Instance.UpdateModeratorLabel("");
 
         count = 12;
-        animator.SetBool("Squat", true);
+        animator.SetBool("KickBack", true);
         yield return StartCoroutine(L_KickBack());
-        animator.SetBool("Squat", false);
+        animator.SetBool("KickBack", false);
 
 
         // 운동 끝
@@ -747,7 +745,7 @@ public class PlayerAssessment : MonoBehaviour
         //Debug.Log("운동 루틴 호출 번호 " + dunNum);
 
         // 가이드 모델 애니메이터
-        animator = guideModel.GetComponent<Animator>();
+        //animator = guideModel.GetComponent<Animator>();
 
         // 몬스터 애니메이터
         mosterAnimator = monster.GetComponent<MonsterController>().animator;
@@ -781,6 +779,9 @@ public class PlayerAssessment : MonoBehaviour
                 break;
             case 6:
                 Debug.Log("삼두근 루틴을 실행합니다.");
+                guideModel = Instantiate(guideModels[1]);
+                guideModel.transform.SetParent(mainCamera.transform, false);
+                animator = guideModel.GetComponent<Animator>();
                 StartCoroutine(RunTricepsRoutine());
                 break;
             case 7:
@@ -789,6 +790,9 @@ public class PlayerAssessment : MonoBehaviour
                 break;
             case 8:
                 Debug.Log("허벅지 루틴을 실행합니다.");
+                guideModel = Instantiate(guideModels[0]);
+                guideModel.transform.SetParent(mainCamera.transform, false);
+                animator = guideModel.GetComponent<Animator>();
                 StartCoroutine(RunThighRoutine());
                 break;
             case 9:
