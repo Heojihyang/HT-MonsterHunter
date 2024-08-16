@@ -702,7 +702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258692196}
   m_Layer: 0
-  m_Name: /*------- Game -------*/
+  m_Name: '*---------- Game ----------*'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,7 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 585476012}
   m_Layer: 0
-  m_Name: /*------- Camera -------*/
+  m_Name: '*-------- Camera --------*'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2245,7 +2245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1424075349}
   m_Layer: 0
-  m_Name: /*------ Manager ------*/
+  m_Name: '*--------- Manager ---------*'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3694,7 +3694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122291940}
   m_Layer: 0
-  m_Name: /*--------- UI ---------*/
+  m_Name: '*----------- UI -----------*'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
