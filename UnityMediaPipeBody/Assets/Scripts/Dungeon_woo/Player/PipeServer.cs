@@ -99,6 +99,7 @@ public class PipeServer : MonoBehaviour
             for (int i = 0; i < lines.Length; ++i)
             {
                 lines[i] = Instantiate(linePrefab).GetComponent<LineRenderer>();
+                lines[i].transform.SetParent(parent.transform, false);
             }
 
             // 머리 생성
@@ -108,6 +109,7 @@ public class PipeServer : MonoBehaviour
                 head.transform.localPosition = headPrefab.transform.position;
                 head.transform.localRotation = headPrefab.transform.localRotation;
                 head.transform.localScale = headPrefab.transform.localScale;
+                head.transform.SetParent(parent, false);
             }
         }
 

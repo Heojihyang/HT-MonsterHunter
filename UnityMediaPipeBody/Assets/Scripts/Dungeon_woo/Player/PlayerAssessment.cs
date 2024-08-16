@@ -112,8 +112,6 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
         }
 
-        Debug.Log("Grade : " + motionGrade);
-        Debug.Log("현재까지의 Score : " + score);
         return 0f;
     }
 
@@ -135,7 +133,6 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -162,7 +159,6 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -187,7 +183,6 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -210,7 +205,6 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -229,7 +223,6 @@ public class PlayerAssessment : MonoBehaviour
         yield return new WaitForSeconds(2);
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -271,8 +264,6 @@ public class PlayerAssessment : MonoBehaviour
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[13], playerLandmark[17], playerLandmark[13]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             grade = 0;
-
-            Debug.Log("스탠딩 사이드 레그레이즈(우) " + (i + 1) + "회");
             
             // 평가 1번 각도(완화) 다리를 얼마나 들어올렸는가
             if (angle1 >= 120 ) { grade += 5;  }
@@ -316,9 +307,6 @@ public class PlayerAssessment : MonoBehaviour
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
 
-            Debug.Log("스탠딩 사이드 레그레이즈(좌) " + (i + 1) + "회");
-
-
             // 평가 1번(완화) 다리를 얼마나 들어올렸는가
             if (angle1 >= 120) { grade += 5; }
             else if (angle1 >= 115) { grade += 3; }
@@ -360,9 +348,6 @@ public class PlayerAssessment : MonoBehaviour
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[1], playerLandmark[13], playerLandmark[15], playerLandmark[13]);
             grade = 0;
-
-            Debug.Log("스쿼트 " + (i + 1) + "회");
-
             
             // 평가 1번(완화) - 제대로 푹 앉았는가
             if (angle1 <= 100) { grade += 5; }
@@ -402,9 +387,6 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateActionCount(++k, count);
             SoundManager.instance.PlaySFX("SFX_Count_1");
 
-            // 런지(우)
-            Debug.Log("런지 " + (k) + "회");
-
             // 각도 측정(완화)
             yield return new WaitForSeconds(1.5f);
             float angle1 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[13], playerLandmark[15], playerLandmark[17], playerLandmark[15]);
@@ -428,7 +410,6 @@ public class PlayerAssessment : MonoBehaviour
             // 런지(좌)
             UiManager.Instance.UpdateActionCount(++k, count);
             SoundManager.instance.PlaySFX("SFX_Count_1");
-            Debug.Log("런지 " + (k) + "회");
 
             // 각도 측정
             yield return new WaitForSeconds(1.5f);
@@ -473,7 +454,6 @@ public class PlayerAssessment : MonoBehaviour
 
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -494,7 +474,6 @@ public class PlayerAssessment : MonoBehaviour
 
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -515,7 +494,6 @@ public class PlayerAssessment : MonoBehaviour
 
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -536,7 +514,6 @@ public class PlayerAssessment : MonoBehaviour
 
         for (int i = 5; i > 0; i--)
         {
-            Debug.Log(i + "초");
             UiManager.Instance.UpdateModeratorLabel(i.ToString());
             yield return new WaitForSeconds(1);
         }
@@ -742,10 +719,6 @@ public class PlayerAssessment : MonoBehaviour
 
         // ★던전 번호 넘겨받고 해당 루틴 실행하기★
         dunNum = PlayerPrefs.GetInt("MonsterNumberToSend");
-        //Debug.Log("운동 루틴 호출 번호 " + dunNum);
-
-        // 가이드 모델 애니메이터
-        //animator = guideModel.GetComponent<Animator>();
 
         // 몬스터 애니메이터
         mosterAnimator = monster.GetComponent<MonsterController>().animator;
