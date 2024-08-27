@@ -66,49 +66,33 @@ public class PlayerAssessment : MonoBehaviour
     {
         if (motionGrade >= 10)
         {
-            // 여기에 피격 호출
+            //Debug.Log("평가 : 1등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
-
-            // 몬스터 데미지 애니메이션
-            mosterAnimator.SetBool("ani_Damage", true);
-
-            Debug.Log("평가 : 1등급");
+            mosterAnimator.SetBool("ani_Damage", true); 
             UiManager.Instance.UpdateAdviceLabel("완벽해요!");
             score += 5;
         }
         else if (motionGrade >= 6)
         {
-            // 여기에 피격 호출
+            //Debug.Log("평가 : 2등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
-
-            // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
-
-            Debug.Log("평가 : 2등급");
             UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
             score += 3;
         }
         else if (motionGrade >= 2)
         {
-            // 여기에 피격 호출
+            //Debug.Log("평가 : 3등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
-
-            // 몬스터 데미지 애니메이션
             mosterAnimator.SetBool("ani_Damage", true);
-
-            Debug.Log("평가 : 3등급");
             UiManager.Instance.UpdateAdviceLabel("좋아요");
             score += 1;
         }
         else
         {
-            // 피격효과 테스트
+            //Debug.Log("평가 : 4등급");
             //bullet.GetComponent<BulletGenerator>().ShootBullet(0);
-
-            // 몬스터 데미지 애니메이션 테스트
             //mosterAnimator.SetBool("ani_Damage", true);
-
-            Debug.Log("평가 : 4등급");
             UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
         }
 
@@ -240,6 +224,10 @@ public class PlayerAssessment : MonoBehaviour
         SoundManager.instance.StopBGM("BGM_Ingame");
         SoundManager.instance.PlaySFX("SFX_Count_2");
         UiManager.Instance.UpdateModeratorLabel("종료!");
+        if (score >= 450)
+        {
+            mosterAnimator.SetBool("ani_Die", true);
+        }
         yield return new WaitForSeconds(3);
 
         //종료 및 평가씬 이동
@@ -284,8 +272,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false); 
-            yield return new WaitForSeconds(1.5f); //3초에 한번씩 동작진행
+            yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -326,8 +314,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -368,8 +356,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -404,8 +392,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
 
             // 런지(좌)
             UiManager.Instance.UpdateActionCount(++k, count);
@@ -415,7 +403,6 @@ public class PlayerAssessment : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             float angle2 = GetComponent<AngleCalculator>().GetAngle(playerLandmark[12], playerLandmark[14], playerLandmark[16], playerLandmark[14]);
             grade = 0;
-
             
             if (80 <= angle2 && angle1 <= 100) { grade += 10; }
             else if (70 <= angle2 && angle1 <= 105) { grade += 6; }
@@ -429,8 +416,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -533,11 +520,14 @@ public class PlayerAssessment : MonoBehaviour
         SoundManager.instance.StopBGM("BGM_Ingame");
         SoundManager.instance.PlaySFX("SFX_Count_2");
         UiManager.Instance.UpdateModeratorLabel("종료!");
+        if (score >= 450)
+        {
+            mosterAnimator.SetBool("ani_Die", true);
+        }
         yield return new WaitForSeconds(3);
 
         //종료 및 평가씬 이동
         dungeonScene.GetComponent<TDungeonSceneManager>().GoOverScene(score);
-
     }
 
 
@@ -569,7 +559,7 @@ public class PlayerAssessment : MonoBehaviour
             //else if (angle1 <= 3) { grade += 3; }
             //else if (angle1 <= 5) { grade += 1; }
 
-            //동작 평가
+            // 동작 평가
             MotionRating(grade);
 
             // 개발자용 라벨
@@ -578,8 +568,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -620,8 +610,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -662,8 +652,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
@@ -705,8 +695,8 @@ public class PlayerAssessment : MonoBehaviour
             UiManager.Instance.UpdateOverallLabel("동작 종합 평가(10점 만점) : " + grade + "점");
             UiManager.Instance.UpdateScorelLabel("던전 스코어 : " + score);
 
-            mosterAnimator.SetBool("ani_Damage", false);
             yield return new WaitForSeconds(1.5f);
+            mosterAnimator.SetBool("ani_Damage", false);
         }
         yield return new WaitForSeconds(0);
     }
