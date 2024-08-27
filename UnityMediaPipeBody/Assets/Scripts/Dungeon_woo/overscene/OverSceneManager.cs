@@ -31,8 +31,8 @@ public class OverSceneManager : MonoBehaviour
     // 종료 루틴
     IEnumerator ShutdownRoutine(int score)
 
-    {   //  450으로 고정!!!! 중요!!!!
-        score = 451;
+    {   // 450으로 고정!!!! 중요!!!!
+        // score = 451;
 
         // 스모크 내려주기
 
@@ -129,6 +129,7 @@ public class OverSceneManager : MonoBehaviour
         label.text = "몬스터 수집 성공!";
         yield return new WaitForSeconds(2);
         label.text = "메인 화면으로 이동합니다";
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("MainScene");
         yield return new WaitForSeconds(0);
     }

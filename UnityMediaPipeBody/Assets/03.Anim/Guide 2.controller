@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guide_KickBack
-  m_Speed: 1
+  m_Speed: 0.26
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5810321792924969863}
@@ -92,7 +92,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guide_Reize
-  m_Speed: 1
+  m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7668907539322929316}
@@ -179,19 +179,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ShoulderPress
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: KickBack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -302,7 +302,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guide_ShoulderPress
-  m_Speed: 1
+  m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 152784122281886435}
