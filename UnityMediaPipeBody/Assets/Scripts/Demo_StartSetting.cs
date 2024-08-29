@@ -19,7 +19,7 @@ public class Demo_StartSetting : MonoBehaviour
 
         // [ 운동 기록 ]
         SetExerciseRecords();
-        // DeleteTodayRecords();
+        // DeleteTodayRecords(); 당일 플레이 횟수 기록 위해 삭제하지 않고 남기기로 결정 
 
 
         // 데이터 저장
@@ -36,7 +36,7 @@ public class Demo_StartSetting : MonoBehaviour
 
     private void SetPlayerExp()
     {
-        GameData.instance.playerdata.PlayerExp = 6;
+        GameData.instance.playerdata.PlayerExp = 9;
     }
 
     private void SetMonsterList()
@@ -80,17 +80,26 @@ public class Demo_StartSetting : MonoBehaviour
     {
         if (!recordData.dailyRecords.ContainsKey(date))
         {
+            // 날짜가 없으면 새로운 기록 생성
             recordData.dailyRecords[date] = new GamePlayData
             {
                 PlayCount = clearedMaps.Count,
-                ClearedMaps = clearedMaps
+                ClearedMaps = new List<int>(clearedMaps)
             };
         }
         else
         {
             GamePlayData existingRecord = recordData.dailyRecords[date];
-            existingRecord.PlayCount += clearedMaps.Count;
-            existingRecord.ClearedMaps.AddRange(clearedMaps);
+
+            // ClearedMaps에 이미 존재하는 운동이 있는지 확인
+            bool hasDuplicate = clearedMaps.Exists(map => existingRecord.ClearedMaps.Contains(map));
+
+            // 중복되지 않은 경우에만 추가
+            if (!hasDuplicate)
+            {
+                existingRecord.PlayCount += clearedMaps.Count;
+                existingRecord.ClearedMaps.AddRange(clearedMaps);
+            }
         }
     }
 
