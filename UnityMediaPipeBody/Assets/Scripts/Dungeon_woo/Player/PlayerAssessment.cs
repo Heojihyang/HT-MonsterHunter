@@ -69,7 +69,7 @@ public class PlayerAssessment : MonoBehaviour
             //Debug.Log("평가 : 1등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
             mosterAnimator.SetBool("ani_Damage", true); 
-            UiManager.Instance.UpdateAdviceLabel("완벽해요!");
+            UiManager.Instance.UpdateAdviceLabel("1등급... 아니 최상급 동작!!!");
             score += 5;
         }
         else if (motionGrade >= 6)
@@ -77,7 +77,7 @@ public class PlayerAssessment : MonoBehaviour
             //Debug.Log("평가 : 2등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
             mosterAnimator.SetBool("ani_Damage", true);
-            UiManager.Instance.UpdateAdviceLabel("아주 좋아요!");
+            UiManager.Instance.UpdateAdviceLabel("2등급 동작, 조금만 더!!!");
             score += 3;
         }
         else if (motionGrade >= 2)
@@ -85,7 +85,7 @@ public class PlayerAssessment : MonoBehaviour
             //Debug.Log("평가 : 3등급");
             bullet.GetComponent<BulletGenerator>().ShootBullet(0);
             mosterAnimator.SetBool("ani_Damage", true);
-            UiManager.Instance.UpdateAdviceLabel("좋아요");
+            UiManager.Instance.UpdateAdviceLabel("3등급 동작, 기본은 하고 있어요.");
             score += 1;
         }
         else
@@ -93,7 +93,7 @@ public class PlayerAssessment : MonoBehaviour
             //Debug.Log("평가 : 4등급");
             //bullet.GetComponent<BulletGenerator>().ShootBullet(0);
             //mosterAnimator.SetBool("ani_Damage", true);
-            UiManager.Instance.UpdateAdviceLabel("조금만 더 열심히 해볼까요?");
+            UiManager.Instance.UpdateAdviceLabel("동작을 인식할 수 없습니다..");
         }
 
         return 0f;
