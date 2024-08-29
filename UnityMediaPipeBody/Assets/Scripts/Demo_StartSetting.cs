@@ -19,7 +19,7 @@ public class Demo_StartSetting : MonoBehaviour
 
         // [ 운동 기록 ]
         SetExerciseRecords();
-        DeleteTodayRecords();
+        // DeleteTodayRecords();
 
 
         // 데이터 저장

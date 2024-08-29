@@ -134,6 +134,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return StartCoroutine(L_StandingSideLegRaise());
         animator.SetBool("SideLegRaise", false);
 
+        
         // 2세트 - 우
         UiManager.Instance.UpdateActionName("우 - 스탠딩 사이드 레그 레이즈 (2set)");
         UiManager.Instance.UpdateActionCount(0, 15);
@@ -158,6 +159,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return StartCoroutine(L_StandingSideLegRaise());
         animator.SetBool("SideLegRaise", false);
 
+        
         // 2. 스쿼트
         UiManager.Instance.UpdateActionName("스쿼트");
         UiManager.Instance.UpdateActionCount(0, 20);
@@ -198,6 +200,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return StartCoroutine(Lunge());
         animator.SetBool("Launge", false);
 
+        
         // 2세트 (좌우 20번)
         UiManager.Instance.UpdateActionName("런지 (2set)");
         UiManager.Instance.UpdateActionCount(0, 20);
@@ -216,6 +219,7 @@ public class PlayerAssessment : MonoBehaviour
         yield return StartCoroutine(Lunge());
         animator.SetBool("Launge", false);
         
+
         // 운동 끝
         UiManager.Instance.UpdateActionName("");
         UiManager.Instance.UpdateActionCount(0, 0);
