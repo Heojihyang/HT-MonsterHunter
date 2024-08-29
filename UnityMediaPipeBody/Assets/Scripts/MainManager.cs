@@ -12,7 +12,9 @@ public class MainManager : MonoBehaviour
     public Text PlayerGoal;
     public Image LevelImage;
     public Sprite[] LevelImg = new Sprite[5];
-    
+
+    // 레벨 팝업 관련 변수
+    public GameObject LevelPopup;
 
     void Start()
     {
@@ -97,7 +99,15 @@ public class MainManager : MonoBehaviour
 
     }
 
-
+    // 레벨 팝업 On/Off 클릭 메소드 
+    public void OnLevelPopup()
+    {
+        LevelPopup.SetActive(true);
+    }
+    public void OffLevelPopup()
+    {
+        LevelPopup.SetActive(false);
+    }
 
     // (운동하기) 클릭 시 : SelectScene으로 이동 
     public void ChangeSelectScene()
