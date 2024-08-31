@@ -19,6 +19,7 @@ public class OverSceneManager : MonoBehaviour
         // 종합 점수 넘겨받기
         score = PlayerPrefs.GetInt("ScoreToSend", score);
 
+
         // 몬스터 번호 넘겨받기
         monsternum = PlayerPrefs.GetInt("MonsterNumberToSend");
 
@@ -40,8 +41,8 @@ public class OverSceneManager : MonoBehaviour
         // 평가 알려주기(별 UI와 점수Text UI)
         yield return StartCoroutine(OverallAssessment(score));    
 
-        // 마무리
-        if (score >= 450)
+        // 마무리(지금 만점 350점)
+        if (score >= 200)
         {
             // 몬스터 수집 o
             StartCoroutine(Success());
@@ -57,10 +58,10 @@ public class OverSceneManager : MonoBehaviour
     // 평가 알려주기
     IEnumerator OverallAssessment(int score)
     {
-        label.text = score.ToString() + "/ 600 점!";
+        label.text = score.ToString() + "/ 350 점!";
         Debug.Log("최종 평가 알려주기 라벨 셋팅 완료");
 
-        if (score >= 540 && score <= 600)
+        if (score >= 300 && score <= 350)
         {
             stars[0].GetComponent<SpriteRenderer>().color = Color.white;
             stars[1].GetComponent<SpriteRenderer>().color = Color.white;
@@ -68,7 +69,7 @@ public class OverSceneManager : MonoBehaviour
             stars[3].GetComponent<SpriteRenderer>().color = Color.white;
             stars[4].GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (score >= 420 && score <= 539)
+        else if (score >= 250 && score < 300)
         {
             stars[0].GetComponent<SpriteRenderer>().color = Color.black;
             stars[1].GetComponent<SpriteRenderer>().color = Color.white;
@@ -76,7 +77,7 @@ public class OverSceneManager : MonoBehaviour
             stars[3].GetComponent<SpriteRenderer>().color = Color.white;
             stars[4].GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (score >= 300 && score <= 419)
+        else if (score >= 150 && score < 250)
         {
             stars[0].GetComponent<SpriteRenderer>().color = Color.black;
             stars[1].GetComponent<SpriteRenderer>().color = Color.black;
@@ -84,7 +85,7 @@ public class OverSceneManager : MonoBehaviour
             stars[3].GetComponent<SpriteRenderer>().color = Color.white;
             stars[4].GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (score >= 180 && score <= 299)
+        else if (score >= 100 && score < 150)
         {
             stars[0].GetComponent<SpriteRenderer>().color = Color.black;
             stars[1].GetComponent<SpriteRenderer>().color = Color.black;
@@ -92,7 +93,7 @@ public class OverSceneManager : MonoBehaviour
             stars[3].GetComponent<SpriteRenderer>().color = Color.white;
             stars[4].GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (score >= 60 && score <= 179)
+        else if (score >= 50 && score < 100)
         {
             stars[0].GetComponent<SpriteRenderer>().color = Color.black;
             stars[1].GetComponent<SpriteRenderer>().color = Color.black;
@@ -136,6 +137,8 @@ public class OverSceneManager : MonoBehaviour
 
     IEnumerator Failure()
     {
+        SaveData(monsternum);      // 몬스터 번호 
+
         label.text = "메인 화면으로 이동합니다";
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("MainScene");
